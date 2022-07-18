@@ -1,0 +1,245 @@
+.main {
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+  overflow: hidden;
+
+  display: grid;
+  grid-template-columns: 20rem 1fr;
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    'header header'
+    'nav results';
+}
+
+.header {
+  grid-area: header;
+
+  height: 6rem;
+
+  display: grid;
+  grid-template-columns: 20rem 1fr;
+  grid-template-areas: 'logo header';
+
+  align-items: center;
+  justify-items: center;
+
+  &-logo {
+    grid-area: logo;
+
+    font-family: var(--font-bold);
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  &-main-title {
+    font-size: 2.4rem;
+    text-transform: uppercase;
+  }
+}
+
+.aside-menu {
+  padding-top: 1.4rem;
+  grid-area: nav;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  gap: 1.4rem;
+
+  &__months-form-section {
+    width: 80%;
+  }
+
+  &__months-form {
+    padding: 0.6rem;
+
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+      'title title'
+      'selector btn';
+    gap: 0.6rem;
+    align-items: center;
+    justify-items: start;
+
+    border: var(--border-dark);
+
+    &-label {
+      width: 100%;
+      grid-area: title;
+
+      font-size: 1.4rem;
+      text-transform: uppercase;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    &-select {
+      grid-area: selector;
+
+      font-size: 1.2rem;
+      padding: 0.4rem;
+      font-family: inherit;
+      text-transform: uppercase;
+      background-color: transparent;
+      border: none;
+    }
+
+    &-submit {
+      grid-area: btn;
+
+      @include btn-basic-layout;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &-submit:hover {
+      background-color: var(--color-dark);
+      color: var(--color-light);
+    }
+  }
+
+  &__title {
+    font-size: 2.2rem;
+    text-transform: uppercase;
+  }
+
+  &__content-view {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.4rem;
+  }
+
+  &__content-months {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.4rem;
+  }
+
+  &__content-tours {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.4rem;
+  }
+
+  &__btn,
+  &__btn-dates,
+  &__btn-tours {
+    height: 2.8rem;
+    width: 80%;
+
+    padding: 1.2rem;
+
+    @include btn-basic-layout;
+    box-shadow: none;
+
+    transition: all 0.2s;
+
+    cursor: pointer;
+
+    @include flex-space-between;
+  }
+
+  &__btn:hover,
+  &__btn-dates:hover,
+  &__btn-tours:hover {
+    background-color: var(--color-dark);
+    color: var(--color-light);
+  }
+
+  &__dates-content {
+    width: 80%;
+    padding: 1.2rem;
+    list-style: none;
+    text-transform: uppercase;
+
+    border: var(--border-dark);
+
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  &__dates-content-items:nth-child(2) {
+    padding-top: 1rem;
+    border-top: var(--border-dark);
+  }
+
+  &__dates-content-items-title {
+    @include flex-space-between;
+  }
+
+  &__dates-content-items-title-text {
+    font-size: 1.4rem;
+  }
+
+  &__dates-content-items {
+    @include flex-space-between;
+  }
+
+  &__dates-content-item {
+    padding: 0.2rem;
+    font-size: 1.4rem;
+    cursor: pointer;
+
+    &--btn {
+      width: 100%;
+      padding: 0.2rem;
+      @include btn-basic-layout;
+      box-shadow: none;
+
+      transition: all 0.2s;
+    }
+
+    &--btn:hover {
+      background-color: var(--color-dark);
+      color: var(--color-light);
+    }
+  }
+
+  &__copyright {
+    margin-top: auto;
+  }
+}
+
+.results-section {
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+
+  padding-top: 4rem;
+
+  grid-area: results;
+  background-color: var(--color-grey);
+  // border-left: var(--border-dark);
+  // border-top: var(--border-dark);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+}
+
+.icon {
+  font-size: 1.4rem;
+  cursor: pointer;
+}

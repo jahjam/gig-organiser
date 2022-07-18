@@ -1,0 +1,15 @@
+.u-active-btn {
+  background-color: var(--color-dark) !important;
+  color: var(--color-light) !important;
+  border: none !important;
+  border-left: 0.8rem solid var(--ter-color-default) !important;
+  border-radius: 0.4rem !important;
+}
+
+.u-no-display {
+  display: none !important;
+}
+
+.u-is-flag-hovered:hover {
+  color: var(--ter-color-default) !important;
+}

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://use.typekit.net/jho3nrb.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <script type="module" defer src="/src/script.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+    <title>GigPal | Organise Your Gig Life</title>
+  </head>
+  <body>
+    <div class="container">
+      <main class="main">
+        <header class="header">
+          <div class="header-logo">
+            <h1 class="header-logo__text">GIGPAL</h1>
+          </div>
+          <div class="header-main-title">
+            <h2 class="header-main-title__text">Today's Gigs</h2>
+          </div>
+        </header>
+
+        <aside class="aside-menu">
+            <h3 class="aside-menu__title">View</h3>
+
+            <div class="aside-menu__content-view">
+              <button class="aside-menu__btn today-btn u-active-btn">Today</button>
+              <button class="aside-menu__btn next-week-btn">This Week</button>
+              <button class="aside-menu__btn month-btn">This Month</button>
+              <button class="aside-menu__btn flagged-btn">Flagged</button>
+            </div>
+
+            <h3 class="aside-menu__title">Months</h3>
+
+            <div class="aside-menu__content-months">
+              <button class="aside-menu__btn-dates"><span>Add dates</span><ion-icon class='icon' name="add-outline"></ion-icon></button>
+              <div class="aside-menu__months-form-section u-no-display">
+                <form id="months-form" class="aside-menu__months-form">
+                  <label for="month" class="aside-menu__months-form-label"><span>Select Month</span><ion-icon class="icon form-label-icon" name="close-outline"></ion-icon></label>
+                  <select name="month" id="month" class="aside-menu__months-form-select">
+                    <option value="January" class="aside-menu__months-form-option">January</option>
+                    <option value="Febuary" class="aside-menu__months-form-option">February</option>
+                    <option value="March" class="aside-menu__months-form-option">March</option>
+                    <option value="April" class="aside-menu__months-form-option">April</option>
+                    <option value="May" class="aside-menu__months-form-option">May</option>
+                    <option value="June" class="aside-menu__months-form-option">June</option>
+                    <option value="July" class="aside-menu__months-form-option">July</option>
+                    <option value="August" class="aside-menu__months-form-option">August</option>
+                    <option value="September" class="aside-menu__months-form-option">September</option>
+                    <option value="October" class="aside-menu__months-form-option">October</option>
+                    <option value="November" class="aside-menu__months-form-option">November</option>
+                    <option value="December" class="aside-menu__months-form-option">December</option>
+                  </select>
+                  <button class="aside-menu__months-form-submit">
+                    <ion-icon class="icon" name="add-outline"></ion-icon>
+                  </button>
+                </form>
+              </div>
+              <!-- <ul class="aside-menu__dates-content">
+                <li class="aside-menu__dates-content-items-title">
+                  <h4 class="aside-menu__dates-content-items-title-text">January</h4> <ion-icon class='icon' name="ellipsis-vertical-outline"></ion-icon>
+                </li>
+                <li class="aside-menu__dates-content-items">
+                  <span class="aside-menu__dates-content-item">Gig 1</span><ion-icon class='icon' name="ellipsis-vertical-outline"></ion-icon>
+                </li> 
+                <li class="aside-menu__dates-content-items">
+                  <span class="aside-menu__dates-content-item">Gig 2</span> <ion-icon class='icon' name="ellipsis-vertical-outline"></ion-icon>
+                </li>
+              </ul> -->
+            </div>
+
+            <h3 class="aside-menu__title">Tours</h3>
+
+            <div class="aside-menu__content-tours">
+              <button class="aside-menu__btn-tours"><span>Add tours</span><ion-icon class='icon' name="add-outline"></ion-icon></button>
+              <!-- <ul class="aside-menu__dates-content">
+                <li class="aside-menu__dates-content-items-title">
+                  <h4 class="aside-menu__dates-content-items-title-text">Tour 1</h4> <ion-icon class='icon' name="chevron-down-outline"></ion-icon>
+                </li>
+                <li class="aside-menu__dates-content-items">
+                  <span class="aside-menu__dates-content-item">Gig 1</span> <ion-icon class='icon' name="ellipsis-vertical-outline"></ion-icon>
+                </li>
+                <li class="aside-menu__dates-content-items">
+                  <span class="aside-menu__dates-content-item">Gig 2</span> <ion-icon class='icon' name="ellipsis-vertical-outline"></ion-icon>
+                </li>
+              </ul> -->
+            </div>
+
+            <span class="aside-menu__copyright">Lovingly handmade by Atomic Mammoth Media</span>
+        </aside>
+
+        <section class="results-section">
+          <!-- <div class="result-card">
+            <div class="result-card__venue">
+              <span class="result-card__venue-title">Venue:</span>
+              <span class="result-card__venue-venue">Zanzibar</span>
+            </div>
+            <div class="result-card__date">
+              <span class="result-card__date-title">Date:</span>
+              <span class="result-card__date-date">01/01/22</span>
+            </div>
+            <div class="result-card__info">
+              <span class="result-card__info-title">Notes:</span>
+              <p class="result-card__info-notes">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur quidem impedit ab nostrum distinctio facere reiciendis.</p>
+            </div>
+            <div class="result-card__address">
+              <span class="result-card__address-title">Address:</span>
+              <ul class="result-card__address-format">
+               <li class="result-card__address-format-num">10</li>
+               <li class="result-card__address-format-street">Street street</li>
+               <li class="result-card__address-format-city">Liverpool</li>
+               <li class="result-card__address-format-postcode">L1 8BA</li>
+              </ul>
+            </div>
+            <div class="result-card__sound-check">
+              <span class="result-card__sound-check-title">Soundcheck:</span>
+              <span class="result-card__sound-check-time">16:00</span>
+            </div>
+            <div class="result-card__stage-time">
+              <span class="result-card__stage-time-title">Stage time:</span>
+              <span class="result-card__stage-time-time">22:30</span>
+            </div>
+            <div class="result-card__icon">
+              <ion-icon class='icon' name="flag-outline"></ion-icon>         
+              <ion-icon class='icon' name="create-outline"></ion-icon>
+              <ion-icon class='icon' name="trash-outline"></ion-icon>
+            </div>
+          </div> -->
+        </section>
+
+        <section class="edit-section u-no-display">
+          <div class="edit-window">
+            <form class="edit-window__form">
+              <h2 class="edit-window__main-title">Add a gig</h2>
+
+              <h3 class="edit-window__title">Gig Details</h3>
+
+              <div class="edit-window__form-item">
+                <label for="venue" class="edit-window__label">Venue name*</label>
+                <input type="text" class="edit-window__input" id="venue" placeholder="The Bowery Ballroom" required>
+              </div>
+
+              <div class="edit-window__form-item">
+                <label for="date" class="edit-window__label">Date of gig*</label required>
+                <input type="date" class="edit-window__input" id="date" >
+              </div>
+
+              <div class="edit-window__form-item">
+                <label for="info" class="edit-window__label">Notes:</label>
+                <textarea class="edit-window__input edit-window__input-area" id="info" name="info"
+                  rows="4" cols="33" placeholder="Tickets are: £7. Support acts are: Kings of Leon, The Killers..."></textarea>
+              </div>
+
+              <h3 class="edit-window__title">Venue address</h3>
+
+              <div class="edit-window__form-item">
+                <label for="number" class="edit-window__label">Number</label>
+                <input type="text" class="edit-window__input" id="number" placeholder="20">
+              </div>
+
+              <div class="edit-window__form-item">
+               <label for="street" class="edit-window__label">Street</label>
+                <input type="text" class="edit-window__input" id="street" placeholder="Street street">
+              </div>
+
+              <div class="edit-window__form-item">
+                <label for="city" class="edit-window__label">City</label>
+                <input type="text" class="edit-window__input" id="city" placeholder="Liverpool">
+              </div>
+
+              <div class="edit-window__form-item">
+                <label for="postcode" class="edit-window__label">Postcode</label>
+                <input type="text" class="edit-window__input" id="postcode" placeholder="L1 8BA">
+              </div>
+
+              <h3 class="edit-window__title">Gig Times</h3>
+
+              <div class="edit-window__form-item">
+                <label for="soundcheck" class="edit-window__label">Soundcheck time</label>
+                <input type="text" class="edit-window__input" id="soundcheck" placeholder="15:00">
+              </div>
+
+              <div class="edit-window__form-item">
+                <label for="stage-time" class="edit-window__label">Stage time</label>
+                <input type="text" class="edit-window__input" id="stage-time" placeholder="20:00">
+              </div>
+
+              <button type="submit" class="edit-window__form-submit-btn">Add gig &rarr;</button>
+            </form>
+          </div>
+        </section>
+      </main> 
+    </div>  
+  </body>
+</html>

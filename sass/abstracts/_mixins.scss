@@ -1,0 +1,23 @@
+@mixin flex-space-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin card-border {
+  padding: 0.4rem;
+  border: var(--border-dark);
+  border-radius: var(--border-radius);
+}
+
+@mixin btn-basic-layout {
+  border: none;
+  background-color: transparent;
+  border: var(--border-dark);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  text-transform: uppercase;
+  font-family: inherit;
+  text-transform: uppercase;
+  cursor: pointer;
+}

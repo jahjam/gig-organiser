@@ -1,0 +1,148 @@
+.result-card {
+  height: 16rem;
+  width: 85%;
+  padding: 2rem;
+  background-color: var(--color-light);
+  border-radius: var(--border-radius);
+
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas:
+    'venue info address soundcheck'
+    'venue info address stage-time'
+    'date info address icon';
+  gap: 1rem;
+
+  box-shadow: var(--box-shadow);
+
+  &__venue {
+    grid-area: venue;
+
+    @include card-border;
+
+    display: flex;
+    flex-direction: column;
+
+    &-title {
+      font-weight: 600;
+    }
+
+    > span {
+      font-size: 1.4rem;
+    }
+  }
+
+  &__date {
+    grid-area: date;
+
+    @include card-border;
+    @include flex-space-between;
+
+    &-title {
+      font-weight: 600;
+    }
+
+    > span {
+      font-size: 1.4rem;
+    }
+  }
+
+  &__info {
+    grid-area: info;
+    overflow: auto;
+
+    @include card-border;
+
+    display: flex;
+    flex-direction: column;
+
+    &-title {
+      font-size: 1.4rem !important;
+      font-weight: 600;
+    }
+
+    &-notes {
+      font-size: 1.2rem;
+      hyphens: auto;
+    }
+  }
+
+  &__address {
+    grid-area: address;
+
+    @include card-border;
+
+    &-title {
+      font-size: 1.4rem !important;
+      font-weight: 600;
+    }
+
+    &-format {
+      margin: 0.2rem;
+      list-style: none;
+
+      font-size: 1.4rem;
+
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+  }
+
+  &__sound-check {
+    grid-area: soundcheck;
+
+    @include card-border;
+    @include flex-space-between;
+
+    &-title {
+      font-weight: 600;
+    }
+
+    > span {
+      font-size: 1.4rem;
+    }
+  }
+
+  &__stage-time {
+    grid-area: stage-time;
+
+    @include card-border;
+    @include flex-space-between;
+
+    &-title {
+      font-weight: 600;
+    }
+
+    > span {
+      font-size: 1.4rem;
+    }
+  }
+
+  &__icon {
+    width: 100%;
+    grid-area: icon;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+
+    .icon:nth-child(3) {
+      margin-left: auto;
+    }
+
+    .icon:nth-child(3):hover {
+      color: red;
+    }
+
+    > .icon {
+      font-size: 2.2rem;
+    }
+
+    > .icon:hover {
+      color: var(--ter-color-default);
+    }
+  }
+}
