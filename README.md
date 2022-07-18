@@ -6,18 +6,18 @@ TODO
 
 Month view:
 
-[] - Required feilds to prevent bugs\
-[] - Prevent double months generation\
-[] - Create edit functionality\
-[] - Create delete functionality\
-[] - generate edit and delete options for each gig\
+[ ] - Required feilds to prevent bugs\
+[ ] - Prevent double months generation\
+[ ] - Create edit functionality\
+[ ] - Create delete functionality\
+[ ] - generate edit and delete options for each gig\
 
-[] - COMPLETE!
+[ ] - COMPLETE!
 
 Local storage:
 
-[] - COMPLETE!
+[ ] - COMPLETE!
 
 Tour View:
 
-[] - COMPLETE!
+[ ] - COMPLETE!
