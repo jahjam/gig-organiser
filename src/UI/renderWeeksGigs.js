@@ -28,11 +28,7 @@ class RenderWeeksGigs extends renderMainGigs {
       })
     );
 
-    if (this.resultsEl.innerHTML === '') {
-      this.resultsEl.innerHTML = `
-        <h2 class="notice">No gigs this week</h2>
-        `;
-    }
+    this.isContainerEmpty('<h2 class="notice">No gigs this week</h2>');
 
     renderFlagged.isFlagged();
   }

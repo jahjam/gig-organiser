@@ -1,14 +1,11 @@
 import createMonth from '../modules/createMonth.js';
+import renderFlagged from './renderFlagged.js';
+import UIHelpers from './UIHelpers.js';
 import { intervalToDuration } from 'date-fns';
 
-export default class RenderMainGigs {
-  resultsEl = document.querySelector('.results-section');
+export default class RenderMainGigs extends UIHelpers {
   asideMenuViewBtns = document.querySelectorAll('.aside-menu__btn');
   mainTitle = document.querySelector('.header-main-title__text');
-
-  clearResults() {
-    this.resultsEl.innerHTML = '';
-  }
 
   addRemoveBtnActive(el, event) {
     this.asideMenuViewBtns.forEach(btn => btn.classList.remove('u-active-btn'));
@@ -119,6 +116,6 @@ export default class RenderMainGigs {
     `;
 
     this.resultsEl.insertAdjacentHTML('afterbegin', html);
-    this.flagIcon = document.querySelectorAll('.flag-icon');
+    renderFlagged.flagIcon = document.querySelectorAll('.flag-icon');
   }
 }

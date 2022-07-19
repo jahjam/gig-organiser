@@ -7,7 +7,7 @@ class RenderGig {
 
   handlerAddGigBtns() {
     window.addEventListener('click', this.renderForm.bind(this));
-    window.addEventListener('click', this.readFormData.bind(this));
+    this.formElement.addEventListener('submit', this.readFormData.bind(this));
   }
 
   renderForm(e) {
@@ -20,8 +20,6 @@ class RenderGig {
 
   readFormData(e) {
     e.preventDefault();
-
-    if (!e.target.closest('.edit-window__form-submit-btn')) return;
 
     this.inputs.forEach(input => {
       createGig.values.push(input.value);

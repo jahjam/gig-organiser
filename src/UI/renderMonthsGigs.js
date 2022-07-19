@@ -28,11 +28,7 @@ class RenderMonthsGigs extends renderMainGigs {
       })
     );
 
-    if (this.resultsEl.innerHTML === '') {
-      this.resultsEl.innerHTML = `
-      <h2 class="notice">No gigs this month</h2>
-      `;
-    }
+    this.isContainerEmpty('<h2 class="notice">No gigs this month</h2>');
 
     renderFlagged.isFlagged();
   }

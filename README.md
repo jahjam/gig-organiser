@@ -13,7 +13,7 @@ Month view:
 [x] - Add gig logic\
 [x] - Render add gig form\
 [x] - View logic to render gigs in main view\
-[ ] - Required feilds to prevent bugs\
+[x] - Required feilds to prevent bugs\
 [ ] - Prevent double months generation\
 [ ] - Create edit functionality\
 [ ] - Create delete functionality\

@@ -2,7 +2,6 @@ import createMonth from './createMonth.js';
 import renderMonthSelector from '../UI/renderMonthSelector.js';
 import showHideGigs from '../UI/showHideGigs.js';
 import renderGig from '../UI/renderGig.js';
-import renderMainGigs from '../UI/renderMainGigs.js';
 import renderTodaysGigs from '../UI/renderTodaysGigs.js';
 import renderWeeksGigs from '../UI/renderWeeksGigs.js';
 import renderMonthsGigs from '../UI/renderMonthsGigs.js';
@@ -20,7 +19,6 @@ export default class Handlers {
     renderMonthSelector.handlerMonthsEvents();
     showHideGigs.handlershowHideGigs();
     renderGig.handlerAddGigBtns();
-    // renderMainGigs.handerViewBtns();
     renderTodaysGigs.handlerTodayViewBtn();
     renderWeeksGigs.handlerWeeksViewBtn();
     renderMonthsGigs.handlerMonthsViewBtn();
@@ -28,5 +26,3 @@ export default class Handlers {
     renderFlagged.handlerFlaggedGig();
   }
 }
-
-// export default new Handlers();

@@ -48,11 +48,7 @@ class RenderTodaysGigs extends renderMainGigs {
       })
     );
 
-    if (this.resultsEl.innerHTML === '') {
-      this.resultsEl.innerHTML = `
-      <h2 class="notice">No gigs today</h2>
-      `;
-    }
+    this.isContainerEmpty('<h2 class="notice">No gigs today</h2>');
   }
 }
 
