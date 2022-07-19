@@ -6,17 +6,19 @@ class CreateMonth {
   gigsByMonth = [];
   todaysDate = format(new Date(), 'dd/MM/yyyy');
 
-  constructor() {
-    this.addDateBtn = document.querySelector('.aside-menu__months-form-submit');
-  }
-
-  handler() {
-    this.addDateBtn.addEventListener('click', this.createMonth.bind(this));
-  }
-
   createMonth(e) {
     e.preventDefault();
     this.userOption = document.forms['months-form'].month;
+
+    if (this.gigsByMonth.length !== 0) {
+      this.gigsByMonth.forEach(month => {
+        if (month.month.toLowerCase() === this.userOption.value.toLowerCase())
+          return;
+      });
+      // Need to display and error here for trying to render two months with same name.
+      return;
+    }
+
     new month(this.userOption.value);
     renderMonthSelector.closeSelector();
   }

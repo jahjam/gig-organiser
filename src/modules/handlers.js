@@ -1,5 +1,5 @@
-import createMonth from './createMonth.js';
 import renderMonthSelector from '../UI/renderMonthSelector.js';
+import renderMonth from '../UI/renderMonth.js';
 import showHideGigs from '../UI/showHideGigs.js';
 import renderGig from '../UI/renderGig.js';
 import renderTodaysGigs from '../UI/renderTodaysGigs.js';
@@ -15,7 +15,7 @@ export default class Handlers {
   }
 
   static callHandlers() {
-    createMonth.handler();
+    renderMonth.handlerRenderMonth();
     renderMonthSelector.handlerMonthsEvents();
     showHideGigs.handlershowHideGigs();
     renderGig.handlerAddGigBtns();
