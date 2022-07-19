@@ -7,6 +7,7 @@ import renderWeeksGigs from '../UI/renderWeeksGigs.js';
 import renderMonthsGigs from '../UI/renderMonthsGigs.js';
 import renderFlaggedGigs from '../UI/renderFlaggedGigs.js';
 import renderFlagged from '../UI/renderFlagged.js';
+import renderEdit from '../UI/renderEdit.js';
 
 export default class Handlers {
   static loadUI() {
@@ -24,5 +25,6 @@ export default class Handlers {
     renderMonthsGigs.handlerMonthsViewBtn();
     renderFlaggedGigs.handlerFlaggedViewBtn();
     renderFlagged.handlerFlaggedGig();
+    renderEdit.handlerRenderEdit();
   }
 }

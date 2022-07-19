@@ -1,7 +1,7 @@
 import createGig from '../modules/createGig';
 
 class RenderGig {
-  form = document.querySelector('.edit-section');
+  form = document.querySelector('.edit-section__add');
   formElement = document.querySelector('.edit-window__form');
   inputs = document.querySelectorAll('.edit-window__input');
 

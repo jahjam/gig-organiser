@@ -16,11 +16,12 @@ class CreateMonth {
           return;
       });
       // Need to display and error here for trying to render two months with same name.
-      return;
     }
 
     new month(this.userOption.value);
     renderMonthSelector.closeSelector();
+
+    console.log(this.gigsByMonth);
   }
 }
 

@@ -119,17 +119,6 @@
                 </button>
               </form>
             </div>
-            <!-- <ul class="aside-menu__dates-content">
-                <li class="aside-menu__dates-content-items-title">
-                  <h4 class="aside-menu__dates-content-items-title-text">January</h4> <ion-icon class='icon' name="ellipsis-vertical-outline"></ion-icon>
-                </li>
-                <li class="aside-menu__dates-content-items">
-                  <span class="aside-menu__dates-content-item">Gig 1</span><ion-icon class='icon' name="ellipsis-vertical-outline"></ion-icon>
-                </li> 
-                <li class="aside-menu__dates-content-items">
-                  <span class="aside-menu__dates-content-item">Gig 2</span> <ion-icon class='icon' name="ellipsis-vertical-outline"></ion-icon>
-                </li>
-              </ul> -->
           </div>
 
           <h3 class="aside-menu__title">Tours</h3>
@@ -139,17 +128,6 @@
               <span>Add tours</span
               ><ion-icon class="icon" name="add-outline"></ion-icon>
             </button>
-            <!-- <ul class="aside-menu__dates-content">
-                <li class="aside-menu__dates-content-items-title">
-                  <h4 class="aside-menu__dates-content-items-title-text">Tour 1</h4> <ion-icon class='icon' name="chevron-down-outline"></ion-icon>
-                </li>
-                <li class="aside-menu__dates-content-items">
-                  <span class="aside-menu__dates-content-item">Gig 1</span> <ion-icon class='icon' name="ellipsis-vertical-outline"></ion-icon>
-                </li>
-                <li class="aside-menu__dates-content-items">
-                  <span class="aside-menu__dates-content-item">Gig 2</span> <ion-icon class='icon' name="ellipsis-vertical-outline"></ion-icon>
-                </li>
-              </ul> -->
           </div>
 
           <span class="aside-menu__copyright"
@@ -157,46 +135,9 @@
           >
         </aside>
 
-        <section class="results-section">
-          <!-- <div class="result-card">
-            <div class="result-card__venue">
-              <span class="result-card__venue-title">Venue:</span>
-              <span class="result-card__venue-venue">Zanzibar</span>
-            </div>
-            <div class="result-card__date">
-              <span class="result-card__date-title">Date:</span>
-              <span class="result-card__date-date">01/01/22</span>
-            </div>
-            <div class="result-card__info">
-              <span class="result-card__info-title">Notes:</span>
-              <p class="result-card__info-notes">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur quidem impedit ab nostrum distinctio facere reiciendis.</p>
-            </div>
-            <div class="result-card__address">
-              <span class="result-card__address-title">Address:</span>
-              <ul class="result-card__address-format">
-               <li class="result-card__address-format-num">10</li>
-               <li class="result-card__address-format-street">Street street</li>
-               <li class="result-card__address-format-city">Liverpool</li>
-               <li class="result-card__address-format-postcode">L1 8BA</li>
-              </ul>
-            </div>
-            <div class="result-card__sound-check">
-              <span class="result-card__sound-check-title">Soundcheck:</span>
-              <span class="result-card__sound-check-time">16:00</span>
-            </div>
-            <div class="result-card__stage-time">
-              <span class="result-card__stage-time-title">Stage time:</span>
-              <span class="result-card__stage-time-time">22:30</span>
-            </div>
-            <div class="result-card__icon">
-              <ion-icon class='icon' name="flag-outline"></ion-icon>         
-              <ion-icon class='icon' name="create-outline"></ion-icon>
-              <ion-icon class='icon' name="trash-outline"></ion-icon>
-            </div>
-          </div> -->
-        </section>
+        <section class="results-section"></section>
 
-        <section class="edit-section u-no-display">
+        <section class="edit-section__add u-no-display">
           <div class="edit-window">
             <form class="edit-window__form">
               <h2 class="edit-window__main-title">Add a gig</h2>
@@ -312,6 +253,130 @@
 
               <button type="submit" class="edit-window__form-submit-btn">
                 Add gig &rarr;
+              </button>
+            </form>
+          </div>
+        </section>
+
+        <section class="edit-section__edit u-no-display">
+          <div class="edit-window">
+            <form class="edit-window__form-edit">
+              <h2 class="edit-window__main-title">Edit gig</h2>
+
+              <h3 class="edit-window__title">Gig Details</h3>
+
+              <div class="edit-window__form-edit-item">
+                <label for="venue" class="edit-window__label"
+                  >Venue name*</label
+                >
+                <input
+                  type="text"
+                  class="edit-window__input-edit"
+                  id="venue"
+                  placeholder="The Bowery Ballroom"
+                  required
+                />
+              </div>
+
+              <div class="edit-window__form-edit-item">
+                <label for="date" class="edit-window__label"
+                  >Date of gig*</label
+                >
+                <input
+                  type="date"
+                  class="edit-window__input-edit"
+                  id="date"
+                  required
+                />
+              </div>
+
+              <div class="edit-window__form-edit-item">
+                <label for="info" class="edit-window__label">Notes:</label>
+                <textarea
+                  class="edit-window__input-edit edit-window__input-area"
+                  id="info"
+                  name="info"
+                  rows="4"
+                  cols="33"
+                  placeholder="Tickets are: £7. Support acts are: Kings of Leon, The Killers..."
+                ></textarea>
+              </div>
+
+              <h3 class="edit-window__title">Venue address</h3>
+
+              <div class="edit-window__form-edit-item">
+                <label for="number" class="edit-window__label">Number</label>
+                <input
+                  type="text"
+                  class="edit-window__input-edit"
+                  id="number"
+                  placeholder="20"
+                />
+              </div>
+
+              <div class="edit-window__form-edit-item">
+                <label for="street" class="edit-window__label">Street</label>
+                <input
+                  type="text"
+                  class="edit-window__input-edit"
+                  id="street"
+                  placeholder="Street street"
+                />
+              </div>
+
+              <div class="edit-window__form-edit-item">
+                <label for="city" class="edit-window__label">City</label>
+                <input
+                  type="text"
+                  class="edit-window__input-edit"
+                  id="city"
+                  placeholder="Liverpool"
+                />
+              </div>
+
+              <div class="edit-window__form-edit-item">
+                <label for="postcode" class="edit-window__label"
+                  >Postcode</label
+                >
+                <input
+                  type="text"
+                  class="edit-window__input-edit"
+                  id="postcode"
+                  placeholder="L1 8BA"
+                />
+              </div>
+
+              <h3 class="edit-window__title">Gig Times</h3>
+
+              <div class="edit-window__form-edit-item">
+                <label for="soundcheck" class="edit-window__label"
+                  >Soundcheck time</label
+                >
+                <input
+                  type="text"
+                  class="edit-window__input-edit"
+                  id="soundcheck"
+                  placeholder="15:00"
+                />
+              </div>
+
+              <div class="edit-window__form-edit-item">
+                <label for="stage-time" class="edit-window__label"
+                  >Stage time</label
+                >
+                <input
+                  type="text"
+                  class="edit-window__input-edit"
+                  id="stage-time"
+                  placeholder="20:00"
+                />
+              </div>
+
+              <button type="button" class="edit-window__form-edit-cancel-btn">
+                Cancel
+              </button>
+              <button type="submit" class="edit-window__form-edit-edit-btn">
+                Edit gig &rarr;
               </button>
             </form>
           </div>

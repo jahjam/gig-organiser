@@ -35,10 +35,13 @@ export default class Month {
     soundCheck,
     stageTime
   ) {
-    const formattedDate = format(
-      new Date(date.replaceAll('-', '/')),
-      'dd/MM/yyyy'
-    );
+    let formattedDate;
+
+    if (date.includes('-')) {
+      formattedDate = format(new Date(date.replaceAll('-', '/')), 'dd/MM/yyyy');
+    }
+
+    console.log(date, formattedDate);
 
     this.gig.push({
       venue,
@@ -52,7 +55,7 @@ export default class Month {
       stageTime,
     });
 
-    renderMonthAndGigs.renderGig(venue);
+    renderMonthAndGigs.renderGig(venue, this.month);
 
     createMonth.gigsByMonth.push(this);
     this.monthToAmend = undefined;

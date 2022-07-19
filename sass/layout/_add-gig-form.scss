@@ -1,4 +1,18 @@
-.edit-section {
+.edit-section__add {
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+
+  grid-area: results;
+
+  background-color: rgba(var(--color-dark-rgba), 0.6);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.edit-section__edit {
   height: 100%;
   width: 100%;
   overflow: auto;
@@ -24,7 +38,8 @@
   align-items: start;
   justify-content: center;
 
-  &__form {
+  &__form,
+  &__form-edit {
     width: 50%;
 
     padding: 2rem;
@@ -48,7 +63,9 @@
       justify-content: center;
     }
 
-    &-submit-btn {
+    &-submit-btn,
+    &-edit-btn,
+    &-cancel-btn {
       width: 80%;
       margin-top: 1rem;
       padding: 0.8rem;
@@ -58,7 +75,13 @@
       @include btn-basic-layout;
     }
 
-    &-submit-btn:hover {
+    &-cancel-btn {
+      background-color: rgb(218, 61, 61);
+    }
+
+    &-submit-btn:hover,
+    &-edit-btn:hover,
+    &-cancel-btn:hover {
       background-color: var(--color-dark);
       color: var(--color-light);
     }
@@ -82,7 +105,8 @@
     text-transform: uppercase;
   }
 
-  &__input {
+  &__input,
+  &__input-edit {
     width: 100%;
     padding: 0.8rem;
 

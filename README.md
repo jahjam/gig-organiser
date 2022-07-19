@@ -15,7 +15,7 @@ Month view:
 [x] - View logic to render gigs in main view\
 [x] - Required feilds to prevent bugs\
 [x] - Prevent double months generation\
-[ ] - Create edit functionality\
+[x] - Create edit functionality\
 [ ] - Create delete functionality\
 [ ] - generate edit and delete options for each gig\
 

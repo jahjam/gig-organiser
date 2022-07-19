@@ -20,7 +20,8 @@ class RenderMonthAndGigs {
     );
   }
 
-  renderGig(venue) {
+  renderGig(venue, month) {
+    this.month = month;
     const html = `
     <li class="aside-menu__dates-content-items">
       <span class="aside-menu__dates-content-item">${venue}</span><ion-icon class='icon' name="ellipsis-vertical-outline"></ion-icon>
@@ -28,6 +29,7 @@ class RenderMonthAndGigs {
   `;
 
     this.monthParentEl.forEach(monthDisplayed => {
+      console.log(this.month);
       if (
         this.month.toLowerCase() ===
         monthDisplayed.firstElementChild.firstElementChild.textContent.toLowerCase()
