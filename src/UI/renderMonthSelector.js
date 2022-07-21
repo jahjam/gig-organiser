@@ -1,8 +1,6 @@
 class RenderMonthSelector {
-  constructor() {
-    this.form = document.querySelector('.aside-menu__months-form-section');
-    this.closeForm = document.querySelector('.form-label-icon');
-  }
+  form = document.querySelector('.aside-menu__months-form-section');
+  closeForm = document.querySelector('.form-label-icon');
 
   handlerMonthsEvents() {
     window.addEventListener('click', this.renderSelector.bind(this));

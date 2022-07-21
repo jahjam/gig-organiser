@@ -1,6 +1,6 @@
 import createMonth from './createMonth.js';
-import renderMainGigs from '../UI/renderMainGigs.js';
 import renderMonthAndGigs from '../UI/renderMonthsAndGigs.js';
+import renderTodaysGigs from '../UI/renderTodaysGigs.js';
 import { format } from 'date-fns';
 
 export default class Month {
@@ -41,8 +41,6 @@ export default class Month {
       formattedDate = format(new Date(date.replaceAll('-', '/')), 'dd/MM/yyyy');
     }
 
-    console.log(date, formattedDate);
-
     this.gig.push({
       venue,
       date: formattedDate,
@@ -61,6 +59,6 @@ export default class Month {
     this.monthToAmend = undefined;
 
     if (createMonth.todaysDate === formattedDate)
-      renderMainGigs.renderGigsDueToday();
+      renderTodaysGigs.renderGigsDueToday();
   }
 }

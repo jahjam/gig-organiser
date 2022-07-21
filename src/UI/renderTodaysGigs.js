@@ -17,8 +17,6 @@ class RenderTodaysGigs extends renderMainGigs {
     this.clearResults();
 
     this.renderGigsDueToday();
-
-    renderFlagged.isFlagged();
   }
 
   renderGigsDueToday() {
@@ -49,6 +47,8 @@ class RenderTodaysGigs extends renderMainGigs {
     );
 
     this.isContainerEmpty('<h2 class="notice">No gigs today</h2>');
+
+    renderFlagged.isFlagged();
   }
 }
 

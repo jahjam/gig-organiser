@@ -10,18 +10,19 @@ class CreateMonth {
     e.preventDefault();
     this.userOption = document.forms['months-form'].month;
 
-    if (this.gigsByMonth.length !== 0) {
-      this.gigsByMonth.forEach(month => {
-        if (month.month.toLowerCase() === this.userOption.value.toLowerCase())
-          return;
-      });
-      // Need to display and error here for trying to render two months with same name.
-    }
+    // Checks if month already exists (might implement multiples of months in future)
+    if (
+      this.gigsByMonth.length !== 0 &&
+      this.gigsByMonth.every(month => {
+        if (month.month.toLowerCase() === this.userOption.value.toLowerCase()) {
+          return true;
+        }
+      })
+    )
+      return;
 
     new month(this.userOption.value);
     renderMonthSelector.closeSelector();
-
-    console.log(this.gigsByMonth);
   }
 }
 

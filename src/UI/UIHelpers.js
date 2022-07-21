@@ -12,4 +12,8 @@ export default class UIHelpers {
       `;
     }
   }
+
+  arrayEquals(a, b) {
+    return a.every((val, index) => val === b[index]);
+  }
 }

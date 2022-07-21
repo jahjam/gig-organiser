@@ -2,7 +2,6 @@ class RenderMonthAndGigs {
   monthsParentEl = document.querySelector('.aside-menu__content-months');
 
   renderNewMonth(month) {
-    this.month = month;
     const html = `
       <ul class="aside-menu__dates-content">
         <li class="aside-menu__dates-content-items-title">
@@ -21,7 +20,6 @@ class RenderMonthAndGigs {
   }
 
   renderGig(venue, month) {
-    this.month = month;
     const html = `
     <li class="aside-menu__dates-content-items">
       <span class="aside-menu__dates-content-item">${venue}</span><ion-icon class='icon' name="ellipsis-vertical-outline"></ion-icon>
@@ -29,9 +27,8 @@ class RenderMonthAndGigs {
   `;
 
     this.monthParentEl.forEach(monthDisplayed => {
-      console.log(this.month);
       if (
-        this.month.toLowerCase() ===
+        month.toLowerCase() ===
         monthDisplayed.firstElementChild.firstElementChild.textContent.toLowerCase()
       )
         monthDisplayed.insertAdjacentHTML('beforeend', html);

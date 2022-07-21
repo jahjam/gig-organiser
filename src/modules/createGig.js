@@ -15,12 +15,9 @@ class CreateGig {
     )[0];
 
     this.month.prepMonth();
-
-    console.log(this.month);
   }
 
   addFormData() {
-    console.log(this.month);
     this.month.createGig(...this.values);
     this.values = [];
     renderGig.formReset();

@@ -1,5 +1,4 @@
 import createMonth from '../modules/createMonth.js';
-import renderFlagged from './renderFlagged.js';
 import UIHelpers from './UIHelpers.js';
 import { intervalToDuration } from 'date-fns';
 
@@ -116,6 +115,7 @@ export default class RenderMainGigs extends UIHelpers {
     `;
 
     this.resultsEl.insertAdjacentHTML('afterbegin', html);
-    renderFlagged.flagIcon = document.querySelectorAll('.flag-icon');
+    this.flagIcon = document.querySelectorAll('.flag-icon');
+    console.log(this.flagIcon);
   }
 }

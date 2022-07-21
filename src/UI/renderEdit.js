@@ -1,7 +1,8 @@
 import createMonth from '../modules/createMonth.js';
 import createGig from '../modules/createGig.js';
+import UIHelpers from './UIHelpers.js';
 
-class RenderEdit {
+class RenderEdit extends UIHelpers {
   editForm = document.querySelector('.edit-section__edit');
   formEl = document.querySelector('.edit-window__form-edit');
   cancelBtn = document.querySelector('.edit-window__form-edit-cancel-btn');
@@ -23,10 +24,6 @@ class RenderEdit {
     this.getGig(e);
   }
 
-  arrayEquals(a, b) {
-    return a.every((val, index) => val === b[index]);
-  }
-
   getGig(e) {
     e.target.parentElement.parentElement.children.forEach(child => {
       if (child.children[1].classList.contains('icon')) return;
@@ -46,7 +43,6 @@ class RenderEdit {
   }
 
   renderGigInEditForm() {
-    console.log(this.targetGig);
     let i = 0;
     let formattedDate;
 
@@ -112,5 +108,3 @@ class RenderEdit {
 }
 
 export default new RenderEdit();
-
-console.log('20/07/2022'.split('/').reverse().join('-'));
