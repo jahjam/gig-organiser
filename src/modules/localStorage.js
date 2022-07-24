@@ -18,6 +18,9 @@ class LocalStorage {
       'flaggedGigsEl',
       JSON.stringify(this.flattenNodeEls(renderFlagged.flaggedGigsEl))
     );
+
+    // Set storage for gig indices
+    localStorage.setItem('gigIndex', JSON.stringify(createGig.index));
   }
 
   localStorageInitialise() {
@@ -32,6 +35,10 @@ class LocalStorage {
       renderFlagged.flaggedGigsEl = this.reloadFlaggedGigs(
         JSON.parse(this.gigsElStorage)
       );
+
+    // Reinitialise gig index
+    this.gigIndex = localStorage.getItem('gigIndex');
+    if (this.gigIndex) createGig.index = +JSON.parse(this.gigIndex);
 
     this.reloadAsideMenu();
   }
@@ -67,13 +74,17 @@ class LocalStorage {
     // Reload the gigs
     this.gigsByMonthStorage.forEach(monthForGigs =>
       monthForGigs.gig.forEach(gig => {
+        console.log(createMonth.gigsByMonth);
+
+        if (monthForGigs.gig.length === 0) return;
+
         // Assign the correct month to variable
         const monthToAmend = createMonth.gigsByMonth.find(
           ({ month }) => month === monthForGigs.month
         );
 
         // Call the correct month to move to the prepMonth variable in the month
-        createMonth.gigsByMonth[i].prepMonth();
+        monthToAmend.prepMonth();
 
         // Creates the gig within the correct month
         monthToAmend.createGig(
@@ -91,8 +102,8 @@ class LocalStorage {
           true
         );
 
-        // Incriments the index which keeps track of the gigs
-        createGig.index++;
+        // // Incriments the index which keeps track of the gigs
+        // createGig.index++;
       })
     );
 

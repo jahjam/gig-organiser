@@ -25,6 +25,7 @@ class CreateGig {
     this.index++;
     this.values = [];
     renderGig.formReset();
+    localStorage.updateLocalStorage();
   }
 
   editGig(

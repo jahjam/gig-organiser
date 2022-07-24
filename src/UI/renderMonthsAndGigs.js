@@ -1,5 +1,3 @@
-import createGig from '../modules/createGig.js';
-
 class RenderMonthAndGigs {
   monthsParentEl = document.querySelector('.aside-menu__content-months');
 
@@ -21,14 +19,12 @@ class RenderMonthAndGigs {
     );
   }
 
-  renderGig(venue, month, fromStorage) {
+  renderGig(venue, month, index, fromStorage) {
     const html = `
     <li class="aside-menu__dates-content-items ${
       fromStorage ? 'u-no-display' : ''
     }">
-      <span class="aside-menu__dates-content-item" data-index='${
-        createGig.index
-      }'>${venue}</span><ion-icon class='icon' name="ellipsis-vertical-outline"></ion-icon>
+      <span class="aside-menu__dates-content-item" data-index='${index}'>${venue}</span><ion-icon class='icon' name="ellipsis-vertical-outline"></ion-icon>
     </li> 
   `;
 

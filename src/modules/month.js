@@ -62,7 +62,7 @@ export default class Month {
       flagged: flagged,
     });
 
-    renderMonthAndGigs.renderGig(venue, this.month, fromStorage);
+    renderMonthAndGigs.renderGig(venue, this.month, index, fromStorage);
 
     createMonth.gigsByMonth.push(this);
     this.monthToAmend = undefined;
