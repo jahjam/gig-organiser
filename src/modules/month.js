@@ -1,6 +1,7 @@
 import createMonth from './createMonth.js';
 import renderMonthAndGigs from '../UI/renderMonthsAndGigs.js';
 import renderTodaysGigs from '../UI/renderTodaysGigs.js';
+import localStorage from './localStorage.js';
 import { format } from 'date-fns';
 
 export default class Month {
@@ -11,6 +12,7 @@ export default class Month {
     this.month = month;
     createMonth.gigsByMonth.push(this);
     renderMonthAndGigs.renderNewMonth(this.month);
+    localStorage.updateLocalStorage();
   }
 
   prepMonth() {
@@ -33,12 +35,17 @@ export default class Month {
     city,
     postcode,
     soundCheck,
-    stageTime
+    stageTime,
+    index,
+    flagged = false,
+    fromStorage = false
   ) {
     let formattedDate;
 
     if (date.includes('-')) {
       formattedDate = format(new Date(date.replaceAll('-', '/')), 'dd/MM/yyyy');
+    } else {
+      formattedDate = date;
     }
 
     this.gig.push({
@@ -51,14 +58,18 @@ export default class Month {
       postcode,
       soundCheck,
       stageTime,
+      index,
+      flagged: flagged,
     });
 
-    renderMonthAndGigs.renderGig(venue, this.month);
+    renderMonthAndGigs.renderGig(venue, this.month, fromStorage);
 
     createMonth.gigsByMonth.push(this);
     this.monthToAmend = undefined;
 
     if (createMonth.todaysDate === formattedDate)
       renderTodaysGigs.renderGigsDueToday();
+
+    localStorage.updateLocalStorage();
   }
 }

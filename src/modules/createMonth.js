@@ -1,6 +1,6 @@
 import { format } from 'date-fns';
 import renderMonthSelector from '../UI/renderMonthSelector.js';
-import month from './month.js';
+import monthGen from './month.js';
 
 class CreateMonth {
   gigsByMonth = [];
@@ -21,7 +21,7 @@ class CreateMonth {
     )
       return;
 
-    new month(this.userOption.value);
+    new monthGen(this.userOption.value);
     renderMonthSelector.closeSelector();
   }
 }

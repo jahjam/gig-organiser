@@ -17,14 +17,17 @@ Month view:
 [x] - Prevent double months generation\
 [x] - Create edit functionality\
 [ ] - Create delete functionality\
-[ ] - generate edit and delete options for each gig\
+[ ] - Generate edit and delete options for each gig\
+[ ] - Sort every view rendering to ensure gigs display from most recent to least
 
-[ ] - COMPLETE!
+[ ] - FEATURE COMPLETE!
 
 Local storage:
 
-[ ] - COMPLETE!
+[ ] - Impliment local storage
+
+[ ] - FEATURE COMPLETE!
 
 Tour View:
 
-[ ] - COMPLETE!
+[ ] - FEATURE COMPLETE!

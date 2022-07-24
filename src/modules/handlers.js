@@ -1,3 +1,4 @@
+import localStorage from './localStorage.js';
 import renderMonthSelector from '../UI/renderMonthSelector.js';
 import renderMonth from '../UI/renderMonth.js';
 import showHideGigs from '../UI/showHideGigs.js';
@@ -8,11 +9,13 @@ import renderMonthsGigs from '../UI/renderMonthsGigs.js';
 import renderFlaggedGigs from '../UI/renderFlaggedGigs.js';
 import renderFlagged from '../UI/renderFlagged.js';
 import renderEdit from '../UI/renderEdit.js';
+import renderDelete from '../UI/renderDelete.js';
 
-export default class Handlers {
+export default class Load {
   static loadUI() {
+    localStorage.localStorageInitialise();
     renderTodaysGigs.renderGigsDueToday();
-    Handlers.callHandlers();
+    Load.callHandlers();
   }
 
   static callHandlers() {
@@ -26,5 +29,6 @@ export default class Handlers {
     renderFlaggedGigs.handlerFlaggedViewBtn();
     renderFlagged.handlerFlaggedGig();
     renderEdit.handlerRenderEdit();
+    renderDelete.handlerDeleteBtn();
   }
 }

@@ -75,6 +75,10 @@
       @include btn-basic-layout;
     }
 
+    &-edit-btn {
+      background-color: var(--ter-color-default);
+    }
+
     &-cancel-btn {
       background-color: rgb(218, 61, 61);
     }

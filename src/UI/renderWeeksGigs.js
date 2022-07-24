@@ -4,16 +4,22 @@ import renderFlagged from './renderFlagged.js';
 
 class RenderWeeksGigs extends renderMainGigs {
   handlerWeeksViewBtn() {
-    window.addEventListener('click', this.renderGigsDueWeek.bind(this));
+    window.addEventListener('click', this.handleWeeksViewBtn.bind(this));
   }
 
-  renderGigsDueWeek(e) {
+  handleWeeksViewBtn(e) {
     if (!e.target.closest('.next-week-btn')) return;
 
     this.mainTitle.textContent = 'this weeks gigs';
 
     this.addRemoveBtnActive('.next-week-btn', e);
 
+    this.clearResults();
+
+    this.renderGigsDueWeek();
+  }
+
+  renderGigsDueWeek() {
     this.clearResults();
 
     if (createMonth.gigsByMonth.length === 0) {

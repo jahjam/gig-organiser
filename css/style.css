@@ -214,6 +214,8 @@ body {
       font-family: inherit;
       text-transform: uppercase;
       cursor: pointer; }
+    .edit-window__form-edit-btn, .edit-window__form-edit-edit-btn {
+      background-color: var(--ter-color-default); }
     .edit-window__form-cancel-btn, .edit-window__form-edit-cancel-btn {
       background-color: #da3d3d; }
     .edit-window__form-submit-btn:hover, .edit-window__form-edit-btn:hover, .edit-window__form-cancel-btn:hover, .edit-window__form-edit-submit-btn:hover, .edit-window__form-edit-edit-btn:hover, .edit-window__form-edit-cancel-btn:hover {

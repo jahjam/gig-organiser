@@ -1,4 +1,5 @@
 import createMonth from '../modules/createMonth.js';
+import localStorage from '../modules/localStorage.js';
 import UIHelpers from './UIHelpers.js';
 
 class RenderFlagged extends UIHelpers {
@@ -53,6 +54,9 @@ class RenderFlagged extends UIHelpers {
               // Render it the flagged gig color
               e.target.style.color = '#eeba0b';
             }
+
+            // Update local storage to saved flagged state
+            localStorage.updateLocalStorage();
           } else {
             // Unflag gig when flag is clicked
             if (
@@ -64,7 +68,15 @@ class RenderFlagged extends UIHelpers {
 
               // Remove flagged gig element reference from flagged array
               this.flaggedGigsEl.forEach(gig => {
-                if (gig === this.gigElement) {
+                // Take the relevent part of the stored gig element
+                const splitPrevElement =
+                  this.gigElement.innerHTML.split('icon');
+
+                // Take the relevent part of the newly rendered elements
+                const splitCurElement = gig.innerHTML.split('icon');
+
+                // Compare them so to apply the correct element is removed the reference array
+                if (splitCurElement[0] === splitPrevElement[0]) {
                   const index = this.flaggedGigsEl.indexOf(gig);
                   this.flaggedGigsEl.splice(index, 1);
                 }
@@ -74,12 +86,15 @@ class RenderFlagged extends UIHelpers {
               this.turnOnHover(this.flagIcon);
               e.target.style.color = '#140000';
             }
+
+            // Update local storage to saved flagged state
+            localStorage.updateLocalStorage();
           }
         });
       });
     }
 
-    // Rerenders gigs if already on flagged view to remove the unflagged gig.
+    // Rerenders gigs if already on flagged view to remove the unflagged gig
     if (
       e.target.closest('.flag-icon') &&
       [...this.asideMenuViewBtns]

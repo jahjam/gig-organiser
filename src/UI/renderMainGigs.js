@@ -115,7 +115,6 @@ export default class RenderMainGigs extends UIHelpers {
     `;
 
     this.resultsEl.insertAdjacentHTML('afterbegin', html);
-    this.flagIcon = document.querySelectorAll('.flag-icon');
-    console.log(this.flagIcon);
+    // createMonth.updateLocalStorage();
   }
 }

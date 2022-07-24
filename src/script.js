@@ -1,3 +1,3 @@
-import handlers from './modules/handlers';
+import load from './modules/handlers';
 
-document.addEventListener('DOMContentLoaded', handlers.loadUI);
+document.addEventListener('DOMContentLoaded', load.loadUI);

@@ -4,16 +4,22 @@ import renderFlagged from './renderFlagged.js';
 
 class RenderMonthsGigs extends renderMainGigs {
   handlerMonthsViewBtn() {
-    window.addEventListener('click', this.renderGigsDueMonth.bind(this));
+    window.addEventListener('click', this.handleMonthsViewBtn.bind(this));
   }
 
-  renderGigsDueMonth(e) {
+  handleMonthsViewBtn(e) {
     if (!e.target.closest('.month-btn')) return;
 
     this.mainTitle.textContent = 'this months gigs';
 
     this.addRemoveBtnActive('.month-btn', e);
 
+    this.clearResults();
+
+    this.renderGigsDueMonth();
+  }
+
+  renderGigsDueMonth() {
     this.clearResults();
 
     if (createMonth.gigsByMonth.length === 0) {

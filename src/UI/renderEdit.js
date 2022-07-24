@@ -1,6 +1,12 @@
 import createMonth from '../modules/createMonth.js';
 import createGig from '../modules/createGig.js';
 import UIHelpers from './UIHelpers.js';
+import renderFlagged from './renderFlagged.js';
+import renderTodaysGigs from './renderTodaysGigs.js';
+import renderWeeksGigs from './renderWeeksGigs.js';
+import renderMonthsGigs from './renderMonthsGigs.js';
+import renderFlaggedGigs from './renderFlaggedGigs.js';
+import { format } from 'date-fns';
 
 class RenderEdit extends UIHelpers {
   editForm = document.querySelector('.edit-section__edit');
@@ -9,6 +15,8 @@ class RenderEdit extends UIHelpers {
   inputs = document.querySelectorAll('.edit-window__input-edit');
 
   targetGig = [];
+  editIcon;
+  gigElement;
 
   handlerRenderEdit() {
     window.addEventListener('click', this.renderEditForm.bind(this));
@@ -19,25 +27,16 @@ class RenderEdit extends UIHelpers {
   renderEditForm(e) {
     if (!e.target.closest('.edit-icon')) return;
 
+    this.editIcon = e.target.closest('.edit-icon');
+    this.gigElement = this.editIcon.parentElement.parentElement;
+
     this.editForm.classList.remove('u-no-display');
 
-    this.getGig(e);
+    this.getGigInfo(e);
   }
 
-  getGig(e) {
-    e.target.parentElement.parentElement.children.forEach(child => {
-      if (child.children[1].classList.contains('icon')) return;
-
-      if (child.children[1].children.length === 0) {
-        this.targetGig.push(child.children[1].textContent.trim());
-      }
-
-      if (child.children[1].children.length > 0) {
-        child.children[1].children.forEach(child => {
-          this.targetGig.push(child.textContent.trim());
-        });
-      }
-    });
+  getGigInfo(e) {
+    this.targetGig.push(...this.getGig(e));
 
     this.renderGigInEditForm();
   }
@@ -67,18 +66,43 @@ class RenderEdit extends UIHelpers {
     e.preventDefault();
 
     const editValues = [];
+    let edittedGig;
+    let gigFlagged = false;
+    let currentGigIndex;
 
     createMonth.gigsByMonth.forEach(month => {
       month.gig.forEach(gigItem => {
-        if (gigItem.hasOwnProperty('flagged')) {
-          delete gigItem.flagged;
+        // Delete the current index for the gig
+        edittedGig = gigItem;
+        this.currentGigIndex = gigItem.index;
+        delete edittedGig.index;
+
+        // Check if gig has ever been flagged and set gigFlagged appropriately
+        if (edittedGig.hasOwnProperty('flagged')) {
+          if (edittedGig.flagged) {
+            gigFlagged = true;
+            delete edittedGig.flagged;
+          } else {
+            delete edittedGig.flagged;
+          }
         }
 
-        if (this.arrayEquals(Object.values(gigItem), this.targetGig)) {
+        if (this.arrayEquals(Object.values(edittedGig), this.targetGig)) {
+          // Remove the corect gig from the aside
+          this.renameGigFromAside(this.currentGigIndex);
+
           // Remove unwanted gig
           const index = month.gig.indexOf(gigItem);
           month.gig.splice(index, 1);
-          console.log(month.gig);
+
+          // Add flagged back to gig if it was true before edit
+          if (gigFlagged) {
+            editValues.push(true);
+            gigFlagged = false;
+          } else {
+            // Keep flagged gig as false
+            editValues.push(false);
+          }
 
           // Render the new editted gig
           createGig.month = month;
@@ -93,17 +117,87 @@ class RenderEdit extends UIHelpers {
 
     this.closeFormWhenSubmitted();
 
+    // Create new gig based on new inputs
     createGig.editGig(...editValues);
+
+    // Remove previous gig from flagged gig elements array
+    if (renderFlagged.flaggedGigsEl.includes(this.gigElement)) {
+      const index = renderFlagged.flaggedGigsEl.indexOf(this.gigElement);
+      renderFlagged.flaggedGigsEl.splice(index, 1);
+    }
+
+    // Recreate HTML element for new gig
+    this.rebuildHTML();
+
+    // // need to create DOM reference
+    renderFlagged.flaggedGigsEl.push(this.gigElement);
+
+    // Rerender gigs based on current tab open in view
+    if (this.readViewBtns() === 'renderTodaysGigs')
+      renderTodaysGigs.renderGigsDueToday();
+    if (this.readViewBtns() === 'renderWeeksGigs')
+      renderWeeksGigs.renderGigsDueWeek(e);
+    if (this.readViewBtns() === 'renderMonthsGigs')
+      renderMonthsGigs.renderGigsDueMonth(e);
+    if (this.readViewBtns() === 'renderFlaggedGigs')
+      renderFlaggedGigs.renderGigsFlagged(e);
+  }
+
+  renameGigFromAside(gigIndex) {
+    // Assign all the current gigs in the aside menu
+    this.gigsAside = document.querySelectorAll(
+      '.aside-menu__dates-content-item'
+    );
+
+    console.log(gigIndex);
+
+    // Loop through gigs and find the one that has the same index as the gig, and apply changes to that one.
+    this.gigsAside.forEach(gigAside => {
+      if (+gigAside.dataset.index === gigIndex) {
+        this.targetGig.forEach(gigValue => {
+          if (gigValue === gigAside.textContent) {
+            const i = this.targetGig.indexOf(gigValue);
+            gigAside.textContent = this.inputs[i].value;
+            gigAside.dataset.index = gigIndex + 1;
+          }
+        });
+      }
+    });
+  }
+
+  rebuildHTML() {
+    let i = 0;
+
+    this.gigElement.children.forEach(child => {
+      if (this.inputs[i].id === 'date') {
+        child.children[1].textContent = format(
+          new Date(this.inputs[i].value.replaceAll('-', '/')),
+          'dd/MM/yyyy'
+        );
+        i++;
+      } else if (child.classList.contains('result-card__address')) {
+        console.log(child.children[1].children);
+        child.children[1].children.textContent = this.inputs[i].value;
+        i++;
+      } else {
+        child.children[1].textContent = this.inputs[i].value;
+        i++;
+      }
+    });
   }
 
   closeFormWhenSubmitted() {
     this.editForm.classList.add('u-no-display');
+
+    this.targetGig = [];
   }
 
   closeForm(e) {
     if (!e.target.closest('.edit-window__form-edit-cancel-btn')) return;
 
     this.editForm.classList.add('u-no-display');
+
+    this.targetGig = [];
   }
 }
 
