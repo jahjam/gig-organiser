@@ -3,6 +3,7 @@ import renderMonthAndGigs from '../UI/renderMonthsAndGigs.js';
 import renderTodaysGigs from '../UI/renderTodaysGigs.js';
 import localStorage from './localStorage.js';
 import sortData from './sortData.js';
+import sortDOM from '../UI/sortDOM.js';
 import { format } from 'date-fns';
 
 export default class Month {
@@ -14,6 +15,7 @@ export default class Month {
     createMonth.gigsByMonth.push(this);
     renderMonthAndGigs.renderNewMonth(this.month);
     sortData.sortMonthsInOrder();
+    sortDOM.sortAsideMenuMonths();
     localStorage.updateLocalStorage();
   }
 
