@@ -69,7 +69,8 @@ export default class Month {
     createMonth.gigsByMonth.push(this);
     this.monthToAmend = undefined;
 
-    sortData.sortGigsInOrder();
+    sortData.sortGigsInOrderOfDate();
+    sortData.sortGigsInOrderOfStageTime();
 
     if (createMonth.todaysDate === formattedDate)
       renderTodaysGigs.renderGigsDueToday();
