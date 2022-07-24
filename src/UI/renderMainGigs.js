@@ -114,7 +114,6 @@ export default class RenderMainGigs extends UIHelpers {
       </div>
     `;
 
-    this.resultsEl.insertAdjacentHTML('afterbegin', html);
-    // createMonth.updateLocalStorage();
+    this.resultsEl.insertAdjacentHTML('beforeend', html);
   }
 }

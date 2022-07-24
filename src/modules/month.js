@@ -2,6 +2,7 @@ import createMonth from './createMonth.js';
 import renderMonthAndGigs from '../UI/renderMonthsAndGigs.js';
 import renderTodaysGigs from '../UI/renderTodaysGigs.js';
 import localStorage from './localStorage.js';
+import sortData from './sortData.js';
 import { format } from 'date-fns';
 
 export default class Month {
@@ -12,6 +13,7 @@ export default class Month {
     this.month = month;
     createMonth.gigsByMonth.push(this);
     renderMonthAndGigs.renderNewMonth(this.month);
+    sortData.sortMonthsInOrder();
     localStorage.updateLocalStorage();
   }
 
@@ -66,6 +68,8 @@ export default class Month {
 
     createMonth.gigsByMonth.push(this);
     this.monthToAmend = undefined;
+
+    sortData.sortGigsInOrder();
 
     if (createMonth.todaysDate === formattedDate)
       renderTodaysGigs.renderGigsDueToday();

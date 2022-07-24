@@ -74,8 +74,6 @@ class LocalStorage {
     // Reload the gigs
     this.gigsByMonthStorage.forEach(monthForGigs =>
       monthForGigs.gig.forEach(gig => {
-        console.log(createMonth.gigsByMonth);
-
         if (monthForGigs.gig.length === 0) return;
 
         // Assign the correct month to variable
@@ -101,9 +99,6 @@ class LocalStorage {
           gig.flagged,
           true
         );
-
-        // // Incriments the index which keeps track of the gigs
-        // createGig.index++;
       })
     );
 
