@@ -5,6 +5,7 @@ class SortDOM {
     const asideMonths = document.querySelectorAll('.aside-menu__dates-content');
     const asideMenu = document.querySelector('.aside-menu__content-months');
     const elements = [...asideMonths];
+
     elements
       .sort(
         (a, b) =>

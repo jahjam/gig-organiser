@@ -236,6 +236,7 @@ body {
   .edit-window__input, .edit-window__input-edit {
     width: 100%;
     padding: 0.8rem;
+    color-scheme: dark;
     color: var(--color-light);
     font-family: inherit;
     background-color: transparent;
