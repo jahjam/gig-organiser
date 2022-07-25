@@ -18,7 +18,7 @@ Month view:
 [x] - Create edit functionality\
 [ ] - Create delete functionality\
 [ ] - Generate edit and delete options for each gig\
-[ ] - Sort every view rendering to ensure gigs display from most recent to least
+[x] - Sort every view rendering to ensure gigs display from most recent to least
 
 [ ] - FEATURE COMPLETE!
 

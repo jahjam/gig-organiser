@@ -1,6 +1,8 @@
 import createGig from '../modules/createGig.js';
 import createMonth from '../modules/createMonth.js';
+import renderMainGigs from './renderMainGigs.js';
 import sortData from '../modules/sortData.js';
+import { isPast } from 'date-fns';
 
 class RenderGig {
   form = document.querySelector('.edit-section__add');
@@ -16,6 +18,8 @@ class RenderGig {
 
   renderForm(e) {
     if (!e.target.closest('.aside-menu__dates-content-item--btn')) return;
+
+    document.querySelector('.header-main-title__text').textContent = '';
 
     this.form.classList.remove('u-no-display');
 
@@ -55,7 +59,6 @@ class RenderGig {
       November: 30,
       December: 31,
     };
-
     const lastDayInMonth =
       daysInMonth[
         e.target.parentElement.previousElementSibling.textContent.trim()
@@ -65,21 +68,51 @@ class RenderGig {
         e.target.parentElement.previousElementSibling.textContent.trim()
       ];
     const currentYear = createMonth.todaysDate.split('/')[2];
-
+    const currentDay = createMonth.todaysDate.split('/')[0];
     const minDate = `${currentYear}-${
       selectedMonth.toString().length === 1
         ? `0${selectedMonth}`
         : selectedMonth
     }-01`;
-
-    const maxDate = `${currentYear}-${
+    const minDateToday = `${currentYear}-${
+      selectedMonth.toString().length === 1
+        ? `0${selectedMonth}`
+        : selectedMonth
+    }-${currentDay.toString().length === 1 ? `0${currentDay}` : currentDay}`;
+    const maxDateThisYear = `${currentYear}-${
+      selectedMonth.toString().length === 1
+        ? `0${selectedMonth}`
+        : selectedMonth
+    }-${lastDayInMonth}`;
+    const minDateNextYear = `${+currentYear + 1}-${
+      selectedMonth.toString().length === 1
+        ? `0${selectedMonth}`
+        : selectedMonth
+    }-01`;
+    const maxDateNextYear = `${+currentYear + 1}-${
       selectedMonth.toString().length === 1
         ? `0${selectedMonth}`
         : selectedMonth
     }-${lastDayInMonth}`;
 
-    this.dateInput.setAttribute('min', minDate);
-    this.dateInput.setAttribute('max', maxDate);
+    // Set date setting to default to this year if the month hasn't passed yet
+    if (!isPast(new Date(maxDateThisYear))) {
+      this.dateInput.setAttribute(
+        'min',
+        +sortData.months[
+          e.target.parentElement.previousElementSibling.textContent.trim()
+        ] === +createMonth.todaysDate.split('/')[1]
+          ? minDateToday
+          : minDate
+      );
+      this.dateInput.setAttribute('max', maxDateThisYear);
+    }
+
+    // Set date setting to default to next year if the month has already passed
+    if (isPast(new Date(maxDateThisYear))) {
+      this.dateInput.setAttribute('min', minDateNextYear);
+      this.dateInput.setAttribute('max', maxDateNextYear);
+    }
   }
 }
 

@@ -22,6 +22,8 @@ class RenderTodaysGigs extends renderMainGigs {
   renderGigsDueToday() {
     this.clearResults();
 
+    this.mainTitle.textContent = "today's gigs";
+
     if (createMonth.gigsByMonth.length === 0) {
       this.resultsEl.innerHTML = `
       <h2 class="notice">No gigs today</h2>

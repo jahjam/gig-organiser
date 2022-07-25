@@ -6,6 +6,7 @@ import renderTodaysGigs from './renderTodaysGigs.js';
 import renderWeeksGigs from './renderWeeksGigs.js';
 import renderMonthsGigs from './renderMonthsGigs.js';
 import renderFlaggedGigs from './renderFlaggedGigs.js';
+import localStorage from '../modules/localStorage.js';
 import { format } from 'date-fns';
 
 class RenderEdit extends UIHelpers {
@@ -65,50 +66,72 @@ class RenderEdit extends UIHelpers {
   commitEdit(e) {
     e.preventDefault();
 
+    this.gigsInAside = document.querySelectorAll(
+      '.aside-menu__dates-content-item'
+    );
+
     const editValues = [];
-    let edittedGig;
-    let gigFlagged = false;
-    let currentGigIndex;
+    // let edittedGig;
+    // let gigFlagged = false;
+    // let currentGigIndex;
 
     createMonth.gigsByMonth.forEach(month => {
       month.gig.forEach(gigItem => {
-        // Delete the current index for the gig
-        edittedGig = gigItem;
-        this.currentGigIndex = gigItem.index;
-        delete edittedGig.index;
+        // // Delete the current index for the gig
+        // edittedGig = gigItem;
+        // this.currentGigIndex = gigItem.index;
+        // delete edittedGig.index;
 
-        // Check if gig has ever been flagged and set gigFlagged appropriately
-        if (edittedGig.hasOwnProperty('flagged')) {
-          if (edittedGig.flagged) {
-            gigFlagged = true;
-            delete edittedGig.flagged;
-          } else {
-            delete edittedGig.flagged;
-          }
-        }
+        // // Check if gig has ever been flagged and set gigFlagged appropriately
+        // if (edittedGig.hasOwnProperty('flagged')) {
+        //   if (edittedGig.flagged) {
+        //     gigFlagged = true;
+        //     delete edittedGig.flagged;
+        //   } else {
+        //     delete edittedGig.flagged;
+        //   }
+        // }
 
-        if (this.arrayEquals(Object.values(edittedGig), this.targetGig)) {
+        // Extract relevent info from the gig to compere
+        const gigExtract = [
+          gigItem.venue,
+          gigItem.date,
+          gigItem.notes,
+          gigItem.num,
+          gigItem.str,
+          gigItem.city,
+          gigItem.postcode,
+          gigItem.soundCheck,
+          gigItem.stageTime,
+        ];
+
+        if (this.arrayEquals(gigExtract, this.targetGig)) {
           // Remove the corect gig from the aside
-          this.renameGigFromAside(this.currentGigIndex);
+          this.renameGigFromAside(gigItem.index);
 
           // Remove unwanted gig
           const index = month.gig.indexOf(gigItem);
           month.gig.splice(index, 1);
 
-          // Add flagged back to gig if it was true before edit
-          if (gigFlagged) {
-            editValues.push(true);
-            gigFlagged = false;
-          } else {
-            // Keep flagged gig as false
-            editValues.push(false);
-          }
+          // // Add flagged back to gig if it was true before edit
+          // if (gigFlagged) {
+          //   editValues.push(true);
+          //   gigFlagged = false;
+          // } else {
+          //   // Keep flagged gig as false
+          //   editValues.push(false);
+          // }
+          // Add flagged back
+          editValues.push(gigItem.flagged);
 
           // Render the new editted gig
           createGig.month = month;
           this.inputs.forEach(input => {
             editValues.push(input.value);
           });
+
+          localStorage.updateLocalStorage();
+          console.log(createMonth.gigsByMonth);
           return;
         }
       });
@@ -149,8 +172,6 @@ class RenderEdit extends UIHelpers {
       '.aside-menu__dates-content-item'
     );
 
-    console.log(gigIndex);
-
     // Loop through gigs and find the one that has the same index as the gig, and apply changes to that one.
     this.gigsAside.forEach(gigAside => {
       if (+gigAside.dataset.index === gigIndex) {
@@ -158,7 +179,7 @@ class RenderEdit extends UIHelpers {
           if (gigValue === gigAside.textContent) {
             const i = this.targetGig.indexOf(gigValue);
             gigAside.textContent = this.inputs[i].value;
-            gigAside.dataset.index = gigIndex + 1;
+            gigAside.dataset.index = gigIndex + 2;
           }
         });
       }
