@@ -6,6 +6,7 @@ TODO
 
 Month view:
 
+[x] - Fundamental logic
 [x] - Add month logic\
 [x] - Render month selector\
 [x] - Render month\
@@ -16,18 +17,29 @@ Month view:
 [x] - Required feilds to prevent bugs\
 [x] - Prevent double months generation\
 [x] - Create edit functionality\
-[ ] - Create delete functionality\
-[ ] - Generate edit and delete options for each gig\
-[x] - Sort every view rendering to ensure gigs display from most recent to least
+[x] - Create delete functionality\
+[x] - Add ability to delete months\
+[x] - Generate delete options for each gig\
+[x] - Generate view options for each gig\
+[x] - Sort every view rendering to ensure gigs display from most recent to least\
+[ ] - Restrict dates on edit view like on add gig view\
+[ ] - Cancel add gig view if user aborts adding a gig after rendering form\
+[ ] - Impliment the info input as markdown to allow better formatting in the result view
 
 [ ] - FEATURE COMPLETE!
+
+Additional fun addons for future
+
+[ ] - Add hover function that shows gig information in hover popup window UI\
 
 Local storage:
 
-[ ] - Impliment local storage
+[x] - Impliment local storage
 
-[ ] - FEATURE COMPLETE!
+[x] - FEATURE COMPLETE!
 
-Tour View:
+Tour View (ABILITY TO ADD CUSTOM TOURS - POSSIBLE FUTURE UPDATE):
+
+[ ] - Impliment ability to add full tours that work like months except all gigs are added at once and tours names are custom
 
 [ ] - FEATURE COMPLETE!

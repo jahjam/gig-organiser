@@ -10,6 +10,7 @@ import renderFlaggedGigs from '../UI/renderFlaggedGigs.js';
 import renderFlagged from '../UI/renderFlagged.js';
 import renderEdit from '../UI/renderEdit.js';
 import renderDelete from '../UI/renderDelete.js';
+import renderAsideDelete from '../UI/renderAsideDelete.js';
 
 export default class Load {
   static loadUI() {
@@ -30,5 +31,6 @@ export default class Load {
     renderFlagged.handlerFlaggedGig();
     renderEdit.handlerRenderEdit();
     renderDelete.handlerDeleteBtn();
+    renderAsideDelete.handlerRenderAsideDelete();
   }
 }

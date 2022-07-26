@@ -24,7 +24,14 @@ class RenderMonthAndGigs {
     <li class="aside-menu__dates-content-items ${
       fromStorage ? 'u-no-display' : ''
     }">
-      <span class="aside-menu__dates-content-item" data-index='${index}'>${venue}</span><ion-icon class='icon' name="ellipsis-vertical-outline"></ion-icon>
+      <span class="aside-menu__dates-content-item" data-index='${index}'>${venue}</span>
+      <div class='gig-icon-elipsis-wrap'>
+        <ion-icon class='icon gig-icon-elipsis' name="ellipsis-vertical-outline"></ion-icon>
+        <div class='gig-icon-elipsis__pop-up u-no-display'>
+          <div class='gig-icon-elipsis__pop-up-view'>view</div>
+          <div class='gig-icon-elipsis__pop-up-delete'>delete</div>
+        </div>
+      </div>
     </li> 
   `;
 

@@ -57,7 +57,6 @@ class RenderDelete extends UIHelpers {
 
           // Remove correct gig from the side panel
           this.gigsInAside.forEach(gigEl => {
-            console.log(gig);
             if (Object.values(gig).includes(+gigEl.dataset.index))
               gigEl.parentNode.parentNode.removeChild(gigEl.parentNode);
           });

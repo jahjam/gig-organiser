@@ -31,6 +31,8 @@ class RenderEdit extends UIHelpers {
     this.editIcon = e.target.closest('.edit-icon');
     this.gigElement = this.editIcon.parentElement.parentElement;
 
+    document.querySelector('.header-main-title__text').textContent = '';
+
     this.editForm.classList.remove('u-no-display');
 
     this.getGigInfo(e);
@@ -179,7 +181,7 @@ class RenderEdit extends UIHelpers {
           if (gigValue === gigAside.textContent) {
             const i = this.targetGig.indexOf(gigValue);
             gigAside.textContent = this.inputs[i].value;
-            gigAside.dataset.index = gigIndex + 2;
+            gigAside.dataset.index = gigIndex + this.gigsAside.length;
           }
         });
       }

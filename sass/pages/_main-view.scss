@@ -141,6 +141,13 @@
     gap: 1.4rem;
   }
 
+  &__btn-wrap {
+    width: 80%;
+    display: flex;
+    gap: 1rem;
+    @include flex-space-between;
+  }
+
   &__btn,
   &__btn-dates,
   &__btn-tours {
@@ -159,7 +166,19 @@
     @include flex-space-between;
   }
 
+  &__btn-dates {
+    width: 100%;
+  }
+
+  &__btn-bin {
+    padding: 0.4rem;
+    @include btn-basic-layout;
+    box-shadow: none;
+    @include flex-space-between;
+  }
+
   &__btn:hover,
+  &__btn-bin:hover,
   &__btn-dates:hover,
   &__btn-tours:hover {
     background-color: var(--color-dark);
@@ -237,6 +256,43 @@
   flex-direction: column;
   align-items: center;
   gap: 3rem;
+}
+
+.gig-icon-elipsis {
+  &-wrap {
+    position: relative;
+  }
+
+  &__pop-up {
+    position: absolute;
+    height: 2.8rem;
+    width: 12rem;
+    box-shadow: 0.3rem 0.3rem 1rem rgba(var(--color-dark-rgba), 0.2);
+    background-color: var(--color-dark);
+    color: var(--color-light);
+    top: -3.2rem;
+    left: -11.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &-view,
+    &-delete {
+      cursor: pointer;
+      height: 100%;
+      width: 100%;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &-view:hover,
+    &-delete:hover {
+      background-color: var(--color-light);
+      color: var(--color-dark);
+    }
+  }
 }
 
 .icon {
