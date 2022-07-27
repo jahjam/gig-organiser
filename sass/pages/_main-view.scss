@@ -14,6 +14,7 @@
 
 .header {
   grid-area: header;
+  position: relative;
 
   height: 6rem;
 
@@ -30,11 +31,38 @@
     font-family: var(--font-bold);
     font-size: 2rem;
     text-align: center;
+
+    display: block;
+
+    &__text {
+      position: relative;
+      display: block;
+    }
+
+    &__text:before {
+      content: attr(data-highlight);
+      position: absolute;
+      color: var(--ter-color-default);
+      left: 0;
+      width: 0;
+      overflow: hidden;
+
+      animation-name: highlightWord;
+      animation-timing-function: linear;
+      animation-duration: 0.3s;
+      animation-iteration-count: 2;
+      animation-direction: alternate;
+    }
   }
 
   &-main-title {
     font-size: 2.4rem;
     text-transform: uppercase;
+
+    &__text {
+      animation-name: slideInTop;
+      animation-duration: 0.4s;
+    }
   }
 }
 
@@ -50,6 +78,8 @@
 
   &__months-form-section {
     width: 80%;
+    animation-name: fadeIn;
+    animation-duration: 0.4s;
   }
 
   &__months-form {
@@ -171,6 +201,7 @@
   }
 
   &__btn-bin {
+    transition: all 0.2s;
     padding: 0.4rem;
     @include btn-basic-layout;
     box-shadow: none;
@@ -190,6 +221,8 @@
     padding: 1.2rem;
     list-style: none;
     text-transform: uppercase;
+    animation-name: fadeIn;
+    animation-duration: 0.4s;
 
     border: var(--border-dark);
 
@@ -293,6 +326,11 @@
       color: var(--color-dark);
     }
   }
+}
+
+.notice {
+  animation-name: slideLeft;
+  animation-duration: 0.4s;
 }
 
 .icon {

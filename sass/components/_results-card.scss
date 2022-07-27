@@ -14,6 +14,9 @@
     'date info address icon';
   gap: 1rem;
 
+  animation-name: slideLeft;
+  animation-duration: 0.4s;
+
   box-shadow: var(--box-shadow);
 
   &__venue {

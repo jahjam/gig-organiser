@@ -21,3 +21,9 @@
 .u-is-flag-hovered:hover {
   color: var(--ter-color-default) !important;
 }
+
+.u-shake {
+  animation-name: shake;
+  animation-duration: 0.4s;
+  animation-timing-function: cubic-bezier(0.2, -2, 0.8, 2);
+}

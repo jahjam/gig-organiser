@@ -38,6 +38,7 @@ class RenderAsideMenu extends UIHelpers {
       // Removes the old icon to disable chevron and impliment delete month functionality
       month.children[0].children[1].classList.remove('dates-content-icon');
       month.children[0].children[1].classList.add('dates-content-icon-bin');
+      month.children[0].children[1].classList.add('u-shake');
 
       // Reverts to normal mode
       if (!this.binIcon.classList.contains('u-active-btn-bin')) {
@@ -51,6 +52,7 @@ class RenderAsideMenu extends UIHelpers {
         month.children[0].children[1].classList.remove(
           'dates-content-icon-bin'
         );
+        month.children[0].children[1].classList.remove('u-shake');
       }
     });
   }
@@ -89,6 +91,7 @@ class RenderAsideMenu extends UIHelpers {
           month.children[0].children[1].classList.remove(
             'dates-content-icon-bin'
           );
+          month.children[0].children[1].classList.remove('u-shake');
         });
 
         // Rerender gigs based on current tab open in view
