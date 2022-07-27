@@ -142,12 +142,6 @@ export default class UIHelpers {
           : selectedMonth
       }-${lastDayInMonth}`;
 
-    input.value = `${currentYear}-${
-      selectedMonth.toString().length === 1
-        ? `0${selectedMonth}`
-        : selectedMonth
-    }-01`;
-
     // Set date setting to default to this year if the month hasn't passed yet
     if (!isPast(new Date(maxDateThisYear))) {
       input.setAttribute(
@@ -159,13 +153,17 @@ export default class UIHelpers {
       input.setAttribute('max', maxDateThisYear);
     }
 
+    console.log(input);
+
     // Set date setting to default to next year if the month has already passed
     if (isPast(new Date(maxDateThisYear))) {
-      input.value = `${+currentYear + 1}-${
-        selectedMonth.toString().length === 1
-          ? `0${selectedMonth}`
-          : selectedMonth
-      }-01`;
+      if (input.classList.contains('edit-window__input-date')) {
+        input.value = `${+currentYear + 1}-${
+          selectedMonth.toString().length === 1
+            ? `0${selectedMonth}`
+            : selectedMonth
+        }-01`;
+      }
 
       input.setAttribute('min', minDateNextYear);
       input.setAttribute('max', maxDateNextYear);
