@@ -6,7 +6,7 @@ import renderWeeksGigs from './renderWeeksGigs.js';
 import renderMonthsGigs from './renderMonthsGigs.js';
 import renderFlaggedGigs from './renderFlaggedGigs.js';
 
-class RenderAsideDelete extends UIHelpers {
+class RenderAsideMenu extends UIHelpers {
   asideMenuViewBtns = document.querySelectorAll('.aside-menu__btn');
 
   handlerRenderAsideDelete() {
@@ -23,14 +23,16 @@ class RenderAsideDelete extends UIHelpers {
     this.asideMonths = document.querySelectorAll('.aside-menu__dates-content');
     this.binIcon = document.querySelector('.aside-menu__btn-bin');
 
+    if (createMonth.gigsByMonth.length === 0) return;
+
+    // Add active class to show the user they are in bin mode
+    this.binIcon.classList.toggle('u-active-btn-bin');
+
     this.asideMonths.forEach(month => {
       // Changes the chevron icon to a bin
       month.children[0].children[1].attributes.forEach(att => {
         if (att.nodeName === 'name') att.value = 'trash-outline';
       });
-
-      // Add active class to show the user they are in bin mode
-      this.binIcon.classList.toggle('u-active-btn-bin');
 
       // Removes the old icon to disable chevron and impliment delete month functionality
       month.children[0].children[1].classList.remove('dates-content-icon');
@@ -38,10 +40,12 @@ class RenderAsideDelete extends UIHelpers {
 
       // Reverts to normal mode
       if (!this.binIcon.classList.contains('u-active-btn-bin')) {
+        // Changes the bin icon to a chevron
         month.children[0].children[1].attributes.forEach(att => {
           if (att.nodeName === 'name') att.value = 'chevron-down-outline';
         });
 
+        // Adds the old icon to enable chevron and remove delete month functionality
         month.children[0].children[1].classList.add('dates-content-icon');
         month.children[0].children[1].classList.remove(
           'dates-content-icon-bin'
@@ -121,14 +125,15 @@ class RenderAsideDelete extends UIHelpers {
     });
 
     // Rerender gigs based on current tab open in view
-    if (this.readViewBtns() === 'renderTodaysGigs')
+    if (this.readViewBtns() === 'renderTodaysGigs') {
       renderTodaysGigs.renderGigsDueToday();
-    if (this.readViewBtns() === 'renderWeeksGigs')
+    } else if (this.readViewBtns() === 'renderWeeksGigs') {
       renderWeeksGigs.renderGigsDueWeek(e);
-    if (this.readViewBtns() === 'renderMonthsGigs')
+    } else if (this.readViewBtns() === 'renderMonthsGigs') {
       renderMonthsGigs.renderGigsDueMonth(e);
-    if (this.readViewBtns() === 'renderFlaggedGigs')
+    } else if (this.readViewBtns() === 'renderFlaggedGigs') {
       renderFlaggedGigs.renderGigsFlagged(e);
+    }
 
     // Update local storage
     localStorage.updateLocalStorage();
@@ -140,6 +145,9 @@ class RenderAsideDelete extends UIHelpers {
     //Logic to show the selected gig in the results view
     createMonth.gigsByMonth.forEach(month => {
       month.gig.forEach(gig => {
+        // Clear header
+        document.querySelector('.header-main-title__text').textContent = '';
+
         // Check the gig index maches the gig in the asides data attribute
         if (
           gig.index ===
@@ -172,4 +180,4 @@ class RenderAsideDelete extends UIHelpers {
   }
 }
 
-export default new RenderAsideDelete();
+export default new RenderAsideMenu();

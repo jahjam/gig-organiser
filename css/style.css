@@ -207,7 +207,7 @@ body {
       flex-direction: column;
       align-items: start;
       justify-content: center; }
-    .edit-window__form-submit-btn, .edit-window__form-edit-btn, .edit-window__form-cancel-btn, .edit-window__form-edit-submit-btn, .edit-window__form-edit-edit-btn, .edit-window__form-edit-cancel-btn {
+    .edit-window__form-submit-btn, .edit-window__form-edit-btn, .edit-window__form-cancel-btn, .edit-window__form-add-cancel-btn, .edit-window__form-edit-submit-btn, .edit-window__form-edit-edit-btn, .edit-window__form-edit-cancel-btn, .edit-window__form-edit-add-cancel-btn {
       width: 80%;
       margin-top: 1rem;
       padding: 0.8rem;
@@ -221,11 +221,11 @@ body {
       font-family: inherit;
       text-transform: uppercase;
       cursor: pointer; }
-    .edit-window__form-edit-btn, .edit-window__form-edit-edit-btn {
+    .edit-window__form-edit-btn, .edit-window__form-submit-btn, .edit-window__form-edit-edit-btn, .edit-window__form-edit-submit-btn {
       background-color: var(--ter-color-default); }
-    .edit-window__form-cancel-btn, .edit-window__form-edit-cancel-btn {
+    .edit-window__form-cancel-btn, .edit-window__form-add-cancel-btn, .edit-window__form-edit-cancel-btn, .edit-window__form-edit-add-cancel-btn {
       background-color: #da3d3d; }
-    .edit-window__form-submit-btn:hover, .edit-window__form-edit-btn:hover, .edit-window__form-cancel-btn:hover, .edit-window__form-edit-submit-btn:hover, .edit-window__form-edit-edit-btn:hover, .edit-window__form-edit-cancel-btn:hover {
+    .edit-window__form-submit-btn:hover, .edit-window__form-edit-btn:hover, .edit-window__form-cancel-btn:hover, .edit-window__form-add-cancel-btn:hover, .edit-window__form-edit-submit-btn:hover, .edit-window__form-edit-edit-btn:hover, .edit-window__form-edit-cancel-btn:hover, .edit-window__form-edit-add-cancel-btn:hover {
       background-color: var(--color-dark);
       color: var(--color-light); }
   .edit-window__main-title {

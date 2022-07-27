@@ -14,6 +14,7 @@ class RenderEdit extends UIHelpers {
   formEl = document.querySelector('.edit-window__form-edit');
   cancelBtn = document.querySelector('.edit-window__form-edit-cancel-btn');
   inputs = document.querySelectorAll('.edit-window__input-edit');
+  dateInput = document.querySelector('.edit-window__input-date-edit');
 
   targetGig = [];
   editIcon;
@@ -21,6 +22,7 @@ class RenderEdit extends UIHelpers {
 
   handlerRenderEdit() {
     window.addEventListener('click', this.renderEditForm.bind(this));
+    window.addEventListener('click', this.lockDate.bind(this));
     this.formEl.addEventListener('submit', this.commitEdit.bind(this));
     this.cancelBtn.addEventListener('click', this.closeForm.bind(this));
   }
@@ -36,6 +38,23 @@ class RenderEdit extends UIHelpers {
     this.editForm.classList.remove('u-no-display');
 
     this.getGigInfo(e);
+  }
+
+  lockDate(e) {
+    if (!e.target.closest('.edit-icon')) return;
+
+    createMonth.gigsByMonth.forEach(month => {
+      month.gig.forEach(gig => {
+        if (
+          this.targetGig.includes(gig.venue) &&
+          this.targetGig.includes(gig.date) &&
+          this.targetGig.includes(gig.stageTime)
+        ) {
+          console.log(month.month);
+          this.lockDateToSelectedMonth(this.dateInput, month.month);
+        }
+      });
+    });
   }
 
   getGigInfo(e) {
@@ -73,27 +92,9 @@ class RenderEdit extends UIHelpers {
     );
 
     const editValues = [];
-    // let edittedGig;
-    // let gigFlagged = false;
-    // let currentGigIndex;
 
     createMonth.gigsByMonth.forEach(month => {
       month.gig.forEach(gigItem => {
-        // // Delete the current index for the gig
-        // edittedGig = gigItem;
-        // this.currentGigIndex = gigItem.index;
-        // delete edittedGig.index;
-
-        // // Check if gig has ever been flagged and set gigFlagged appropriately
-        // if (edittedGig.hasOwnProperty('flagged')) {
-        //   if (edittedGig.flagged) {
-        //     gigFlagged = true;
-        //     delete edittedGig.flagged;
-        //   } else {
-        //     delete edittedGig.flagged;
-        //   }
-        // }
-
         // Extract relevent info from the gig to compere
         const gigExtract = [
           gigItem.venue,
@@ -115,14 +116,6 @@ class RenderEdit extends UIHelpers {
           const index = month.gig.indexOf(gigItem);
           month.gig.splice(index, 1);
 
-          // // Add flagged back to gig if it was true before edit
-          // if (gigFlagged) {
-          //   editValues.push(true);
-          //   gigFlagged = false;
-          // } else {
-          //   // Keep flagged gig as false
-          //   editValues.push(false);
-          // }
           // Add flagged back
           editValues.push(gigItem.flagged);
 
@@ -158,14 +151,15 @@ class RenderEdit extends UIHelpers {
     renderFlagged.flaggedGigsEl.push(this.gigElement);
 
     // Rerender gigs based on current tab open in view
-    if (this.readViewBtns() === 'renderTodaysGigs')
+    if (this.readViewBtns() === 'renderTodaysGigs') {
       renderTodaysGigs.renderGigsDueToday();
-    if (this.readViewBtns() === 'renderWeeksGigs')
+    } else if (this.readViewBtns() === 'renderWeeksGigs') {
       renderWeeksGigs.renderGigsDueWeek(e);
-    if (this.readViewBtns() === 'renderMonthsGigs')
+    } else if (this.readViewBtns() === 'renderMonthsGigs') {
       renderMonthsGigs.renderGigsDueMonth(e);
-    if (this.readViewBtns() === 'renderFlaggedGigs')
+    } else if (this.readViewBtns() === 'renderFlaggedGigs') {
       renderFlaggedGigs.renderGigsFlagged(e);
+    }
   }
 
   renameGigFromAside(gigIndex) {

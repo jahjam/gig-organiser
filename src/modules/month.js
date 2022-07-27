@@ -7,7 +7,7 @@ import sortDOM from '../UI/sortDOM.js';
 import { format } from 'date-fns';
 
 export default class Month {
-  monthToAmend;
+  monthToAmend = undefined;
   gig = [];
 
   constructor(month) {
@@ -28,6 +28,11 @@ export default class Month {
       createMonth.gigsByMonth.findIndex(({ month }) => month === this.month),
       1
     );
+  }
+
+  cancelPrep() {
+    createMonth.gigsByMonth.push(this.monthToAmend);
+    this.monthToAmend = undefined;
   }
 
   createGig(

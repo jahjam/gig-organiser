@@ -1,19 +1,23 @@
 import createGig from '../modules/createGig.js';
-import createMonth from '../modules/createMonth.js';
-import renderMainGigs from './renderMainGigs.js';
-import sortData from '../modules/sortData.js';
-import { isPast } from 'date-fns';
+import renderTodaysGigs from './renderTodaysGigs.js';
+import renderWeeksGigs from './renderWeeksGigs.js';
+import renderMonthsGigs from './renderMonthsGigs.js';
+import renderFlaggedGigs from './renderFlaggedGigs.js';
+import UIHelpers from './UIHelpers.js';
 
-class RenderGig {
+class RenderGig extends UIHelpers {
   form = document.querySelector('.edit-section__add');
   formElement = document.querySelector('.edit-window__form');
   inputs = document.querySelectorAll('.edit-window__input');
   dateInput = document.querySelector('.edit-window__input-date');
+  cancelBtn = document.querySelector('.edit-window__form-add-cancel-btn');
 
   handlerAddGigBtns() {
     window.addEventListener('click', this.renderForm.bind(this));
     this.formElement.addEventListener('submit', this.readFormData.bind(this));
-    window.addEventListener('click', this.lockDateToSelectedMonth.bind(this));
+    window.addEventListener('click', this.lockDate.bind(this));
+    window.addEventListener('click', this.cancelAddGig.bind(this));
+    this.cancelBtn.addEventListener('click', this.cancelAddGig.bind(this));
   }
 
   renderForm(e) {
@@ -36,82 +40,40 @@ class RenderGig {
     this.form.classList.add('u-no-display');
 
     createGig.addFormData();
+
+    // Rerender gigs based on current tab open in view
+    if (this.readViewBtns() === 'renderTodaysGigs') {
+      renderTodaysGigs.renderGigsDueToday();
+    } else if (this.readViewBtns() === 'renderWeeksGigs') {
+      renderWeeksGigs.renderGigsDueWeek(e);
+    } else if (this.readViewBtns() === 'renderMonthsGigs') {
+      renderMonthsGigs.renderGigsDueMonth(e);
+    } else if (this.readViewBtns() === 'renderFlaggedGigs') {
+      renderFlaggedGigs.renderGigsFlagged(e);
+    }
   }
 
   formReset() {
     this.formElement.reset();
   }
 
-  lockDateToSelectedMonth(e) {
+  lockDate(e) {
     if (!e.target.closest('.aside-menu__dates-content-item--btn')) return;
 
-    const daysInMonth = {
-      January: 31,
-      February: +`${createMonth.todaysDate.split('/')[2] % 4 === 0 ? 29 : 28}`,
-      March: 31,
-      April: 30,
-      May: 31,
-      June: 30,
-      July: 31,
-      August: 31,
-      September: 30,
-      October: 31,
-      November: 30,
-      December: 31,
-    };
-    const lastDayInMonth =
-      daysInMonth[
-        e.target.parentElement.previousElementSibling.textContent.trim()
-      ];
-    const selectedMonth =
-      sortData.months[
-        e.target.parentElement.previousElementSibling.textContent.trim()
-      ];
-    const currentYear = createMonth.todaysDate.split('/')[2];
-    const currentDay = createMonth.todaysDate.split('/')[0];
-    const minDate = `${currentYear}-${
-      selectedMonth.toString().length === 1
-        ? `0${selectedMonth}`
-        : selectedMonth
-    }-01`;
-    const minDateToday = `${currentYear}-${
-      selectedMonth.toString().length === 1
-        ? `0${selectedMonth}`
-        : selectedMonth
-    }-${currentDay.toString().length === 1 ? `0${currentDay}` : currentDay}`;
-    const maxDateThisYear = `${currentYear}-${
-      selectedMonth.toString().length === 1
-        ? `0${selectedMonth}`
-        : selectedMonth
-    }-${lastDayInMonth}`;
-    const minDateNextYear = `${+currentYear + 1}-${
-      selectedMonth.toString().length === 1
-        ? `0${selectedMonth}`
-        : selectedMonth
-    }-01`;
-    const maxDateNextYear = `${+currentYear + 1}-${
-      selectedMonth.toString().length === 1
-        ? `0${selectedMonth}`
-        : selectedMonth
-    }-${lastDayInMonth}`;
+    this.lockDateToSelectedMonth(
+      this.dateInput,
+      e.target.parentElement.previousElementSibling.textContent.trim()
+    );
+  }
 
-    // Set date setting to default to this year if the month hasn't passed yet
-    if (!isPast(new Date(maxDateThisYear))) {
-      this.dateInput.setAttribute(
-        'min',
-        +sortData.months[
-          e.target.parentElement.previousElementSibling.textContent.trim()
-        ] === +createMonth.todaysDate.split('/')[1]
-          ? minDateToday
-          : minDate
-      );
-      this.dateInput.setAttribute('max', maxDateThisYear);
-    }
-
-    // Set date setting to default to next year if the month has already passed
-    if (isPast(new Date(maxDateThisYear))) {
-      this.dateInput.setAttribute('min', minDateNextYear);
-      this.dateInput.setAttribute('max', maxDateNextYear);
+  cancelAddGig(e) {
+    if (
+      !e.target.closest('.edit-section__add') &&
+      !this.form.classList.contains('u-no-display') &&
+      !e.target.closest('.aside-menu__dates-content-item--btn')
+    ) {
+      this.form.classList.add('u-no-display');
+      createGig.month.cancelPrep();
     }
   }
 }

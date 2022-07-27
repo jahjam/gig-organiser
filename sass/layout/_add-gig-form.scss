@@ -65,7 +65,8 @@
 
     &-submit-btn,
     &-edit-btn,
-    &-cancel-btn {
+    &-cancel-btn,
+    &-add-cancel-btn {
       width: 80%;
       margin-top: 1rem;
       padding: 0.8rem;
@@ -75,17 +76,20 @@
       @include btn-basic-layout;
     }
 
-    &-edit-btn {
+    &-edit-btn,
+    &-submit-btn {
       background-color: var(--ter-color-default);
     }
 
-    &-cancel-btn {
+    &-cancel-btn,
+    &-add-cancel-btn {
       background-color: rgb(218, 61, 61);
     }
 
     &-submit-btn:hover,
     &-edit-btn:hover,
-    &-cancel-btn:hover {
+    &-cancel-btn:hover,
+    &-add-cancel-btn:hover {
       background-color: var(--color-dark);
       color: var(--color-light);
     }
