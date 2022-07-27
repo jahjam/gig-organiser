@@ -11,6 +11,7 @@ class RenderGig extends UIHelpers {
   inputs = document.querySelectorAll('.edit-window__input');
   dateInput = document.querySelector('.edit-window__input-date');
   cancelBtn = document.querySelector('.edit-window__form-add-cancel-btn');
+  inputArea = document.querySelector('.input-area-add');
 
   handlerAddGigBtns() {
     window.addEventListener('click', this.renderForm.bind(this));
@@ -37,9 +38,9 @@ class RenderGig extends UIHelpers {
       createGig.values.push(input.value);
     });
 
-    this.form.classList.add('u-no-display');
-
     createGig.addFormData();
+
+    this.form.classList.add('u-no-display');
 
     // Rerender gigs based on current tab open in view
     if (this.readViewBtns() === 'renderTodaysGigs') {

@@ -105,7 +105,8 @@ body {
       font-weight: 600; }
     .result-card__info-notes {
       font-size: 1.2rem;
-      hyphens: auto; }
+      hyphens: auto;
+      white-space: pre-wrap; }
   .result-card__address {
     grid-area: address;
     padding: 0.4rem;

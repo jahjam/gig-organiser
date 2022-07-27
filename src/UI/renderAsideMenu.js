@@ -5,6 +5,7 @@ import renderTodaysGigs from './renderTodaysGigs.js';
 import renderWeeksGigs from './renderWeeksGigs.js';
 import renderMonthsGigs from './renderMonthsGigs.js';
 import renderFlaggedGigs from './renderFlaggedGigs.js';
+import renderFlagged from './renderFlagged.js';
 
 class RenderAsideMenu extends UIHelpers {
   asideMenuViewBtns = document.querySelectorAll('.aside-menu__btn');
@@ -75,6 +76,31 @@ class RenderAsideMenu extends UIHelpers {
 
         // Turn off delete mode for user safety
         this.binIcon.classList.remove('u-active-btn-bin');
+
+        // When an item is deleted it turns all the other icons back to the chevron
+        this.asideMonths.forEach(month => {
+          // Changes the bin icon to a chevron
+          month.children[0].children[1].attributes.forEach(att => {
+            if (att.nodeName === 'name') att.value = 'chevron-down-outline';
+          });
+
+          // Adds the old icon to enable chevron and remove delete month functionality
+          month.children[0].children[1].classList.add('dates-content-icon');
+          month.children[0].children[1].classList.remove(
+            'dates-content-icon-bin'
+          );
+        });
+
+        // Rerender gigs based on current tab open in view
+        if (this.readViewBtns() === 'renderTodaysGigs') {
+          renderTodaysGigs.renderGigsDueToday();
+        } else if (this.readViewBtns() === 'renderWeeksGigs') {
+          renderWeeksGigs.renderGigsDueWeek(e);
+        } else if (this.readViewBtns() === 'renderMonthsGigs') {
+          renderMonthsGigs.renderGigsDueMonth(e);
+        } else if (this.readViewBtns() === 'renderFlaggedGigs') {
+          renderFlaggedGigs.renderGigsFlagged(e);
+        }
 
         // Update the local storage to log the deletion of month
         localStorage.updateLocalStorage();
@@ -174,6 +200,8 @@ class RenderAsideMenu extends UIHelpers {
             gig.soundCheck,
             gig.stageTime
           );
+
+          renderFlagged.isFlagged();
         }
       });
     });

@@ -61,6 +61,7 @@ export default class UIHelpers {
       return 'renderTodaysGigs';
     }
 
+    // If editting a gig in normal view
     if (
       [...this.asideMenuViewBtns]
         .filter(btn => btn.classList.toString().includes('u-active-btn'))[0]
@@ -96,48 +97,56 @@ export default class UIHelpers {
 
   lockDateToSelectedMonth(input, monthName) {
     const daysInMonth = {
-      January: 31,
-      February: +`${createMonth.todaysDate.split('/')[2] % 4 === 0 ? 29 : 28}`,
-      March: 31,
-      April: 30,
-      May: 31,
-      June: 30,
-      July: 31,
-      August: 31,
-      September: 30,
-      October: 31,
-      November: 30,
-      December: 31,
-    };
-    const lastDayInMonth = daysInMonth[monthName];
-    const selectedMonth = sortData.months[monthName];
-    const currentYear = createMonth.todaysDate.split('/')[2];
-    const currentDay = createMonth.todaysDate.split('/')[0];
-    const minDate = `${currentYear}-${
+        January: 31,
+        February: +`${
+          createMonth.todaysDate.split('/')[2] % 4 === 0 ? 29 : 28
+        }`,
+        March: 31,
+        April: 30,
+        May: 31,
+        June: 30,
+        July: 31,
+        August: 31,
+        September: 30,
+        October: 31,
+        November: 30,
+        December: 31,
+      },
+      lastDayInMonth = daysInMonth[monthName],
+      selectedMonth = sortData.months[monthName],
+      currentYear = createMonth.todaysDate.split('/')[2],
+      currentDay = createMonth.todaysDate.split('/')[0],
+      minDate = `${currentYear}-${
+        selectedMonth.toString().length === 1
+          ? `0${selectedMonth}`
+          : selectedMonth
+      }-01`,
+      minDateToday = `${currentYear}-${
+        selectedMonth.toString().length === 1
+          ? `0${selectedMonth}`
+          : selectedMonth
+      }-${currentDay.toString().length === 1 ? `0${currentDay}` : currentDay}`,
+      maxDateThisYear = `${currentYear}-${
+        selectedMonth.toString().length === 1
+          ? `0${selectedMonth}`
+          : selectedMonth
+      }-${lastDayInMonth}`,
+      minDateNextYear = `${+currentYear + 1}-${
+        selectedMonth.toString().length === 1
+          ? `0${selectedMonth}`
+          : selectedMonth
+      }-01`,
+      maxDateNextYear = `${+currentYear + 1}-${
+        selectedMonth.toString().length === 1
+          ? `0${selectedMonth}`
+          : selectedMonth
+      }-${lastDayInMonth}`;
+
+    input.value = `${currentYear}-${
       selectedMonth.toString().length === 1
         ? `0${selectedMonth}`
         : selectedMonth
     }-01`;
-    const minDateToday = `${currentYear}-${
-      selectedMonth.toString().length === 1
-        ? `0${selectedMonth}`
-        : selectedMonth
-    }-${currentDay.toString().length === 1 ? `0${currentDay}` : currentDay}`;
-    const maxDateThisYear = `${currentYear}-${
-      selectedMonth.toString().length === 1
-        ? `0${selectedMonth}`
-        : selectedMonth
-    }-${lastDayInMonth}`;
-    const minDateNextYear = `${+currentYear + 1}-${
-      selectedMonth.toString().length === 1
-        ? `0${selectedMonth}`
-        : selectedMonth
-    }-01`;
-    const maxDateNextYear = `${+currentYear + 1}-${
-      selectedMonth.toString().length === 1
-        ? `0${selectedMonth}`
-        : selectedMonth
-    }-${lastDayInMonth}`;
 
     // Set date setting to default to this year if the month hasn't passed yet
     if (!isPast(new Date(maxDateThisYear))) {
@@ -152,6 +161,12 @@ export default class UIHelpers {
 
     // Set date setting to default to next year if the month has already passed
     if (isPast(new Date(maxDateThisYear))) {
+      input.value = `${+currentYear + 1}-${
+        selectedMonth.toString().length === 1
+          ? `0${selectedMonth}`
+          : selectedMonth
+      }-01`;
+
       input.setAttribute('min', minDateNextYear);
       input.setAttribute('max', maxDateNextYear);
     }

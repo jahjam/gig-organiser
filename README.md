@@ -24,7 +24,7 @@ Month view:
 [x] - Sort every view rendering to ensure gigs display from most recent to least\
 [x] - Restrict dates on edit view like on add gig view\
 [x] - Cancel add gig view if user aborts adding a gig after rendering form\
-[ ] - Impliment the info input as markdown to allow better formatting in the result view
+[x] - Format the info input to allow better formatting in the result view
 
 [ ] - FEATURE COMPLETE!
 
