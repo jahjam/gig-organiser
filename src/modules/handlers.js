@@ -11,6 +11,7 @@ import renderFlagged from '../UI/renderFlagged.js';
 import renderEdit from '../UI/renderEdit.js';
 import renderDelete from '../UI/renderDelete.js';
 import renderAsideMenu from '../UI/renderAsideMenu.js';
+import renderMobileNav from '../UI/renderMobileNav.js';
 
 export default class Load {
   static loadUI() {
@@ -32,5 +33,6 @@ export default class Load {
     renderEdit.handlerRenderEdit();
     renderDelete.handlerDeleteBtn();
     renderAsideMenu.handlerRenderAsideDelete();
+    renderMobileNav.handlerRenderMobileNav();
   }
 }

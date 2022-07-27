@@ -6,11 +6,11 @@ import renderFlaggedGigs from './renderFlaggedGigs.js';
 import UIHelpers from './UIHelpers.js';
 
 class RenderGig extends UIHelpers {
+  resultsSection = document.querySelector('.results-section');
   form = document.querySelector('.edit-section__add');
   formElement = document.querySelector('.edit-window__form');
   inputs = document.querySelectorAll('.edit-window__input');
   dateInput = document.querySelector('.edit-window__input-date');
-  cancelBtn = document.querySelector('.edit-window__form-add-cancel-btn');
   inputArea = document.querySelector('.input-area-add');
 
   handlerAddGigBtns() {
@@ -18,7 +18,6 @@ class RenderGig extends UIHelpers {
     this.formElement.addEventListener('submit', this.readFormData.bind(this));
     window.addEventListener('click', this.lockDate.bind(this));
     window.addEventListener('click', this.cancelAddGig.bind(this));
-    this.cancelBtn.addEventListener('click', this.cancelAddGig.bind(this));
   }
 
   renderForm(e) {
@@ -26,6 +25,7 @@ class RenderGig extends UIHelpers {
 
     document.querySelector('.header-main-title__text').textContent = '';
 
+    this.resultsSection.classList.add('u-no-display');
     this.form.classList.remove('u-no-display');
 
     createGig.selectMonthFromArray(e);
@@ -40,6 +40,7 @@ class RenderGig extends UIHelpers {
 
     createGig.addFormData();
 
+    this.resultsSection.classList.remove('u-no-display');
     this.form.classList.add('u-no-display');
 
     // Rerender gigs based on current tab open in view
@@ -69,12 +70,25 @@ class RenderGig extends UIHelpers {
 
   cancelAddGig(e) {
     if (
-      !e.target.closest('.edit-section__add') &&
-      !this.form.classList.contains('u-no-display') &&
-      !e.target.closest('.aside-menu__dates-content-item--btn')
+      (!e.target.closest('.edit-section__add') &&
+        !this.form.classList.contains('u-no-display') &&
+        !e.target.closest('.aside-menu__dates-content-item--btn')) ||
+      e.target.closest('.edit-window__form-add-cancel-btn')
     ) {
+      this.resultsSection.classList.remove('u-no-display');
       this.form.classList.add('u-no-display');
       createGig.month.cancelPrep();
+
+      // Rerender gigs based on current tab open in view
+      if (this.readViewBtns() === 'renderTodaysGigs') {
+        renderTodaysGigs.renderGigsDueToday();
+      } else if (this.readViewBtns() === 'renderWeeksGigs') {
+        renderWeeksGigs.renderGigsDueWeek(e);
+      } else if (this.readViewBtns() === 'renderMonthsGigs') {
+        renderMonthsGigs.renderGigsDueMonth(e);
+      } else if (this.readViewBtns() === 'renderFlaggedGigs') {
+        renderFlaggedGigs.renderGigsFlagged(e);
+      }
     }
   }
 }

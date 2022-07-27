@@ -1,3 +1,9 @@
+/* 
+BREAKPOINTS
+*/
+/* 
+MIXINS
+*/
 @keyframes slideInTop {
   0% {
     opacity: 0;
@@ -121,6 +127,16 @@ body {
   animation-name: slideLeft;
   animation-duration: 0.4s;
   box-shadow: var(--box-shadow); }
+  @media (max-width: 42em) {
+    .result-card {
+      height: 14rem; } }
+  @media (max-width: 36.5em) {
+    .result-card {
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: 1fr 1fr 1fr;
+      grid-template-areas: 'venue address info' 'date address info' 'stage-time soundcheck icon';
+      gap: 0.8rem;
+      padding: 1.6rem; } }
   .result-card__venue {
     grid-area: venue;
     padding: 0.4rem;
@@ -132,6 +148,12 @@ body {
       font-weight: 600; }
     .result-card__venue > span {
       font-size: 1.4rem; }
+      @media (max-width: 42em) {
+        .result-card__venue > span {
+          font-size: 1.1rem; } }
+      @media (max-width: 28.7em) {
+        .result-card__venue > span {
+          font-size: 0.9rem; } }
   .result-card__date {
     grid-area: date;
     padding: 0.4rem;
@@ -144,6 +166,12 @@ body {
       font-weight: 600; }
     .result-card__date > span {
       font-size: 1.4rem; }
+      @media (max-width: 42em) {
+        .result-card__date > span {
+          font-size: 1.1rem; } }
+      @media (max-width: 28.7em) {
+        .result-card__date > span {
+          font-size: 0.9rem; } }
   .result-card__info {
     grid-area: info;
     overflow: auto;
@@ -155,18 +183,37 @@ body {
     .result-card__info-title {
       font-size: 1.4rem !important;
       font-weight: 600; }
+      @media (max-width: 42em) {
+        .result-card__info-title {
+          font-size: 1.1rem !important; } }
+      @media (max-width: 28.7em) {
+        .result-card__info-title {
+          font-size: 0.9rem !important; } }
     .result-card__info-notes {
       font-size: 1.2rem;
       hyphens: auto;
       white-space: pre-wrap; }
+      @media (max-width: 42em) {
+        .result-card__info-notes {
+          font-size: 1.1rem; } }
+      @media (max-width: 28.7em) {
+        .result-card__info-notes {
+          font-size: 0.9rem; } }
   .result-card__address {
     grid-area: address;
+    overflow-y: auto;
     padding: 0.4rem;
     border: var(--border-dark);
     border-radius: var(--border-radius); }
     .result-card__address-title {
       font-size: 1.4rem !important;
       font-weight: 600; }
+      @media (max-width: 42em) {
+        .result-card__address-title {
+          font-size: 1.1rem !important; } }
+      @media (max-width: 28.7em) {
+        .result-card__address-title {
+          font-size: 0.9rem !important; } }
     .result-card__address-format {
       margin: 0.2rem;
       list-style: none;
@@ -174,6 +221,12 @@ body {
       display: flex;
       flex-direction: column;
       gap: 0.2rem; }
+      @media (max-width: 42em) {
+        .result-card__address-format {
+          font-size: 1.1rem; } }
+      @media (max-width: 28.7em) {
+        .result-card__address-format {
+          font-size: 0.9rem; } }
   .result-card__sound-check {
     grid-area: soundcheck;
     padding: 0.4rem;
@@ -186,6 +239,12 @@ body {
       font-weight: 600; }
     .result-card__sound-check > span {
       font-size: 1.4rem; }
+      @media (max-width: 42em) {
+        .result-card__sound-check > span {
+          font-size: 1.1rem; } }
+      @media (max-width: 28.7em) {
+        .result-card__sound-check > span {
+          font-size: 0.9rem; } }
   .result-card__stage-time {
     grid-area: stage-time;
     padding: 0.4rem;
@@ -198,6 +257,12 @@ body {
       font-weight: 600; }
     .result-card__stage-time > span {
       font-size: 1.4rem; }
+      @media (max-width: 42em) {
+        .result-card__stage-time > span {
+          font-size: 1.1rem; } }
+      @media (max-width: 28.7em) {
+        .result-card__stage-time > span {
+          font-size: 0.9rem; } }
   .result-card__icon {
     width: 100%;
     grid-area: icon;
@@ -211,6 +276,9 @@ body {
       color: red; }
     .result-card__icon > .icon {
       font-size: 2.2rem; }
+      @media (max-width: 42em) {
+        .result-card__icon > .icon {
+          font-size: 1.8rem; } }
     .result-card__icon > .icon:hover {
       color: var(--ter-color-default); }
 
@@ -244,13 +312,16 @@ body {
   align-items: start;
   justify-content: center; }
   .edit-window__form, .edit-window__form-edit {
-    width: 50%;
+    width: 60%;
     padding: 2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 1.2rem; }
+    @media (max-width: 68.5em) {
+      .edit-window__form, .edit-window__form-edit {
+        width: 80%; } }
     .edit-window__form-item, .edit-window__form-edit-item {
       width: 80%;
       padding: 1rem;
@@ -319,6 +390,10 @@ body {
   grid-template-columns: 20rem 1fr;
   grid-template-rows: auto 1fr;
   grid-template-areas: 'header header' 'nav results'; }
+  @media (max-width: 53.5em) {
+    .main {
+      display: flex;
+      flex-direction: column; } }
 
 .header {
   grid-area: header;
@@ -329,12 +404,21 @@ body {
   grid-template-areas: 'logo header';
   align-items: center;
   justify-items: center; }
+  @media (max-width: 53.5em) {
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem; } }
   .header-logo {
     grid-area: logo;
     font-family: var(--font-bold);
     font-size: 2rem;
     text-align: center;
     display: block; }
+    @media (max-width: 53.5em) {
+      .header-logo {
+        display: none; } }
     .header-logo__text {
       position: relative;
       display: block; }
@@ -350,9 +434,41 @@ body {
       animation-duration: 0.3s;
       animation-iteration-count: 2;
       animation-direction: alternate; }
+  .header__mobile-nav-icon {
+    display: none; }
+    @media (max-width: 53.5em) {
+      .header__mobile-nav-icon {
+        display: block;
+        font-size: 4rem;
+        cursor: pointer;
+        animation-name: slideInTop;
+        animation-duration: 0.4s; } }
+    @media (max-width: 42em) {
+      .header__mobile-nav-icon {
+        font-size: 3.8rem; } }
+    @media (max-width: 28.7em) {
+      .header__mobile-nav-icon {
+        font-size: 3.2rem; } }
+  .header__invisible-flex-item {
+    display: none; }
+    @media (max-width: 53.5em) {
+      .header__invisible-flex-item {
+        display: block;
+        height: 4rem;
+        width: 4rem; } }
+    @media (max-width: 42em) {
+      .header__invisible-flex-item {
+        height: 3.8rem;
+        width: 3.8rem; } }
   .header-main-title {
     font-size: 2.4rem;
     text-transform: uppercase; }
+    @media (max-width: 42em) {
+      .header-main-title {
+        font-size: 2rem; } }
+    @media (max-width: 28.7em) {
+      .header-main-title {
+        font-size: 1.8rem; } }
     .header-main-title__text {
       animation-name: slideInTop;
       animation-duration: 0.4s; }
@@ -360,11 +476,29 @@ body {
 .aside-menu {
   padding-top: 1.4rem;
   grid-area: nav;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: start;
   gap: 1.4rem; }
+  @media (max-width: 53.5em) {
+    .aside-menu {
+      height: 100vh;
+      width: 20rem;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background-color: white;
+      box-shadow: var(--box-shadow);
+      z-index: 2000;
+      transition: all 0.2s;
+      transform: translateX(-30rem); }
+      .aside-menu:before {
+        content: 'GIGPAL';
+        font-family: var(--font-bold);
+        font-size: 3.6rem;
+        text-align: center; } }
   .aside-menu__months-form-section {
     width: 80%;
     animation-name: fadeIn;
@@ -529,7 +663,12 @@ body {
       background-color: var(--color-dark);
       color: var(--color-light); }
   .aside-menu__copyright {
-    margin-top: auto; }
+    padding: 1rem;
+    margin-top: auto;
+    text-align: center;
+    line-height: 1.6rem;
+    font-size: 1.2rem;
+    color: var(--color-grey); }
 
 .results-section {
   height: 100%;
@@ -542,6 +681,9 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 3rem; }
+  @media (max-width: 28.7em) {
+    .results-section {
+      padding-top: 3rem; } }
 
 .gig-icon-elipsis-wrap {
   position: relative; }
@@ -573,6 +715,9 @@ body {
 .notice {
   animation-name: slideLeft;
   animation-duration: 0.4s; }
+  @media (max-width: 28.7em) {
+    .notice {
+      font-size: 3rem; } }
 
 .icon {
   font-size: 1.4rem;

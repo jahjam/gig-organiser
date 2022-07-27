@@ -19,6 +19,22 @@
 
   box-shadow: var(--box-shadow);
 
+  @include breakpoint(maxBreakThree) {
+    height: 14rem;
+  }
+
+  @include breakpoint(maxBreakFour) {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-areas:
+      'venue address info'
+      'date address info'
+      'stage-time soundcheck icon';
+    gap: 0.8rem;
+
+    padding: 1.6rem;
+  }
+
   &__venue {
     grid-area: venue;
 
@@ -33,6 +49,14 @@
 
     > span {
       font-size: 1.4rem;
+
+      @include breakpoint(maxBreakThree) {
+        font-size: 1.1rem;
+      }
+
+      @include breakpoint(maxBreakFive) {
+        font-size: 0.9rem;
+      }
     }
   }
 
@@ -48,6 +72,14 @@
 
     > span {
       font-size: 1.4rem;
+
+      @include breakpoint(maxBreakThree) {
+        font-size: 1.1rem;
+      }
+
+      @include breakpoint(maxBreakFive) {
+        font-size: 0.9rem;
+      }
     }
   }
 
@@ -63,23 +95,49 @@
     &-title {
       font-size: 1.4rem !important;
       font-weight: 600;
+
+      @include breakpoint(maxBreakThree) {
+        font-size: 1.1rem !important;
+      }
+
+      @include breakpoint(maxBreakFive) {
+        font-size: 0.9rem !important;
+      }
     }
 
     &-notes {
       font-size: 1.2rem;
       hyphens: auto;
       white-space: pre-wrap;
+
+      @include breakpoint(maxBreakThree) {
+        font-size: 1.1rem;
+      }
+
+      @include breakpoint(maxBreakFive) {
+        font-size: 0.9rem;
+      }
     }
   }
 
   &__address {
     grid-area: address;
 
+    overflow-y: auto;
+
     @include card-border;
 
     &-title {
       font-size: 1.4rem !important;
       font-weight: 600;
+
+      @include breakpoint(maxBreakThree) {
+        font-size: 1.1rem !important;
+      }
+
+      @include breakpoint(maxBreakFive) {
+        font-size: 0.9rem !important;
+      }
     }
 
     &-format {
@@ -91,6 +149,14 @@
       display: flex;
       flex-direction: column;
       gap: 0.2rem;
+
+      @include breakpoint(maxBreakThree) {
+        font-size: 1.1rem;
+      }
+
+      @include breakpoint(maxBreakFive) {
+        font-size: 0.9rem;
+      }
     }
   }
 
@@ -106,6 +172,14 @@
 
     > span {
       font-size: 1.4rem;
+
+      @include breakpoint(maxBreakThree) {
+        font-size: 1.1rem;
+      }
+
+      @include breakpoint(maxBreakFive) {
+        font-size: 0.9rem;
+      }
     }
   }
 
@@ -121,6 +195,14 @@
 
     > span {
       font-size: 1.4rem;
+
+      @include breakpoint(maxBreakThree) {
+        font-size: 1.1rem;
+      }
+
+      @include breakpoint(maxBreakFive) {
+        font-size: 0.9rem;
+      }
     }
   }
 
@@ -143,6 +225,10 @@
 
     > .icon {
       font-size: 2.2rem;
+
+      @include breakpoint(maxBreakThree) {
+        font-size: 1.8rem;
+      }
     }
 
     > .icon:hover {

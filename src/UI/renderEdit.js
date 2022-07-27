@@ -10,6 +10,7 @@ import localStorage from '../modules/localStorage.js';
 import { format } from 'date-fns';
 
 class RenderEdit extends UIHelpers {
+  resultsSection = document.querySelector('.results-section');
   editForm = document.querySelector('.edit-section__edit');
   formEl = document.querySelector('.edit-window__form-edit');
   cancelBtn = document.querySelector('.edit-window__form-edit-cancel-btn');
@@ -35,6 +36,7 @@ class RenderEdit extends UIHelpers {
 
     document.querySelector('.header-main-title__text').textContent = '';
 
+    this.resultsSection.classList.add('u-no-display');
     this.editForm.classList.remove('u-no-display');
 
     this.getGigInfo(e);
@@ -204,6 +206,7 @@ class RenderEdit extends UIHelpers {
   }
 
   closeFormWhenSubmitted() {
+    this.resultsSection.classList.remove('u-no-display');
     this.editForm.classList.add('u-no-display');
 
     this.targetGig = [];
@@ -212,9 +215,21 @@ class RenderEdit extends UIHelpers {
   closeForm(e) {
     if (!e.target.closest('.edit-window__form-edit-cancel-btn')) return;
 
+    this.resultsSection.classList.remove('u-no-display');
     this.editForm.classList.add('u-no-display');
 
     this.targetGig = [];
+
+    // Rerender gigs based on current tab open in view
+    if (this.readViewBtns() === 'renderTodaysGigs') {
+      renderTodaysGigs.renderGigsDueToday();
+    } else if (this.readViewBtns() === 'renderWeeksGigs') {
+      renderWeeksGigs.renderGigsDueWeek(e);
+    } else if (this.readViewBtns() === 'renderMonthsGigs') {
+      renderMonthsGigs.renderGigsDueMonth(e);
+    } else if (this.readViewBtns() === 'renderFlaggedGigs') {
+      renderFlaggedGigs.renderGigsFlagged(e);
+    }
   }
 }
 

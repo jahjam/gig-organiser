@@ -10,6 +10,11 @@
   grid-template-areas:
     'header header'
     'nav results';
+
+  @include breakpoint(maxBreakTwo) {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .header {
@@ -25,6 +30,13 @@
   align-items: center;
   justify-items: center;
 
+  @include breakpoint(maxBreakTwo) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+  }
+
   &-logo {
     grid-area: logo;
 
@@ -33,6 +45,10 @@
     text-align: center;
 
     display: block;
+
+    @include breakpoint(maxBreakTwo) {
+      display: none;
+    }
 
     &__text {
       position: relative;
@@ -55,9 +71,53 @@
     }
   }
 
+  &__mobile-nav-icon {
+    display: none;
+
+    @include breakpoint(maxBreakTwo) {
+      display: block;
+      font-size: 4rem;
+      cursor: pointer;
+
+      animation-name: slideInTop;
+      animation-duration: 0.4s;
+    }
+
+    @include breakpoint(maxBreakThree) {
+      font-size: 3.8rem;
+    }
+
+    @include breakpoint(maxBreakFive) {
+      font-size: 3.2rem;
+    }
+  }
+
+  &__invisible-flex-item {
+    display: none;
+
+    @include breakpoint(maxBreakTwo) {
+      display: block;
+      height: 4rem;
+      width: 4rem;
+    }
+
+    @include breakpoint(maxBreakThree) {
+      height: 3.8rem;
+      width: 3.8rem;
+    }
+  }
+
   &-main-title {
     font-size: 2.4rem;
     text-transform: uppercase;
+
+    @include breakpoint(maxBreakThree) {
+      font-size: 2rem;
+    }
+
+    @include breakpoint(maxBreakFive) {
+      font-size: 1.8rem;
+    }
 
     &__text {
       animation-name: slideInTop;
@@ -69,6 +129,29 @@
 .aside-menu {
   padding-top: 1.4rem;
   grid-area: nav;
+  overflow-y: auto;
+
+  @include breakpoint(maxBreakTwo) {
+    height: 100vh;
+    width: 20rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgb(255, 255, 255);
+    box-shadow: var(--box-shadow);
+    z-index: 2000;
+
+    transition: all 0.2s;
+
+    transform: translateX(-30rem);
+
+    &:before {
+      content: 'GIGPAL';
+      font-family: var(--font-bold);
+      font-size: 3.6rem;
+      text-align: center;
+    }
+  }
 
   display: flex;
   flex-direction: column;
@@ -269,7 +352,13 @@
   }
 
   &__copyright {
+    padding: 1rem;
     margin-top: auto;
+
+    text-align: center;
+    line-height: 1.6rem;
+    font-size: 1.2rem;
+    color: var(--color-grey);
   }
 }
 
@@ -289,6 +378,10 @@
   flex-direction: column;
   align-items: center;
   gap: 3rem;
+
+  @include breakpoint(maxBreakFive) {
+    padding-top: 3rem;
+  }
 }
 
 .gig-icon-elipsis {
@@ -329,6 +422,10 @@
 }
 
 .notice {
+  @include breakpoint(maxBreakFive) {
+    font-size: 3rem;
+  }
+
   animation-name: slideLeft;
   animation-duration: 0.4s;
 }

@@ -1,3 +1,29 @@
+/* 
+BREAKPOINTS
+*/
+
+$breakpoints: (
+  maxBreakOne: 68.5em,
+  maxBreakTwo: 53.5em,
+  maxBreakThree: 42em,
+  maxBreakFour: 36.5em,
+  maxBreakFive: 28.7em,
+);
+
+@mixin breakpoint($name) {
+  @if not map-has-key($breakpoints, $name) {
+    @warn "Warning: `#{$name}` is not a valid breakpoint name.";
+  } @else {
+    @media (max-width: map-get($breakpoints, $name)) {
+      @content;
+    }
+  }
+}
+
+/* 
+MIXINS
+*/
+
 @mixin flex-space-between {
   display: flex;
   align-items: center;
