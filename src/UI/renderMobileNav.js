@@ -20,7 +20,8 @@ class RenderMobileNav {
       (!e.target.closest('.aside-menu') &&
         !e.target.closest('.header__mobile-nav-icon')) ||
       e.target.closest('.aside-menu__btn') ||
-      e.target.closest('.aside-menu__dates-content-item--btn')
+      e.target.closest('.aside-menu__dates-content-item--btn') ||
+      e.target.closest('.gig-icon-elipsis__pop-up-view')
     )
       if (window.matchMedia('(max-width: 856px)').matches) {
         this.asideMenu.style.transform = '';

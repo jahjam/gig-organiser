@@ -35,6 +35,10 @@
     padding: 1.6rem;
   }
 
+  @include breakpoint(maxBreakFive) {
+    width: 90%;
+  }
+
   &__venue {
     grid-area: venue;
 
