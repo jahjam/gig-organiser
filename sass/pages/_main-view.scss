@@ -341,6 +341,7 @@
     &--btn {
       width: 100%;
       padding: 0.2rem;
+      color: var(--color-dark);
       @include btn-basic-layout;
       box-shadow: none;
 
