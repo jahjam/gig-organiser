@@ -34,5 +34,9 @@ export default class Load {
     renderDelete.handlerDeleteBtn();
     renderAsideMenu.handlerRenderAsideDelete();
     renderMobileNav.handlerRenderMobileNav();
+    container.addEventListener('touchstart', () => {});
+    container.addEventListener('touchend', () => {});
+    container.addEventListener('touchcancel', () => {});
+    container.addEventListener('touchmove', () => {});
   }
 }
