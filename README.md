@@ -1,8 +1,8 @@
-# gig-organiser
+# GIGPAL | Organise Your Gig Life
 
 A simple gig organiser to keep track of upcoming gigs.
 
-View it [HERE](https://gigpal.netlify.app/) 👈
+Try it [HERE](https://gigpal.netlify.app/)! 👈
 
 TODO
 
@@ -30,7 +30,7 @@ Month view:
 
 [x] - FEATURE COMPLETE!
 
-[ ] - Code refactored\
+[ ] - Code refactored
 
 Additional fun addons for future
 
