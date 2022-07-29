@@ -150,6 +150,12 @@ class RenderFlagged extends UIHelpers {
               // Take the relevent part of the newly rendered elements
               const splitCurElement = card.innerHTML.split('icon');
 
+              // console.log(
+              //   splitPrevElement[0],
+              //   '////////////////',
+              //   splitCurElement[0]
+              // );
+
               // Compare them so to apply the correct color to the correct card
               if (splitCurElement[0] === splitPrevElement[0]) {
                 card.children[6].children[0].style.color = '#eeba0b';

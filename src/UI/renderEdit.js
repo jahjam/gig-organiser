@@ -52,7 +52,6 @@ class RenderEdit extends UIHelpers {
           this.targetGig.includes(gig.date) &&
           this.targetGig.includes(gig.stageTime)
         ) {
-          console.log(month.month);
           this.lockDateToSelectedMonth(this.dateInput, month.month);
         }
       });
@@ -97,7 +96,7 @@ class RenderEdit extends UIHelpers {
 
     createMonth.gigsByMonth.forEach(month => {
       month.gig.forEach(gigItem => {
-        // Extract relevent info from the gig to compere
+        // Extract relevent info from the gig to compare
         const gigExtract = [
           gigItem.venue,
           gigItem.date,
@@ -118,6 +117,31 @@ class RenderEdit extends UIHelpers {
           const index = month.gig.indexOf(gigItem);
           month.gig.splice(index, 1);
 
+          if (gigItem.flagged) {
+            console.log('hi');
+            // Remove flagged gig element reference from flagged array
+            renderFlagged.flaggedGigsEl.forEach(gigEl => {
+              // Take the relevent part of the stored gig element
+              const splitPrevElement = this.gigElement.innerHTML.split('icon');
+
+              // Take the relevent part of the newly rendered elements
+              const splitCurElement = gigEl.innerHTML.split('icon');
+
+              // Compare them so to apply the correct element is removed the reference array
+              console.log(splitCurElement[0] === splitPrevElement[0]);
+              if (splitCurElement[0] === splitPrevElement[0]) {
+                const index = renderFlagged.flaggedGigsEl.indexOf(gigEl);
+                renderFlagged.flaggedGigsEl.splice(index, 1);
+              }
+            });
+
+            // Recreate HTML element for new gig
+            this.rebuildHTML();
+
+            // Create DOM reference
+            renderFlagged.flaggedGigsEl.push(this.gigElement);
+          }
+
           // Add flagged back
           editValues.push(gigItem.flagged);
 
@@ -128,7 +152,6 @@ class RenderEdit extends UIHelpers {
           });
 
           localStorage.updateLocalStorage();
-          console.log(createMonth.gigsByMonth);
           return;
         }
       });
@@ -139,18 +162,6 @@ class RenderEdit extends UIHelpers {
 
     // Create new gig based on new inputs
     createGig.editGig(...editValues);
-
-    // Remove previous gig from flagged gig elements array
-    if (renderFlagged.flaggedGigsEl.includes(this.gigElement)) {
-      const index = renderFlagged.flaggedGigsEl.indexOf(this.gigElement);
-      renderFlagged.flaggedGigsEl.splice(index, 1);
-    }
-
-    // Recreate HTML element for new gig
-    this.rebuildHTML();
-
-    // // need to create DOM reference
-    renderFlagged.flaggedGigsEl.push(this.gigElement);
 
     // Rerender gigs based on current tab open in view
     if (this.readViewBtns() === 'renderTodaysGigs') {
@@ -188,18 +199,19 @@ class RenderEdit extends UIHelpers {
     let i = 0;
 
     this.gigElement.children.forEach(child => {
-      if (this.inputs[i].id === 'date') {
+      if (this.inputs[i]?.id === 'date') {
         child.children[1].textContent = format(
           new Date(this.inputs[i].value.replaceAll('-', '/')),
           'dd/MM/yyyy'
         );
         i++;
       } else if (child.classList.contains('result-card__address')) {
-        console.log(child.children[1].children);
-        child.children[1].children.textContent = this.inputs[i].value;
-        i++;
+        child.children[1].children.forEach(child => {
+          child.textContent = this.inputs[i].value;
+          i++;
+        });
       } else {
-        child.children[1].textContent = this.inputs[i].value;
+        child.children[1].textContent = this.inputs[i]?.value;
         i++;
       }
     });

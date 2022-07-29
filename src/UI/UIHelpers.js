@@ -153,8 +153,6 @@ export default class UIHelpers {
       input.setAttribute('max', maxDateThisYear);
     }
 
-    console.log(input);
-
     // Set date setting to default to next year if the month has already passed
     if (isPast(new Date(maxDateThisYear))) {
       if (input.classList.contains('edit-window__input-date')) {

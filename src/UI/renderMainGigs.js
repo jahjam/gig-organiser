@@ -1,6 +1,6 @@
 import createMonth from '../modules/createMonth.js';
 import UIHelpers from './UIHelpers.js';
-import { intervalToDuration } from 'date-fns';
+import { intervalToDuration, isAfter } from 'date-fns';
 
 export default class RenderMainGigs extends UIHelpers {
   asideMenuViewBtns = document.querySelectorAll('.aside-menu__btn');
@@ -31,8 +31,13 @@ export default class RenderMainGigs extends UIHelpers {
       end: new Date(this.gigYear, this.gigMonth, this.gigDay),
     }).months;
 
+    const isDateAfter = isAfter(
+      new Date(this.gigYear, this.gigMonth, this.gigDay),
+      new Date(this.todayYear, this.todayMonth, this.todayDay)
+    );
+
     if (type === 'week') {
-      if (numDays <= 7 && numMonths === 0) {
+      if (isDateAfter && numDays <= 7 && numMonths === 0) {
         this.renderGigs(
           gig.venue,
           gig.date,
@@ -48,7 +53,7 @@ export default class RenderMainGigs extends UIHelpers {
     }
 
     if (type === 'month') {
-      if (numMonths <= 1) {
+      if (isDateAfter && numMonths <= 1) {
         this.renderGigs(
           gig.venue,
           gig.date,
