@@ -2,7 +2,7 @@
 
 A simple gig organiser to keep track of upcoming gigs.
 
-View it [HERE](gigpal.netlify.app) 👈
+View it [HERE](https://gigpal.netlify.app/) 👈
 
 TODO
 
