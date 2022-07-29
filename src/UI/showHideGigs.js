@@ -12,6 +12,8 @@ class ShowHideGigs {
 
     if (this.binSelector.classList.contains('u-active-btn-bin')) return;
 
+    console.log(this.gigs);
+
     this.gigs.forEach(gig => {
       if (
         gig.parentElement.firstElementChild.firstElementChild.textContent.toLowerCase() ===
@@ -21,10 +23,10 @@ class ShowHideGigs {
       }
     });
 
-    this.switchChevron(e);
+    this.switchChevron();
   }
 
-  switchChevron(e) {
+  switchChevron() {
     this.chevron.attributes[1].nodeValue === 'chevron-down-outline'
       ? (this.chevron.attributes[1].nodeValue = 'chevron-up-outline')
       : (this.chevron.attributes[1].nodeValue = 'chevron-down-outline');
