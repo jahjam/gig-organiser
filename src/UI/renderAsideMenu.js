@@ -8,6 +8,9 @@ import renderFlaggedGigs from './renderFlaggedGigs.js';
 import renderFlagged from './renderFlagged.js';
 
 class RenderAsideMenu extends UIHelpers {
+  gigFlaggedElVenue;
+  gigFlaggedElDate;
+  gigFlaggedElStageTime;
   asideMenuViewBtns = document.querySelectorAll('.aside-menu__btn');
 
   handlerRenderAsideDelete() {
@@ -108,6 +111,43 @@ class RenderAsideMenu extends UIHelpers {
         // Update the local storage to log the deletion of month
         localStorage.updateLocalStorage();
       }
+
+      // Loops through gigs to ensure the correct ones are deleted from the flagged gigs elements
+      month.gig.forEach(gig => {
+        if (gig.flagged) {
+          // Remove flagged gig element reference from flagged array
+          renderFlagged.flaggedGigsEl.forEach(gigEl => {
+            gigEl.children.forEach(child => {
+              if (child.children[0].textContent.toLowerCase() === 'venue:')
+                this.gigFlaggedElVenue = child.children[1].textContent;
+              if (child.children[0].textContent.toLowerCase() === 'date:')
+                this.gigFlaggedElDate = child.children[1].textContent;
+              if (
+                child.children[0].textContent.toLowerCase() === 'stage time:'
+              ) {
+                this.gigFlaggedElStageTime = child.children[1].textContent;
+              }
+            });
+
+            // Compare them so to apply the correct element is removed the reference array
+            if (
+              this.arrayEquals(
+                [gig.venue, gig.date, gig.stageTime],
+                [
+                  this.gigFlaggedElVenue,
+                  this.gigFlaggedElDate,
+                  this.gigFlaggedElStageTime,
+                ]
+              )
+            ) {
+              const index = renderFlagged.flaggedGigsEl.indexOf(gigEl);
+              renderFlagged.flaggedGigsEl.splice(index, 1);
+            }
+
+            localStorage.updateLocalStorage();
+          });
+        }
+      });
     });
   }
 
@@ -148,6 +188,40 @@ class RenderAsideMenu extends UIHelpers {
                 gigAside.parentElement
               );
             }
+          });
+        }
+
+        if (gig.flagged) {
+          // Remove flagged gig element reference from flagged array
+          renderFlagged.flaggedGigsEl.forEach(gigEl => {
+            gigEl.children.forEach(child => {
+              if (child.children[0].textContent.toLowerCase() === 'venue:')
+                this.gigFlaggedElVenue = child.children[1].textContent;
+              if (child.children[0].textContent.toLowerCase() === 'date:')
+                this.gigFlaggedElDate = child.children[1].textContent;
+              if (
+                child.children[0].textContent.toLowerCase() === 'stage time:'
+              ) {
+                this.gigFlaggedElStageTime = child.children[1].textContent;
+              }
+            });
+
+            // Compare them so to apply the correct element is removed the reference array
+            if (
+              this.arrayEquals(
+                [gig.venue, gig.date, gig.stageTime],
+                [
+                  this.gigFlaggedElVenue,
+                  this.gigFlaggedElDate,
+                  this.gigFlaggedElStageTime,
+                ]
+              )
+            ) {
+              const index = renderFlagged.flaggedGigsEl.indexOf(gigEl);
+              renderFlagged.flaggedGigsEl.splice(index, 1);
+            }
+
+            localStorage.updateLocalStorage();
           });
         }
       });

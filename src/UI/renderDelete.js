@@ -4,10 +4,13 @@ import renderTodaysGigs from './renderTodaysGigs.js';
 import renderWeeksGigs from './renderWeeksGigs.js';
 import renderMonthsGigs from './renderMonthsGigs.js';
 import renderFlaggedGigs from './renderFlaggedGigs.js';
+import renderFlagged from '../UI/renderFlagged.js';
 import localStorage from '../modules/localStorage.js';
 
 class RenderDelete extends UIHelpers {
   targetGig = [];
+  gigElement;
+
   // Delete button handler
   handlerDeleteBtn() {
     window.addEventListener('click', this.deleteGig.bind(this));
@@ -21,11 +24,12 @@ class RenderDelete extends UIHelpers {
   // Delete functionality
   deleteGig(e) {
     if (!e.target.closest('.delete-icon')) return;
-    // this.saveIndex;
 
     this.gigsInAside = document.querySelectorAll(
       '.aside-menu__dates-content-item'
     );
+    this.deleteIcon = e.target.closest('.delete-icon');
+    this.gigElement = this.deleteIcon.parentElement.parentElement;
 
     // Push the relevent gig info into the targetGig array
     this.targetGig.push(...this.getGig(e));
@@ -60,6 +64,24 @@ class RenderDelete extends UIHelpers {
             if (Object.values(gig).includes(+gigEl.dataset.index))
               gigEl.parentNode.parentNode.removeChild(gigEl.parentNode);
           });
+
+          if (gig.flagged) {
+            // Remove flagged gig element reference from flagged array
+            renderFlagged.flaggedGigsEl.forEach(gigEl => {
+              // Take the relevent part of the stored gig element
+              const splitPrevElement = this.gigElement.innerHTML.split('icon');
+
+              // Take the relevent part of the newly rendered elements
+              const splitCurElement = gigEl.innerHTML.split('icon');
+
+              // Compare them so to apply the correct element is removed the reference array
+              console.log(splitCurElement[0] === splitPrevElement[0]);
+              if (splitCurElement[0] === splitPrevElement[0]) {
+                const index = renderFlagged.flaggedGigsEl.indexOf(gigEl);
+                renderFlagged.flaggedGigsEl.splice(index, 1);
+              }
+            });
+          }
 
           // Rerender gigs based on current tab open in view
           if (this.readViewBtns() === 'renderTodaysGigs')

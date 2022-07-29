@@ -2,11 +2,13 @@
 
 A simple gig organiser to keep track of upcoming gigs.
 
+View it [HERE](gigpal.netlify.app) 👈
+
 TODO
 
 Month view:
 
-[x] - Fundamental logic
+[x] - Fundamental logic\
 [x] - Add month logic\
 [x] - Render month selector\
 [x] - Render month\
@@ -26,7 +28,9 @@ Month view:
 [x] - Cancel add gig view if user aborts adding a gig after rendering form\
 [x] - Format the info input to allow better formatting in the result view
 
-[ ] - FEATURE COMPLETE!
+[x] - FEATURE COMPLETE!
+
+[ ] - Code refactored\
 
 Additional fun addons for future
 

@@ -5,9 +5,12 @@ class ShowHideGigs {
 
   openCloseMonths(e) {
     this.gigs = document.querySelectorAll('.aside-menu__dates-content-items');
+    this.binSelector = document.querySelector('.aside-menu__btn-bin');
     this.chevron = document.querySelector('.dates-content-icon');
 
     if (!e.target.closest('.aside-menu__dates-content-items-title')) return;
+
+    if (this.binSelector.classList.contains('u-active-btn-bin')) return;
 
     this.gigs.forEach(gig => {
       if (
