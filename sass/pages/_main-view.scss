@@ -267,6 +267,7 @@
     height: 2.8rem;
     width: 80%;
 
+    color: var(--color-dark);
     padding: 1.2rem;
 
     @include btn-basic-layout;
@@ -285,6 +286,7 @@
 
   &__btn-bin {
     transition: all 0.2s;
+    color: var(--color-dark);
     padding: 0.4rem;
     @include btn-basic-layout;
     box-shadow: none;
