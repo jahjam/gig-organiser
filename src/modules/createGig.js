@@ -42,9 +42,8 @@ class CreateGig {
   ) {
     let formattedDate;
 
-    if (date.includes('-')) {
+    if (date.includes('-'))
       formattedDate = format(new Date(date.replaceAll('-', '/')), 'dd/MM/yyyy');
-    }
 
     this.month.gig.push({
       venue,

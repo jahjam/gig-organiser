@@ -4,6 +4,7 @@ import createGig from './createGig.js';
 import monthGen from './month.js';
 
 class LocalStorage {
+  // Temporary storage to recreate gigs
   gigsByMonthStorage = [];
 
   updateLocalStorage() {
@@ -56,9 +57,9 @@ class LocalStorage {
     let rebuiltEl = [];
 
     // Retrieves the flattened gigs from local storage and builds them back up as DOM elements to keep flagged equality system working
-    els.forEach(el => {
-      rebuiltEl.push(new DOMParser().parseFromString(el, 'text/html').all[3]);
-    });
+    els.forEach(el =>
+      rebuiltEl.push(new DOMParser().parseFromString(el, 'text/html').all[3])
+    );
 
     return rebuiltEl;
   }
@@ -67,9 +68,9 @@ class LocalStorage {
     let i = 0;
 
     // Reload the months
-    this.gigsByMonthStorage.forEach(monthForMonths => {
-      new monthGen(monthForMonths.month);
-    });
+    this.gigsByMonthStorage.forEach(
+      monthForMonths => new monthGen(monthForMonths.month)
+    );
 
     // Reload the gigs
     this.gigsByMonthStorage.forEach(monthForGigs =>
@@ -106,7 +107,5 @@ class LocalStorage {
     i++;
   }
 }
-
-// localStorage.clear();
 
 export default new LocalStorage();

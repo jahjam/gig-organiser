@@ -36,7 +36,7 @@ class RenderFlagged extends UIHelpers {
         )[0]
         .lastElementChild.textContent.toLowerCase();
 
-      createMonth.gigsByMonth.forEach(month => {
+      createMonth.gigsByMonth.forEach(month =>
         month.gig.forEach(gig => {
           // If gig.flagged === false or doesn't exist, run this code
           if (!gig.flagged) {
@@ -90,8 +90,8 @@ class RenderFlagged extends UIHelpers {
             // Update local storage to saved flagged state
             localStorage.updateLocalStorage();
           }
-        });
-      });
+        })
+      );
     }
 
     // Rerenders gigs if already on flagged view to remove the unflagged gig
@@ -131,7 +131,7 @@ class RenderFlagged extends UIHelpers {
 
   // gig === flagged ? render correct color
   isFlagged() {
-    createMonth.gigsByMonth.forEach(month => {
+    createMonth.gigsByMonth.forEach(month =>
       month.gig.forEach(gig => {
         // if the gig has never been flagged, return
         if (!gig.flagged) return;
@@ -150,16 +150,9 @@ class RenderFlagged extends UIHelpers {
               // Take the relevent part of the newly rendered elements
               const splitCurElement = card.innerHTML.split('icon');
 
-              // console.log(
-              //   splitPrevElement[0],
-              //   '////////////////',
-              //   splitCurElement[0]
-              // );
-
               // Compare them so to apply the correct color to the correct card
-              if (splitCurElement[0] === splitPrevElement[0]) {
+              if (splitCurElement[0] === splitPrevElement[0])
                 card.children[6].children[0].style.color = '#eeba0b';
-              }
             });
           });
         } else {
@@ -168,8 +161,8 @@ class RenderFlagged extends UIHelpers {
             card.children[6].children[0].style.color = '#140000';
           });
         }
-      });
-    });
+      })
+    );
   }
 
   turnOnHover(el) {

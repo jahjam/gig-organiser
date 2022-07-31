@@ -118,7 +118,6 @@ class RenderEdit extends UIHelpers {
           month.gig.splice(index, 1);
 
           if (gigItem.flagged) {
-            console.log('hi');
             // Remove flagged gig element reference from flagged array
             renderFlagged.flaggedGigsEl.forEach(gigEl => {
               // Take the relevent part of the stored gig element
@@ -152,10 +151,8 @@ class RenderEdit extends UIHelpers {
           });
 
           localStorage.updateLocalStorage();
-          return;
         }
       });
-      return;
     });
 
     this.closeFormWhenSubmitted();

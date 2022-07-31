@@ -22,11 +22,10 @@ class RenderMonthsGigs extends renderMainGigs {
   renderGigsDueMonth() {
     this.clearResults();
 
-    if (createMonth.gigsByMonth.length === 0) {
+    if (createMonth.gigsByMonth.length === 0)
       this.resultsEl.innerHTML = `
       <h2 class="notice">No gigs this month</h2>
       `;
-    }
 
     createMonth.gigsByMonth.forEach(month =>
       month.gig.forEach(gig => {

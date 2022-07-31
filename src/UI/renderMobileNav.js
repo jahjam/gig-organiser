@@ -1,7 +1,6 @@
 class RenderMobileNav {
   mobileNavIcon = document.querySelector('.header__mobile-nav-icon');
   asideMenu = document.querySelector('.aside-menu');
-  // asideMenuBtns = document.querySelector('.aside-menu__btn');
 
   handlerRenderMobileNav() {
     this.mobileNavIcon.addEventListener(
@@ -23,9 +22,8 @@ class RenderMobileNav {
       e.target.closest('.aside-menu__dates-content-item--btn') ||
       e.target.closest('.gig-icon-elipsis__pop-up-view')
     )
-      if (window.matchMedia('(max-width: 856px)').matches) {
+      if (window.matchMedia('(max-width: 856px)').matches)
         this.asideMenu.style.transform = '';
-      }
   }
 }
 

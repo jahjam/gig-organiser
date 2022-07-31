@@ -24,24 +24,24 @@ class SortData {
   }
 
   sortGigsInOrderOfDate() {
-    createMonth.gigsByMonth.forEach(month => {
+    createMonth.gigsByMonth.forEach(month =>
       month.gig.sort(
         (a, b) =>
           // Sort the gigs by date
           new Date(a.date.split('/').reverse().join('/')) -
           new Date(b.date.split('/').reverse().join('/'))
-      );
-    });
+      )
+    );
   }
 
   sortGigsInOrderOfStageTime() {
-    createMonth.gigsByMonth.forEach(month => {
+    createMonth.gigsByMonth.forEach(month =>
       month.gig.sort(
         (a, b) =>
           // Sort the gigs by stage time
           +a.stageTime.split(':')[0] - +b.stageTime.split(':')[0]
-      );
-    });
+      )
+    );
   }
 }
 

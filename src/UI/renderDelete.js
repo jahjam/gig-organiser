@@ -75,7 +75,6 @@ class RenderDelete extends UIHelpers {
               const splitCurElement = gigEl.innerHTML.split('icon');
 
               // Compare them so to apply the correct element is removed the reference array
-              console.log(splitCurElement[0] === splitPrevElement[0]);
               if (splitCurElement[0] === splitPrevElement[0]) {
                 const index = renderFlagged.flaggedGigsEl.indexOf(gigEl);
                 renderFlagged.flaggedGigsEl.splice(index, 1);

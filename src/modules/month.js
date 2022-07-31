@@ -8,6 +8,7 @@ import { format } from 'date-fns';
 
 export default class Month {
   monthToAmend = undefined;
+  // Storage for gigs within each month
   gig = [];
 
   constructor(month) {
@@ -51,11 +52,12 @@ export default class Month {
   ) {
     let formattedDate;
 
-    if (date.includes('-')) {
-      formattedDate = format(new Date(date.replaceAll('-', '/')), 'dd/MM/yyyy');
-    } else {
-      formattedDate = date;
-    }
+    date.includes('-')
+      ? (formattedDate = format(
+          new Date(date.replaceAll('-', '/')),
+          'dd/MM/yyyy'
+        ))
+      : (formattedDate = date);
 
     this.gig.push({
       venue,
@@ -71,14 +73,20 @@ export default class Month {
       flagged: flagged,
     });
 
+    // Render the gig within the result view
     renderMonthAndGigs.renderGig(venue, this.month, index, fromStorage);
 
+    // Push the gig into the month
     createMonth.gigsByMonth.push(this);
+
+    // reset the month to amend
     this.monthToAmend = undefined;
 
+    // Sort data
     sortData.sortGigsInOrderOfDate();
     sortData.sortGigsInOrderOfStageTime();
 
+    // Render gigs due today if the gig added is today
     if (createMonth.todaysDate === formattedDate)
       renderTodaysGigs.renderGigsDueToday();
 

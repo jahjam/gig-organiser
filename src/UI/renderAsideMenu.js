@@ -24,9 +24,11 @@ class RenderAsideMenu extends UIHelpers {
   renderAsideDeleteIcons(e) {
     if (!e.target.closest('.aside-menu__btn-bin')) return;
 
+    // Assign dynamically created elements
     this.asideMonths = document.querySelectorAll('.aside-menu__dates-content');
     this.binIcon = document.querySelector('.aside-menu__btn-bin');
 
+    // Prevent delete button being clickable if no months
     if (createMonth.gigsByMonth.length === 0) return;
 
     // Add active class to show the user they are in bin mode
@@ -114,48 +116,16 @@ class RenderAsideMenu extends UIHelpers {
 
       // Loops through gigs to ensure the correct ones are deleted from the flagged gigs elements
       month.gig.forEach(gig => {
-        if (gig.flagged) {
-          // Remove flagged gig element reference from flagged array
-          renderFlagged.flaggedGigsEl.forEach(gigEl => {
-            gigEl.children.forEach(child => {
-              if (child.children[0].textContent.toLowerCase() === 'venue:')
-                this.gigFlaggedElVenue = child.children[1].textContent;
-              if (child.children[0].textContent.toLowerCase() === 'date:')
-                this.gigFlaggedElDate = child.children[1].textContent;
-              if (
-                child.children[0].textContent.toLowerCase() === 'stage time:'
-              ) {
-                this.gigFlaggedElStageTime = child.children[1].textContent;
-              }
-            });
-
-            // Compare them so to apply the correct element is removed the reference array
-            if (
-              this.arrayEquals(
-                [gig.venue, gig.date, gig.stageTime],
-                [
-                  this.gigFlaggedElVenue,
-                  this.gigFlaggedElDate,
-                  this.gigFlaggedElStageTime,
-                ]
-              )
-            ) {
-              const index = renderFlagged.flaggedGigsEl.indexOf(gigEl);
-              renderFlagged.flaggedGigsEl.splice(index, 1);
-            }
-
-            localStorage.updateLocalStorage();
-          });
-        }
+        if (gig.flagged) this.removeFlaggedGigFromElArray(gig);
       });
     });
   }
 
   renderAsideItemMenu(e) {
     // Close edit and delete view for each gig if clicked anywhere that isn't the icon to open it
-    document.querySelectorAll('.gig-icon-elipsis').forEach(icon => {
-      icon.nextElementSibling.classList.add('u-no-display');
-    });
+    document
+      .querySelectorAll('.gig-icon-elipsis')
+      .forEach(icon => icon.nextElementSibling.classList.add('u-no-display'));
 
     if (!e.target.closest('.gig-icon-elipsis')) return;
 
@@ -166,11 +136,12 @@ class RenderAsideMenu extends UIHelpers {
   deleteAsideItemGig(e) {
     if (!e.target.closest('.gig-icon-elipsis__pop-up-delete')) return;
 
+    // Assign dynamically created elements
     this.gigsInAside = document.querySelectorAll(
       '.aside-menu__dates-content-item'
     );
 
-    createMonth.gigsByMonth.forEach(month => {
+    createMonth.gigsByMonth.forEach(month =>
       month.gig.forEach(gig => {
         // Check the gig index maches the gig in the asides data attribute and removes that gig from both the aside and the array
         if (
@@ -182,50 +153,16 @@ class RenderAsideMenu extends UIHelpers {
           month.gig.splice(index, 1);
 
           this.gigsInAside.forEach(gigAside => {
-            console.log(gigAside.parentElement.parentElement);
-            if (+gigAside.dataset.index === gig.index) {
+            if (+gigAside.dataset.index === gig.index)
               gigAside.parentElement.parentElement.removeChild(
                 gigAside.parentElement
               );
-            }
           });
         }
 
-        if (gig.flagged) {
-          // Remove flagged gig element reference from flagged array
-          renderFlagged.flaggedGigsEl.forEach(gigEl => {
-            gigEl.children.forEach(child => {
-              if (child.children[0].textContent.toLowerCase() === 'venue:')
-                this.gigFlaggedElVenue = child.children[1].textContent;
-              if (child.children[0].textContent.toLowerCase() === 'date:')
-                this.gigFlaggedElDate = child.children[1].textContent;
-              if (
-                child.children[0].textContent.toLowerCase() === 'stage time:'
-              ) {
-                this.gigFlaggedElStageTime = child.children[1].textContent;
-              }
-            });
-
-            // Compare them so to apply the correct element is removed the reference array
-            if (
-              this.arrayEquals(
-                [gig.venue, gig.date, gig.stageTime],
-                [
-                  this.gigFlaggedElVenue,
-                  this.gigFlaggedElDate,
-                  this.gigFlaggedElStageTime,
-                ]
-              )
-            ) {
-              const index = renderFlagged.flaggedGigsEl.indexOf(gigEl);
-              renderFlagged.flaggedGigsEl.splice(index, 1);
-            }
-
-            localStorage.updateLocalStorage();
-          });
-        }
-      });
-    });
+        if (gig.flagged) this.removeFlaggedGigFromElArray(gig);
+      })
+    );
 
     // Rerender gigs based on current tab open in view
     if (this.readViewBtns() === 'renderTodaysGigs') {
@@ -249,7 +186,7 @@ class RenderAsideMenu extends UIHelpers {
     createMonth.gigsByMonth.forEach(month => {
       month.gig.forEach(gig => {
         // Clear header
-        document.querySelector('.header-main-title__text').textContent = '';
+        this.clearHeader();
 
         // Check the gig index maches the gig in the asides data attribute
         if (
@@ -281,6 +218,38 @@ class RenderAsideMenu extends UIHelpers {
           renderFlagged.isFlagged();
         }
       });
+    });
+  }
+
+  removeFlaggedGigFromElArray(gig) {
+    // Remove flagged gig element reference from flagged array
+    renderFlagged.flaggedGigsEl.forEach(gigEl => {
+      gigEl.children.forEach(child => {
+        if (child.children[0].textContent.toLowerCase() === 'venue:')
+          this.gigFlaggedElVenue = child.children[1].textContent;
+        if (child.children[0].textContent.toLowerCase() === 'date:')
+          this.gigFlaggedElDate = child.children[1].textContent;
+        if (child.children[0].textContent.toLowerCase() === 'stage time:') {
+          this.gigFlaggedElStageTime = child.children[1].textContent;
+        }
+      });
+
+      // Compare them so to apply the correct element is removed the reference array
+      if (
+        this.arrayEquals(
+          [gig.venue, gig.date, gig.stageTime],
+          [
+            this.gigFlaggedElVenue,
+            this.gigFlaggedElDate,
+            this.gigFlaggedElStageTime,
+          ]
+        )
+      ) {
+        const index = renderFlagged.flaggedGigsEl.indexOf(gigEl);
+        renderFlagged.flaggedGigsEl.splice(index, 1);
+      }
+
+      localStorage.updateLocalStorage();
     });
   }
 }

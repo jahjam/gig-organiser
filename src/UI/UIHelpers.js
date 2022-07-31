@@ -167,4 +167,8 @@ export default class UIHelpers {
       input.setAttribute('max', maxDateNextYear);
     }
   }
+
+  clearHeader() {
+    document.querySelector('.header-main-title__text').textContent = '';
+  }
 }

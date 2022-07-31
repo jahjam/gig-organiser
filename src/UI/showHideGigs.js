@@ -5,31 +5,24 @@ class ShowHideGigs {
 
   openCloseMonths(e) {
     this.gigs = document.querySelectorAll('.aside-menu__dates-content-items');
-    this.binSelector = document.querySelector('.aside-menu__btn-bin');
-    this.chevron = document.querySelector('.dates-content-icon');
 
-    if (!e.target.closest('.aside-menu__dates-content-items-title')) return;
-
-    if (this.binSelector.classList.contains('u-active-btn-bin')) return;
-
-    console.log(this.gigs);
+    if (!e.target.closest('.dates-content-icon')) return;
 
     this.gigs.forEach(gig => {
       if (
         gig.parentElement.firstElementChild.firstElementChild.textContent.toLowerCase() ===
-        this.chevron.previousElementSibling.textContent.toLowerCase()
-      ) {
+        e.target.previousElementSibling.textContent.toLowerCase()
+      )
         gig.classList.toggle('u-no-display');
-      }
     });
 
-    this.switchChevron();
+    this.switchChevron(e);
   }
 
-  switchChevron() {
-    this.chevron.attributes[1].nodeValue === 'chevron-down-outline'
-      ? (this.chevron.attributes[1].nodeValue = 'chevron-up-outline')
-      : (this.chevron.attributes[1].nodeValue = 'chevron-down-outline');
+  switchChevron(e) {
+    e.target.attributes[1].nodeValue === 'chevron-down-outline'
+      ? (e.target.attributes[1].nodeValue = 'chevron-up-outline')
+      : (e.target.attributes[1].nodeValue = 'chevron-down-outline');
   }
 }
 
