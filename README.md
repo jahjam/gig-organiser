@@ -30,7 +30,7 @@ Month view:
 
 [x] - FEATURE COMPLETE!
 
-[ ] - Code refactored
+[x] - Code refactored
 
 Additional fun addons for future
 
