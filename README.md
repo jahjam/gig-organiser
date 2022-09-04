@@ -4,6 +4,9 @@ A simple gig organiser to keep track of upcoming gigs.
 
 Try it [HERE](https://gigpal.netlify.app/)! 👈
 
+This project involved advanced DOM manipulation, advanced JavaScript features such as higher-order functions, implementation of the ‘this’ keyword and the spread operator, local storage, and JavaScript classes with emphasis on object-oriented programming. To ensure the code base was manageable from the start, I ensured that the UI components were separate from the managed data by separating them into different folders and implemented the bundler Parcel to manage and compile the project.
+The most difficult part of this project was implementing an algorithm to manage the flagged gigs system and ensure they were all rendered in the same places between views as well as ensure when each gig was deleted from the side bar or the view, they were also deleted from everywhere else. This required me to develop a system that created each gig object with a unique id, and link the id with the various DOM elements, to ensure they were all tied together within the application. My main goal for this project was to create a useful application that solved a business need – keeping track of gigs is an important element of being a busy artist – whilst also keep the code easy to read and maintain.
+
 TODO
 
 Month view:
