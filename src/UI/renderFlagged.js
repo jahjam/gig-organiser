@@ -1,11 +1,12 @@
 import createMonth from '../modules/createMonth.js';
 import localStorage from '../modules/localStorage.js';
+import renderMainGigs from './renderMainGigs';
+import renderFlaggedGigs from './renderFlaggedGigs.js';
 import UIHelpers from './UIHelpers.js';
 
 class RenderFlagged extends UIHelpers {
   resultsSection = document.querySelector('.results-section');
   asideMenuViewBtns = document.querySelectorAll('.aside-menu__btn');
-  flaggedGigsEl = [];
 
   handlerFlaggedGig() {
     window.addEventListener('click', this.flagGig.bind(this));
@@ -49,7 +50,7 @@ class RenderFlagged extends UIHelpers {
               gig.flagged = true;
 
               // Add the flagged gigs element reference to flagged array
-              this.flaggedGigsEl.push(this.gigElement);
+              createMonth.flaggedGigsEl.push(this.gigElement);
 
               // Render it the flagged gig color
               e.target.style.color = '#eeba0b';
@@ -66,21 +67,22 @@ class RenderFlagged extends UIHelpers {
               // Mark gig flagged as false
               gig.flagged = false;
 
-              // Remove flagged gig element reference from flagged array
-              this.flaggedGigsEl.forEach(gig => {
-                // Take the relevent part of the stored gig element
-                const splitPrevElement =
-                  this.gigElement.innerHTML.split('icon');
+              this.removeFlaggedGigRef(this.gigElement);
+              // // Remove flagged gig element reference from flagged array
+              // createMonth.flaggedGigsEl.forEach(gig => {
+              //   // Take the relevent part of the stored gig element
+              //   const splitPrevElement =
+              //     this.gigElement.innerHTML.split('icon');
 
-                // Take the relevent part of the newly rendered elements
-                const splitCurElement = gig.innerHTML.split('icon');
+              //   // Take the relevent part of the newly rendered elements
+              //   const splitCurElement = gig.innerHTML.split('icon');
 
-                // Compare them so to apply the correct element is removed the reference array
-                if (splitCurElement[0] === splitPrevElement[0]) {
-                  const index = this.flaggedGigsEl.indexOf(gig);
-                  this.flaggedGigsEl.splice(index, 1);
-                }
-              });
+              //   // Compare them so to apply the correct element is removed the reference array
+              //   if (splitCurElement[0] === splitPrevElement[0]) {
+              //     const index = createMonth.flaggedGigsEl.indexOf(gig);
+              //     createMonth.flaggedGigsEl.splice(index, 1);
+              //   }
+              // });
 
               // Render it the default color
               this.turnOnHover(this.flagIcon);
@@ -103,23 +105,7 @@ class RenderFlagged extends UIHelpers {
     ) {
       this.clearResults();
 
-      createMonth.gigsByMonth.forEach(month =>
-        month.gig.forEach(gig => {
-          if (gig.flagged === true) {
-            this.renderGigs(
-              gig.venue,
-              gig.date,
-              gig.notes,
-              gig.num,
-              gig.str,
-              gig.city,
-              gig.postcode,
-              gig.soundCheck,
-              gig.stageTime
-            );
-          }
-        })
-      );
+      renderFlaggedGigs.renderGigsFlagged();
 
       // Display no flagged gigs if the container is empty
       this.isContainerEmpty('<h2 class="notice">No Flagged Gigs</h2>');
@@ -138,14 +124,14 @@ class RenderFlagged extends UIHelpers {
 
         // if the gig is flagged, apply the correct color
         if (gig.flagged) {
-          this.flaggedGigsEl.forEach(g => {
+          createMonth.flaggedGigsEl.forEach(g => {
             // Retrieve the correct index for the relevent stored gig element
-            const index = this.flaggedGigsEl.indexOf(g);
+            const index = createMonth.flaggedGigsEl.indexOf(g);
 
             this.resultsSection.children.forEach(card => {
               // Take the relevent part of the stored gig element
               const splitPrevElement =
-                this.flaggedGigsEl[index].innerHTML.split('icon');
+                createMonth.flaggedGigsEl[index].innerHTML.split('icon');
 
               // Take the relevent part of the newly rendered elements
               const splitCurElement = card.innerHTML.split('icon');

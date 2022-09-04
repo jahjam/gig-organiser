@@ -43,7 +43,7 @@ class RenderDelete extends UIHelpers {
         const gigExtract = [
           gig.venue,
           gig.date,
-          gig.notes,
+          gig.notes.trim(),
           gig.num,
           gig.str,
           gig.city,
@@ -66,31 +66,18 @@ class RenderDelete extends UIHelpers {
           });
 
           if (gig.flagged) {
-            // Remove flagged gig element reference from flagged array
-            renderFlagged.flaggedGigsEl.forEach(gigEl => {
-              // Take the relevent part of the stored gig element
-              const splitPrevElement = this.gigElement.innerHTML.split('icon');
-
-              // Take the relevent part of the newly rendered elements
-              const splitCurElement = gigEl.innerHTML.split('icon');
-
-              // Compare them so to apply the correct element is removed the reference array
-              if (splitCurElement[0] === splitPrevElement[0]) {
-                const index = renderFlagged.flaggedGigsEl.indexOf(gigEl);
-                renderFlagged.flaggedGigsEl.splice(index, 1);
-              }
-            });
+            this.removeFlaggedGigRef(this.gigElement);
           }
 
           // Rerender gigs based on current tab open in view
           if (this.readViewBtns() === 'renderTodaysGigs')
             renderTodaysGigs.renderGigsDueToday();
           if (this.readViewBtns() === 'renderWeeksGigs')
-            renderWeeksGigs.renderGigsDueWeek(e);
+            renderWeeksGigs.renderGigsDueWeek();
           if (this.readViewBtns() === 'renderMonthsGigs')
-            renderMonthsGigs.renderGigsDueMonth(e);
+            renderMonthsGigs.renderGigsDueMonth();
           if (this.readViewBtns() === 'renderFlaggedGigs')
-            renderFlaggedGigs.renderGigsFlagged(e);
+            renderFlaggedGigs.renderGigsFlagged();
 
           this.targetGig = [];
           localStorage.updateLocalStorage();

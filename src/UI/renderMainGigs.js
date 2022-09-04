@@ -53,7 +53,7 @@ export default class RenderMainGigs extends UIHelpers {
     }
 
     if (type === 'month') {
-      if (isDateAfter && numMonths <= 1) {
+      if (isDateAfter && numMonths === 0 && numDays < 31) {
         this.renderGigs(
           gig.venue,
           gig.date,

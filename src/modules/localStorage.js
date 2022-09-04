@@ -1,5 +1,5 @@
 import createMonth from './createMonth.js';
-import renderFlagged from '../UI/renderFlagged.js';
+// import renderFlagged from '../UI/renderFlagged.js';
 import createGig from './createGig.js';
 import monthGen from './month.js';
 
@@ -17,7 +17,7 @@ class LocalStorage {
     // Set storage for flagged gig elements
     localStorage.setItem(
       'flaggedGigsEl',
-      JSON.stringify(this.flattenNodeEls(renderFlagged.flaggedGigsEl))
+      JSON.stringify(this.flattenNodeEls(createMonth.flaggedGigsEl))
     );
 
     // Set storage for gig indices
@@ -33,7 +33,7 @@ class LocalStorage {
     // Reload Flags
     this.gigsElStorage = localStorage.getItem('flaggedGigsEl');
     if (this.gigsElStorage)
-      renderFlagged.flaggedGigsEl = this.reloadFlaggedGigs(
+      createMonth.flaggedGigsEl = this.reloadFlaggedGigs(
         JSON.parse(this.gigsElStorage)
       );
 

@@ -5,6 +5,8 @@ import monthGen from './month.js';
 class CreateMonth {
   // Main gig storage
   gigsByMonth = [];
+  // Flagged gig storage
+  flaggedGigsEl = [];
   // Main date variable
   todaysDate = format(new Date(), 'dd/MM/yyyy');
 

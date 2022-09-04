@@ -6,6 +6,23 @@ export default class UIHelpers {
   resultsEl = document.querySelector('.results-section');
   asideMenuViewBtns = document.querySelectorAll('.aside-menu__btn');
 
+  removeFlaggedGigRef(gigElement) {
+    // Remove flagged gig element reference from flagged array
+    createMonth.flaggedGigsEl.forEach(gig => {
+      // Take the relevent part of the stored gig element
+      const splitPrevElement = gigElement.innerHTML.split('icon');
+
+      // Take the relevent part of the newly rendered elements
+      const splitCurElement = gig.innerHTML.split('icon');
+
+      // Compare them so to apply the correct element is removed the reference array
+      if (splitCurElement[0] === splitPrevElement[0]) {
+        const index = createMonth.flaggedGigsEl.indexOf(gig);
+        createMonth.flaggedGigsEl.splice(index, 1);
+      }
+    });
+  }
+
   clearResults() {
     this.resultsEl.innerHTML = '';
   }

@@ -1,5 +1,6 @@
 import renderMainGigs from '../UI/renderMainGigs.js';
 import createMonth from '../modules/createMonth.js';
+import sortData from '../modules/sortData';
 import renderFlagged from './renderFlagged.js';
 
 class RenderFlaggedGigs extends renderMainGigs {
@@ -29,6 +30,9 @@ class RenderFlaggedGigs extends renderMainGigs {
 
   renderGigsFlagged() {
     this.clearResults();
+
+    sortData.sortMonthsInOrder();
+
     if (createMonth.gigsByMonth.length === 0) {
       this.resultsEl.innerHTML = `
       <h2 class="notice">No flagged gigs</h2>

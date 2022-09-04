@@ -1,5 +1,6 @@
 import renderMainGigs from '../UI/renderMainGigs.js';
 import createMonth from '../modules/createMonth.js';
+import sortData from '../modules/sortData';
 import renderFlagged from './renderFlagged.js';
 
 class RenderMonthsGigs extends renderMainGigs {
@@ -21,6 +22,8 @@ class RenderMonthsGigs extends renderMainGigs {
 
   renderGigsDueMonth() {
     this.clearResults();
+
+    sortData.sortMonthsInOrder();
 
     if (createMonth.gigsByMonth.length === 0)
       this.resultsEl.innerHTML = `

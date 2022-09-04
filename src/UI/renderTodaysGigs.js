@@ -1,5 +1,6 @@
 import renderMainGigs from '../UI/renderMainGigs.js';
 import createMonth from '../modules/createMonth.js';
+import sortData from '../modules/sortData';
 import renderFlagged from './renderFlagged.js';
 
 class RenderTodaysGigs extends renderMainGigs {
@@ -21,6 +22,8 @@ class RenderTodaysGigs extends renderMainGigs {
 
   renderGigsDueToday() {
     this.clearResults();
+
+    sortData.sortMonthsInOrder();
 
     this.mainTitle.textContent = "today's gigs";
 

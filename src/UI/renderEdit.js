@@ -118,27 +118,13 @@ class RenderEdit extends UIHelpers {
           month.gig.splice(index, 1);
 
           if (gigItem.flagged) {
-            // Remove flagged gig element reference from flagged array
-            renderFlagged.flaggedGigsEl.forEach(gigEl => {
-              // Take the relevent part of the stored gig element
-              const splitPrevElement = this.gigElement.innerHTML.split('icon');
-
-              // Take the relevent part of the newly rendered elements
-              const splitCurElement = gigEl.innerHTML.split('icon');
-
-              // Compare them so to apply the correct element is removed the reference array
-              console.log(splitCurElement[0] === splitPrevElement[0]);
-              if (splitCurElement[0] === splitPrevElement[0]) {
-                const index = renderFlagged.flaggedGigsEl.indexOf(gigEl);
-                renderFlagged.flaggedGigsEl.splice(index, 1);
-              }
-            });
+            this.removeFlaggedGigRef(this.gigElement);
 
             // Recreate HTML element for new gig
             this.rebuildHTML();
 
             // Create DOM reference
-            renderFlagged.flaggedGigsEl.push(this.gigElement);
+            createMonth.flaggedGigsEl.push(this.gigElement);
           }
 
           // Add flagged back
@@ -164,11 +150,11 @@ class RenderEdit extends UIHelpers {
     if (this.readViewBtns() === 'renderTodaysGigs') {
       renderTodaysGigs.renderGigsDueToday();
     } else if (this.readViewBtns() === 'renderWeeksGigs') {
-      renderWeeksGigs.renderGigsDueWeek(e);
+      renderWeeksGigs.renderGigsDueWeek();
     } else if (this.readViewBtns() === 'renderMonthsGigs') {
-      renderMonthsGigs.renderGigsDueMonth(e);
+      renderMonthsGigs.renderGigsDueMonth();
     } else if (this.readViewBtns() === 'renderFlaggedGigs') {
-      renderFlaggedGigs.renderGigsFlagged(e);
+      renderFlaggedGigs.renderGigsFlagged();
     }
   }
 

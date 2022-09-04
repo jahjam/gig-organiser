@@ -158,9 +158,9 @@ class RenderAsideMenu extends UIHelpers {
                 gigAside.parentElement
               );
           });
-        }
 
-        if (gig.flagged) this.removeFlaggedGigFromElArray(gig);
+          if (gig.flagged) this.removeFlaggedGigFromElArray(gig);
+        }
       })
     );
 
@@ -223,7 +223,7 @@ class RenderAsideMenu extends UIHelpers {
 
   removeFlaggedGigFromElArray(gig) {
     // Remove flagged gig element reference from flagged array
-    renderFlagged.flaggedGigsEl.forEach(gigEl => {
+    createMonth.flaggedGigsEl.forEach(gigEl => {
       gigEl.children.forEach(child => {
         if (child.children[0].textContent.toLowerCase() === 'venue:')
           this.gigFlaggedElVenue = child.children[1].textContent;
@@ -245,8 +245,8 @@ class RenderAsideMenu extends UIHelpers {
           ]
         )
       ) {
-        const index = renderFlagged.flaggedGigsEl.indexOf(gigEl);
-        renderFlagged.flaggedGigsEl.splice(index, 1);
+        const index = createMonth.flaggedGigsEl.indexOf(gigEl);
+        createMonth.flaggedGigsEl.splice(index, 1);
       }
 
       localStorage.updateLocalStorage();
