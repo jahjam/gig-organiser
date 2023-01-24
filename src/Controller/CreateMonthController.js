@@ -23,9 +23,9 @@ class CreateMonthController {
     if (MonthStorageModel.months_arr.length !== 0 && doubleMonth) return;
 
     // create a new month using user selected option
-    new Month(userOption.value);
+    const newMonth = new Month(userOption.value);
 
-    MonthView.renderNewMonth(userOption.value);
+    MonthView.RenderNewMonth(newMonth);
 
     // Remove month selector
     RenderMonthSelector.Reject(e);
