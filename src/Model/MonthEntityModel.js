@@ -1,4 +1,10 @@
+// node_modules
+import { format } from 'date-fns';
+
+// model
 import MonthStorageModel from './MonthStorageModel';
+
+// view
 import MonthView from '../View/MonthView';
 
 class MonthEntityModel {
@@ -38,7 +44,7 @@ class MonthEntityModel {
     date,
     notes,
     num,
-    str,
+    street,
     city,
     postcode,
     soundCheck,
@@ -61,7 +67,7 @@ class MonthEntityModel {
       date: formattedDate,
       notes,
       num,
-      str,
+      street,
       city,
       postcode,
       soundCheck,

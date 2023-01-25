@@ -25,6 +25,8 @@ class CreateMonthController {
     // create a new month using user selected option
     const newMonth = new Month(userOption.value);
 
+    // render the month in the view passing in the newly
+    // generated month
     MonthView.RenderNewMonth(newMonth);
 
     // Remove month selector

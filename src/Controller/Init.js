@@ -1,5 +1,6 @@
 import RenderMonthSelector from '../View/RenderMonthSelector';
 import RenderMonth from '../View/RenderMonth';
+import RenderGig from '../View/RenderGig';
 
 export default class Init {
   static loadUI() {
@@ -13,5 +14,6 @@ export default class Init {
     // TODO Add all handlers to initialise
     RenderMonthSelector.RenderMonthsSelectorHandler();
     RenderMonth.RenderMonthHandler();
+    RenderGig.RenderGigHandler();
   }
 }
