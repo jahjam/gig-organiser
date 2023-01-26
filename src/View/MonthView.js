@@ -5,6 +5,79 @@ class MonthView {
     this.monthsParentEl = document.querySelector('.aside-menu__content-months');
   }
 
+  RenderNewMonth(month) {
+    // generate month html
+    const monthHtml = this.MonthHTML(month);
+
+    // insert the month html into dom
+    this.monthsParentEl.insertAdjacentHTML('beforeend', monthHtml);
+
+    // grab dom elements
+    const showHideMonthBtn = document.querySelector(
+      `.${month.monthName.toLowerCase()}-chevron`
+    );
+    const addGigBtn = document.querySelector(
+      `.${month.monthName.toLowerCase()}-add-gig-btn`
+    );
+    const renderAddGigFormHandler = () => {
+      RenderAddGigForm.RenderForm(month);
+    };
+
+    // handle clicks on chevron within month box
+    const renderGigsInMonthHandler = () => {
+      const gigsListElement_nodeList = document.querySelectorAll(
+        `.${month.monthName.toLowerCase()}-gig-list-el`
+      );
+
+      gigsListElement_nodeList.forEach(el =>
+        el.classList.toggle('u-no-display')
+      );
+    };
+
+    showHideMonthBtn.addEventListener('click', renderGigsInMonthHandler);
+    addGigBtn.addEventListener('click', renderAddGigFormHandler);
+  }
+
+  UpdateGigs(month) {
+    if (month.gigs_arr.length === 0) return;
+
+    month.gigs_arr.forEach(gig => {
+      const gigEl_arr = [
+        ...document.querySelectorAll(`.aside-menu__dates-content-item`),
+      ];
+
+      const gigEl = gigEl_arr.find(el => +el.dataset.index === gig.index);
+
+      if (gigEl) return;
+
+      this.RenderGigInMonth(gig, month);
+    });
+  }
+
+  RenderGigInMonth(gig, month) {
+    const gigHtml = this.GigHTML(gig, month);
+
+    const gigsListElement = document.querySelector(
+      `.${month.monthName.toLowerCase()}-month-box`
+    );
+
+    gigsListElement.insertAdjacentHTML('beforeend', gigHtml);
+
+    const gigElipsis = document.querySelector(`.g${gig.index}-elipsis`);
+
+    const gigOptionsView = document.querySelector(
+      `.g${gig.index}-options-view`
+    );
+
+    const showGigOptionsEventHandler = () => {
+      // TODO handle gig in month options
+
+      gigOptionsView.classList.toggle('u-no-display');
+    };
+
+    gigElipsis.addEventListener('click', showGigOptionsEventHandler);
+  }
+
   MonthHTML(month) {
     return `
     <ul class="${
@@ -17,83 +90,36 @@ class MonthView {
           month.monthName.toLowerCase() + '-chevron'
         } icon dates-content-icon' name="chevron-down-outline"></ion-icon>
       </li>
+      <li class="${
+        month.monthName.toLowerCase() + '-gig-list-el'
+      } aside-menu__dates-content-items u-no-display">
+        <button class="${
+          month.monthName.toLowerCase() + '-add-gig-btn'
+        } aside-menu__dates-content-item--btn">Add gig</button>
+      </li> 
     </ul>
   `;
   }
 
-  GigsHTML(month) {
-    const gigsHtml_arr = month.gigs_arr.map(gig => {
-      // TODO write logic to loop through gigs and
-      // turn into html
-    });
-
+  GigHTML(gig, month) {
     return `
-    <li class="aside-menu__dates-content-items">
-      <button class="${
-        month.monthName.toLowerCase() + '-add-gig-btn'
-      } aside-menu__dates-content-item--btn">Add gig</button>
-    </li> 
-    `;
-  }
-
-  GigHTML(index, venue) {
-    return `
-    <li class="aside-menu__dates-content-items">
-      <span class="aside-menu__dates-content-item" data-index='${index}'>${venue}</span>
-      <div class='gig-icon-elipsis-wrap'>
+    <li class="${
+      month.monthName.toLowerCase() + '-gig-list-el'
+    } aside-menu__dates-content-items">
+      <span class="aside-menu__dates-content-item" data-index='${gig.index}'>${
+      gig.venue
+    }</span>
+     <div class='g${gig.index}-elipsis gig-icon-elipsis-wrap'>
         <ion-icon class='icon gig-icon-elipsis' name="ellipsis-vertical-outline"></ion-icon>
-        <div class='gig-icon-elipsis__pop-up u-no-display'>
+        <div class='g${
+          gig.index
+        }-options-view gig-icon-elipsis__pop-up u-no-display'>
           <div class='gig-icon-elipsis__pop-up-view'>view</div>
           <div class='gig-icon-elipsis__pop-up-delete'>delete</div>
         </div>
-      </div>
+     </div>
     </li> 
   `;
-  }
-
-  RenderNewMonth(month) {
-    // generate month html
-    const monthHtml = this.MonthHTML(month);
-
-    // insert the month html into dom
-    this.monthsParentEl.insertAdjacentHTML('beforeend', monthHtml);
-
-    // grab dom elements and store them using closures
-    const monthBox = document.querySelector(
-      `.${month.monthName.toLowerCase()}-month-box`
-    );
-
-    // grab dom elements and store them using closures
-    const showHideMonthBtn = document.querySelector(
-      `.${month.monthName.toLowerCase()}-chevron`
-    );
-
-    let addGigBtn;
-
-    const renderAddGigFormHandler = () => {
-      RenderAddGigForm.RenderForm(month);
-    };
-
-    // handle clicks on chevron within month box
-    const renderGigsInMonthHandler = () => {
-      // check to see whether "ADD GIG" button remains in month box
-      if (monthBox.childElementCount > 1) {
-        monthBox.lastElementChild.remove();
-      } else {
-        let gigsHtml = this.GigsHTML(month);
-        monthBox.insertAdjacentHTML('beforeend', gigsHtml);
-
-        // bind each add gig button to specific month
-        addGigBtn = document.querySelector(
-          `.${month.monthName.toLowerCase()}-add-gig-btn`
-        );
-
-        addGigBtn.addEventListener('click', renderAddGigFormHandler);
-      }
-      console.log(month);
-    };
-
-    showHideMonthBtn.addEventListener('click', renderGigsInMonthHandler);
   }
 }
 

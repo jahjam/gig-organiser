@@ -1,6 +1,9 @@
 import MonthStorageModel from '../Model/MonthStorageModel';
 import GigEntityModel from '../Model/GigEntityModel';
 
+// view
+import MonthView from '../View/MonthView';
+
 class CreateGigController {
   constructor() {
     this.values = [];
@@ -15,8 +18,14 @@ class CreateGigController {
       ...this.values,
       GigEntityModel.gigIndex
     );
+
+    MonthView.UpdateGigs(MonthStorageModel.monthToAmend);
+
+    // reset the month to amend
+    MonthStorageModel.monthToAmend = undefined;
+
     GigEntityModel.gigIndex++;
-    this.inputs = [];
+    this.values = [];
   }
 }
 

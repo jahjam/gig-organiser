@@ -81,9 +81,6 @@ class MonthEntityModel {
     // Push the gig into the month
     MonthStorageModel.months_arr.push(this);
 
-    // reset the month to amend
-    MonthStorageModel.monthToAmend = undefined;
-
     // TODO Sort data
     // sortData.sortGigsInOrderOfDate();
     // sortData.sortGigsInOrderOfStageTime();
