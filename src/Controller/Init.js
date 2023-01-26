@@ -1,13 +1,21 @@
+// controller
+import RenderGigsController from './RenderGigsController';
+
+// view
 import RenderMonthSelector from '../View/RenderMonthSelector';
 import RenderMonth from '../View/RenderMonth';
 import RenderGig from '../View/RenderGig';
-import renderTodaysGigs from '../View/RenderTodaysGigs';
+import RenderTodaysGigs from '../View/RenderTodaysGigs';
+import RenderWeeksGigs from '../View/RenderWeeksGigs';
+import RenderMonthsGigs from '../View/RenderMonthsGigs';
+import RenderFlaggedGigs from '../View/RenderFlaggedGigs';
 
 export default class Init {
   static loadUI() {
     // TODO Load items from local storage
     // ...
 
+    RenderGigsController.RenderGigsDueToday();
     Init.initHandlers();
   }
 
@@ -16,6 +24,9 @@ export default class Init {
     RenderMonthSelector.RenderMonthsSelectorHandler();
     RenderMonth.RenderMonthHandler();
     RenderGig.RenderGigHandler();
-    renderTodaysGigs.RenderTodaysGigsHandler();
+    RenderTodaysGigs.RenderTodaysGigsHandler();
+    RenderWeeksGigs.RenderWeeksGigsHandler();
+    RenderMonthsGigs.RenderMonthsGigsHandler();
+    RenderFlaggedGigs.RenderFlaggedGigsHandler();
   }
 }

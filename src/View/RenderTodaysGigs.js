@@ -1,3 +1,4 @@
+// controller
 import RenderGigsController from '../Controller/RenderGigsController';
 
 // view

@@ -1,11 +1,8 @@
-// node_modules
-import { format } from 'date-fns';
-
 // model
 import MonthStorageModel from './MonthStorageModel';
 
-// view
-import MonthView from '../View/MonthView';
+// controller
+import CreateGigController from '../Controller/CreateGigController';
 
 class MonthEntityModel {
   // gigs stored within each month
@@ -53,14 +50,7 @@ class MonthEntityModel {
     flagged = false,
     fromStorage = false
   ) {
-    let formattedDate;
-
-    date.includes('-')
-      ? (formattedDate = format(
-          new Date(date.replaceAll('-', '/')),
-          'dd/MM/yyyy'
-        ))
-      : (formattedDate = date);
+    const formattedDate = CreateGigController.FormatDate(date);
 
     this.gigs_arr.push({
       venue,
@@ -76,20 +66,7 @@ class MonthEntityModel {
       flagged: flagged,
     });
 
-    // TODO Render the gig within the result view
-
-    // Push the gig into the month
     MonthStorageModel.months_arr.push(this);
-
-    // TODO Sort data
-    // sortData.sortGigsInOrderOfDate();
-    // sortData.sortGigsInOrderOfStageTime();
-
-    // TODO Render gigs due today if the gig added is today
-    // if (createMonth.todaysDate === formattedDate)
-    //   renderTodaysGigs.renderGigsDueToday();
-
-    // localStorage.updateLocalStorage();
   }
 }
 
