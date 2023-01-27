@@ -1,3 +1,6 @@
+// controller
+import HelperController from '../Controller/HelperController';
+
 // view
 import MonthView from './MonthView';
 import EditView from './EditView';
@@ -46,6 +49,7 @@ class ResultsView {
         month.gigs_arr.splice(targetGigIndex, 1);
 
         // TODO rerender the current view the user is on to show results
+        HelperController.RenderResultsBasedOnSelectedView();
       });
     };
 

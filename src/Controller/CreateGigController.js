@@ -7,6 +7,7 @@ import GigEntityModel from '../Model/GigEntityModel';
 
 // controller
 import RenderGigsController from './RenderGigsController';
+import HelperController from './HelperController';
 
 // view
 import MonthView from '../View/MonthView';
@@ -75,6 +76,29 @@ class CreateGigController {
 
       MonthView.RenderGigInMonth(gig, month);
     });
+  }
+
+  ReplaceGig(inputs) {
+    const arrayEquals = (a, b) => {
+      return a.every((val, index) => val === b[index]);
+    };
+
+    MonthStorageModel.monthToAmend.gigs_arr.forEach(gig => {
+      console.log(GigEntityModel.targetGig);
+      if (arrayEquals(Object.values(gig), GigEntityModel.targetGig)) {
+        const flagged = gig.flagged;
+        MonthView.RemoveGigFromAside(gig.index);
+
+        const gigIndex = MonthStorageModel.monthToAmend.gigs_arr.indexOf(gig);
+        MonthStorageModel.monthToAmend.gigs_arr.splice(gigIndex, 1);
+
+        this.CreateGig(inputs, flagged);
+      }
+    });
+
+    GigEntityModel.targetGig = undefined;
+
+    HelperController.RenderResultsBasedOnSelectedView();
   }
 }
 

@@ -47,7 +47,7 @@ class RenderGigsController {
 
     MonthStorageModel.months_arr.forEach(month =>
       month.gigs_arr.forEach(gig => {
-        this.FilterWeekMonth(gig, 'week');
+        this.FilterWeekMonth(gig, month, 'week');
       })
     );
 
@@ -69,7 +69,7 @@ class RenderGigsController {
 
     MonthStorageModel.months_arr.forEach(month =>
       month.gigs_arr.forEach(gig => {
-        this.FilterWeekMonth(gig, 'month');
+        this.FilterWeekMonth(gig, month, 'month');
       })
     );
 
@@ -100,7 +100,7 @@ class RenderGigsController {
     ResultsView.IsViewEmpty('<h2 class="notice">No gigs flagged gigs</h2>');
   }
 
-  FilterWeekMonth(gig, type) {
+  FilterWeekMonth(gig, month, type) {
     this.gigYear = +gig.date.split('/')[2];
     this.gigMonth = +gig.date.split('/')[1];
     this.gigDay = +gig.date.split('/')[0];

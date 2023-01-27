@@ -1,5 +1,6 @@
 // controller
 import CreateGigController from '../Controller/CreateGigController';
+import HelperController from '../Controller/HelperController';
 
 // view
 import RenderAddGigForm from './RenderAddGigForm';
@@ -22,6 +23,9 @@ class RenderGig {
 
     // remove the form to display the main view again
     RenderAddGigForm.RejectForm();
+
+    //Rerender gigs based on current tab open in view
+    HelperController.RenderResultsBasedOnSelectedView();
 
     // reset the form to clear the form fields
     this.formElement.reset();
