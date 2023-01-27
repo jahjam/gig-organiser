@@ -1,3 +1,4 @@
+// view
 import RenderAddGigForm from './RenderAddGigForm';
 
 class MonthView {
@@ -38,22 +39,6 @@ class MonthView {
     addGigBtn.addEventListener('click', renderAddGigFormHandler);
   }
 
-  UpdateGigs(month) {
-    if (month.gigs_arr.length === 0) return;
-
-    month.gigs_arr.forEach(gig => {
-      const gigEl_arr = [
-        ...document.querySelectorAll(`.aside-menu__dates-content-item`),
-      ];
-
-      const gigEl = gigEl_arr.find(el => +el.dataset.index === gig.index);
-
-      if (gigEl) return;
-
-      this.RenderGigInMonth(gig, month);
-    });
-  }
-
   RenderGigInMonth(gig, month) {
     const gigHtml = this.GigHTML(gig, month);
 
@@ -73,9 +58,25 @@ class MonthView {
       // TODO handle gig in month options
 
       gigOptionsView.classList.toggle('u-no-display');
+      console.log(gig);
     };
 
     gigElipsis.addEventListener('click', showGigOptionsEventHandler);
+  }
+
+  RemoveGigFromAside(gigIndex) {
+    // Assign all the current gigs in the aside menu
+    this.gigsAside = document.querySelectorAll(
+      '.aside-menu__dates-content-items'
+    );
+
+    // Loop through gigs and find the one that has the same index as the gig, and apply changes to that one.
+    this.gigsAside.forEach(gigAside => {
+      console.log(gigAside);
+      if (+gigAside.firstElementChild.dataset.index === gigIndex) {
+        gigAside.remove();
+      }
+    });
   }
 
   MonthHTML(month) {

@@ -29,17 +29,18 @@ class CreateGigController {
     return formattedDate;
   }
 
-  CreateGig(inputs) {
+  CreateGig(inputs, flagged = false) {
     inputs.forEach(input => {
       this.values.push(input.value);
     });
 
     MonthStorageModel.monthToAmend.CreateGig(
       ...this.values,
-      GigEntityModel.gigIndex
+      GigEntityModel.gigIndex,
+      flagged
     );
 
-    MonthView.UpdateGigs(MonthStorageModel.monthToAmend);
+    this.UpdateGigs(MonthStorageModel.monthToAmend);
 
     // TODO Sort data
     // sortData.sortGigsInOrderOfDate();
@@ -58,6 +59,22 @@ class CreateGigController {
 
     GigEntityModel.gigIndex++;
     this.values = [];
+  }
+
+  UpdateGigs(month) {
+    if (month.gigs_arr.length === 0) return;
+
+    month.gigs_arr.forEach(gig => {
+      const gigEl_arr = [
+        ...document.querySelectorAll(`.aside-menu__dates-content-item`),
+      ];
+
+      const gigEl = gigEl_arr.find(el => +el.dataset.index === gig.index);
+
+      if (gigEl) return;
+
+      MonthView.RenderGigInMonth(gig, month);
+    });
   }
 }
 

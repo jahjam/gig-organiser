@@ -1,7 +1,57 @@
+// view
+import MonthView from './MonthView';
+import EditView from './EditView';
+
 class ResultsView {
   constructor() {
     this.resultsEl = document.querySelector('.results-section');
     this.mainTitle = document.querySelector('.header-main-title__text');
+  }
+
+  RenderGig(gig, month) {
+    const html = this.GigHTML(gig);
+
+    this.resultsEl.insertAdjacentHTML('beforeend', html);
+
+    const gigFlagIcon = document.querySelector(`.g${gig.index}-flag-icon`);
+    const gigEditIcon = document.querySelector(`.g${gig.index}-edit-icon`);
+    const gigDeleteIcon = document.querySelector(`.g${gig.index}-delete-icon`);
+
+    if (gig.flagged) gigFlagIcon.style.color = '#eeba0b';
+
+    const flagClickHandler = e => {
+      gig.flagged = !gig.flagged;
+      if (gig.flagged) {
+        e.target.style.color = '#eeba0b';
+      } else {
+        e.target.style.color = '#140000';
+      }
+    };
+
+    const editClickHandler = () => {
+      // add edit gig to render correct form
+      // (there's two different forms for adding and editing gigs)
+      EditView.RenderEditGigForm(month);
+
+      EditView.RenderGigInForm(gig);
+    };
+
+    const deleteClickHandler = () => {
+      // TODO render warning message before deletion
+
+      month.gigs_arr.forEach(gig => {
+        MonthView.RemoveGigFromAside(gig.index);
+
+        const targetGigIndex = month.gigs_arr.indexOf(gig);
+        month.gigs_arr.splice(targetGigIndex, 1);
+
+        // TODO rerender the current view the user is on to show results
+      });
+    };
+
+    gigFlagIcon.addEventListener('click', flagClickHandler);
+    gigEditIcon.addEventListener('click', editClickHandler);
+    gigDeleteIcon.addEventListener('click', deleteClickHandler);
   }
 
   ClearResults() {
@@ -14,21 +64,6 @@ class ResultsView {
       ${DOMEl}
       `;
     }
-  }
-
-  RenderGig(gig) {
-    const html = this.GigHTML(gig);
-
-    this.resultsEl.insertAdjacentHTML('beforeend', html);
-
-    const gigFlagIcon = document.querySelector(`.g${gig.index}-flag-icon`);
-
-    const flagClickHandler = e => {
-      gig.flagged = true;
-      e.target.style.color = '#eeba0b';
-    };
-
-    gigFlagIcon.addEventListener('click', flagClickHandler);
   }
 
   GigHTML(gig) {
@@ -65,8 +100,8 @@ class ResultsView {
       </div>
       <div class="result-card__icon">
         <ion-icon class='g${gig.index}-flag-icon icon flag-icon' name="flag-outline"></ion-icon>         
-        <ion-icon class='icon edit-icon' name="create-outline"></ion-icon>
-        <ion-icon class='icon delete-icon' name="trash-outline"></ion-icon>
+        <ion-icon class='g${gig.index}-edit-icon icon edit-icon' name="create-outline"></ion-icon>
+        <ion-icon class='g${gig.index}-delete-icon icon delete-icon' name="trash-outline"></ion-icon>
       </div>
     </div>
   `;

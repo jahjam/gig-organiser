@@ -24,7 +24,7 @@ class RenderGigsController {
     MonthStorageModel.months_arr.forEach(month =>
       month.gigs_arr.forEach(gig => {
         if (MonthStorageModel.todaysDate === gig.date) {
-          ResultsView.RenderGig(gig);
+          ResultsView.RenderGig(gig, month);
         }
       })
     );
@@ -92,7 +92,7 @@ class RenderGigsController {
     MonthStorageModel.months_arr.forEach(month =>
       month.gigs_arr.forEach(gig => {
         if (gig.flagged === true) {
-          ResultsView.RenderGig(gig);
+          ResultsView.RenderGig(gig, month);
         }
       })
     );
@@ -125,13 +125,13 @@ class RenderGigsController {
 
     if (type === 'week') {
       if (isDateAfter && numDays <= 7 && numMonths === 0) {
-        ResultsView.RenderGig(gig);
+        ResultsView.RenderGig(gig, month);
       }
     }
 
     if (type === 'month') {
       if (isDateAfter && numMonths === 0 && numDays < 31) {
-        ResultsView.RenderGig(gig);
+        ResultsView.RenderGig(gig, month);
       }
     }
   }
