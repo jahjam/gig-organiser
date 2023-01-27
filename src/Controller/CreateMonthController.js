@@ -1,10 +1,14 @@
 // model
 import MonthStorageModel from '../Model/MonthStorageModel';
 import Month from '../Model/MonthEntityModel';
-import MonthView from '../View/MonthView';
+
+// controller
+import SortData from '../Controller/SortData';
 
 // view
 import RenderMonthSelector from '../View/RenderMonthSelector';
+import MonthView from '../View/MonthView';
+import RenderSortDom from '../View/RenderSortDom';
 
 class CreateMonthController {
   CreateMonth(e) {
@@ -28,6 +32,10 @@ class CreateMonthController {
     // render the month in the view passing in the newly
     // generated month
     MonthView.RenderNewMonth(newMonth);
+
+    // sort aside months to keep them in order
+    SortData.SortMonthsInOrder();
+    RenderSortDom.SortAsideMenuMonths();
 
     // Remove month selector
     RenderMonthSelector.Reject(e);

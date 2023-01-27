@@ -3,6 +3,7 @@ import GigEntityModel from '../Model/GigEntityModel';
 
 // controller
 import CreateGigController from '../Controller/CreateGigController';
+import HelperController from '../Controller/HelperController';
 
 class EditView {
   constructor() {
@@ -10,12 +11,15 @@ class EditView {
     this.editForm = document.querySelector('.edit-section__edit');
     this.formEl = document.querySelector('.edit-window__form-edit');
     this.resultsSection = document.querySelector('.results-section');
+    this.dateInput = document.querySelector('.edit-window__input-date-edit');
 
     this.formEl.addEventListener('submit', this.CommitEdit.bind(this));
   }
 
   RenderEditGigForm(month) {
     document.querySelector('.header-main-title__text').textContent = '';
+
+    HelperController.LockDateToSelectedMonth(this.dateInput, month);
 
     this.resultsSection.classList.add('u-no-display');
     this.editForm.classList.remove('u-no-display');

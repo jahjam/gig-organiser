@@ -11,6 +11,7 @@ class MonthEntityModel {
   constructor(monthName) {
     this.monthName = monthName;
     MonthStorageModel.months_arr.push(this);
+
     console.log(MonthStorageModel.months_arr);
   }
 

@@ -8,6 +8,7 @@ import GigEntityModel from '../Model/GigEntityModel';
 // controller
 import RenderGigsController from './RenderGigsController';
 import HelperController from './HelperController';
+import SortData from '../Controller/SortData';
 
 // view
 import MonthView from '../View/MonthView';
@@ -43,9 +44,8 @@ class CreateGigController {
 
     this.UpdateGigs(MonthStorageModel.monthToAmend);
 
-    // TODO Sort data
-    // sortData.sortGigsInOrderOfDate();
-    // sortData.sortGigsInOrderOfStageTime();
+    SortData.SortGigsInOrderOfDate();
+    SortData.SortGigsInOrderOfStageTime();
 
     // TODO Render gigs due today if the gig added is today
     const DATE_FROM_VALUES_ARR = this.values[1];

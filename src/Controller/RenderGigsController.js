@@ -6,6 +6,7 @@ import MonthStorageModel from '../Model/MonthStorageModel';
 
 // view
 import ResultsView from '../View/ResultsView';
+import SortData from './SortData';
 
 class RenderGigsController {
   RenderGigsDueToday() {
@@ -13,7 +14,7 @@ class RenderGigsController {
 
     ResultsView.ClearResults();
 
-    // TODO sort data
+    SortData.SortMonthsInOrder();
 
     if (MonthStorageModel.months_arr.length === 0) {
       ResultsView.resultsEl.innerHTML = `
@@ -37,7 +38,7 @@ class RenderGigsController {
 
     ResultsView.ClearResults();
 
-    // TODO sort data
+    SortData.SortMonthsInOrder();
 
     if (MonthStorageModel.months_arr.length === 0) {
       ResultsView.resultsEl.innerHTML = `
@@ -59,7 +60,7 @@ class RenderGigsController {
 
     ResultsView.ClearResults();
 
-    // TODO sort data
+    SortData.SortMonthsInOrder();
 
     if (MonthStorageModel.months_arr.length === 0) {
       ResultsView.resultsEl.innerHTML = `
@@ -81,7 +82,7 @@ class RenderGigsController {
 
     ResultsView.ClearResults();
 
-    // TODO sort data
+    SortData.SortMonthsInOrder();
 
     if (MonthStorageModel.months_arr.length === 0) {
       ResultsView.resultsEl.innerHTML = `
@@ -124,7 +125,10 @@ class RenderGigsController {
     );
 
     if (type === 'week') {
-      if (isDateAfter && numDays <= 7 && numMonths === 0) {
+      if (
+        gig.date === MonthStorageModel.todaysDate ||
+        (isDateAfter && numDays <= 7 && numMonths === 0)
+      ) {
         ResultsView.RenderGig(gig, month);
       }
     }

@@ -36,6 +36,8 @@ class ResultsView {
       // (there's two different forms for adding and editing gigs)
       EditView.RenderEditGigForm(month);
 
+      // TODO Lock date to the month
+
       EditView.RenderGigInForm(gig);
     };
 
