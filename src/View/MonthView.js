@@ -1,9 +1,14 @@
+// controller
+import HelperController from '../Controller/HelperController';
+
 // view
 import RenderAddGigForm from './RenderAddGigForm';
+import ResultsView from './ResultsView';
 
 class MonthView {
   constructor() {
     this.monthsParentEl = document.querySelector('.aside-menu__content-months');
+    this.asideMenuViewBtns = document.querySelectorAll('.aside-menu__btn');
   }
 
   RenderNewMonth(month) {
@@ -54,14 +59,48 @@ class MonthView {
       `.g${gig.index}-options-view`
     );
 
-    const showGigOptionsEventHandler = () => {
-      // TODO handle gig in month options
+    const gigElipsisView = document.querySelector(
+      `.g${gig.index}-elipsis-view`
+    );
 
+    const gigElipsisDelete = document.querySelector(
+      `.g${gig.index}-elipsis-delete`
+    );
+
+    const showGigOptionsEventHandler = () => {
       gigOptionsView.classList.toggle('u-no-display');
       console.log(gig);
     };
 
+    const gigElipsisViewHandler = () => {
+      // Remove active class from view btns as the selected gig to view will be rendered alone
+      this.asideMenuViewBtns.forEach(btn =>
+        btn.classList.remove('u-active-btn')
+      );
+
+      document.querySelector('.header-main-title__text').textContent = '';
+
+      ResultsView.mainTitle.textContent = "today's gigs";
+
+      ResultsView.ClearResults();
+
+      ResultsView.RenderGig(gig, month);
+    };
+
+    const gigElipsisDeleteHandler = () => {
+      month.gigs_arr.forEach(gig => {
+        this.RemoveGigFromAside(gig.index);
+
+        const targetGigIndex = month.gigs_arr.indexOf(gig);
+        month.gigs_arr.splice(targetGigIndex, 1);
+
+        HelperController.RenderResultsBasedOnSelectedView();
+      });
+    };
+
     gigElipsis.addEventListener('click', showGigOptionsEventHandler);
+    gigElipsisView.addEventListener('click', gigElipsisViewHandler);
+    gigElipsisDelete.addEventListener('click', gigElipsisDeleteHandler);
   }
 
   RemoveGigFromAside(gigIndex) {
@@ -115,8 +154,12 @@ class MonthView {
         <div class='g${
           gig.index
         }-options-view gig-icon-elipsis__pop-up u-no-display'>
-          <div class='gig-icon-elipsis__pop-up-view'>view</div>
-          <div class='gig-icon-elipsis__pop-up-delete'>delete</div>
+          <div class='g${
+            gig.index
+          }-elipsis-view gig-icon-elipsis__pop-up-view'>view</div>
+          <div class='g${
+            gig.index
+          }-elipsis-delete  gig-icon-elipsis__pop-up-delete'>delete</div>
         </div>
      </div>
     </li> 

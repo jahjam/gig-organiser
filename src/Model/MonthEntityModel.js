@@ -18,9 +18,7 @@ class MonthEntityModel {
   // get the relevent months to add a gig within
   PrepMonth() {
     // grab relevent month
-    MonthStorageModel.monthToAmend = MonthStorageModel.months_arr.find(
-      ({ monthName }) => monthName === this.monthName
-    );
+    MonthStorageModel.monthToAmend = this;
 
     // remove month ready for new, amended month to be added
     MonthStorageModel.months_arr.splice(
@@ -33,7 +31,7 @@ class MonthEntityModel {
 
   // if user cancels out of add gig form before completion
   CancelPrepMonth() {
-    MonthStorageModel.months_arr.push(this.monthToAmend);
+    MonthStorageModel.months_arr.push(this);
     MonthStorageModel.monthToAmend = undefined;
   }
 

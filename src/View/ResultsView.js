@@ -50,7 +50,6 @@ class ResultsView {
         const targetGigIndex = month.gigs_arr.indexOf(gig);
         month.gigs_arr.splice(targetGigIndex, 1);
 
-        // TODO rerender the current view the user is on to show results
         HelperController.RenderResultsBasedOnSelectedView();
       });
     };

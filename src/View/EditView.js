@@ -1,9 +1,13 @@
 // model
 import GigEntityModel from '../Model/GigEntityModel';
+import MonthStorageModel from '../Model/MonthStorageModel';
 
 // controller
 import CreateGigController from '../Controller/CreateGigController';
 import HelperController from '../Controller/HelperController';
+
+// view
+import RenderAddGigForm from './RenderAddGigForm';
 
 class EditView {
   constructor() {
@@ -12,8 +16,15 @@ class EditView {
     this.formEl = document.querySelector('.edit-window__form-edit');
     this.resultsSection = document.querySelector('.results-section');
     this.dateInput = document.querySelector('.edit-window__input-date-edit');
+    this.cancelEditGigBtn = document.querySelector(
+      '.edit-window__form-edit-cancel-btn'
+    );
 
     this.formEl.addEventListener('submit', this.CommitEdit.bind(this));
+    this.cancelEditGigBtn.addEventListener(
+      'click',
+      this.CancelEditGig.bind(this)
+    );
   }
 
   RenderEditGigForm(month) {
@@ -52,12 +63,19 @@ class EditView {
 
     CreateGigController.ReplaceGig(this.inputs);
 
-    this.CloseFormWhenSubmitted();
+    this.CloseForm();
   }
 
-  CloseFormWhenSubmitted() {
+  CloseForm() {
     this.resultsSection.classList.remove('u-no-display');
     this.editForm.classList.add('u-no-display');
+    this.formEl.reset();
+  }
+
+  CancelEditGig() {
+    this.CloseForm();
+
+    MonthStorageModel.monthToAmend.CancelPrepMonth();
   }
 }
 
