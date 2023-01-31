@@ -4,12 +4,12 @@ import Month from '../Model/MonthEntityModel';
 
 // controller
 import SortData from '../Controller/SortData';
+import LocalStorageController from './LocalStorageController';
 
 // view
 import RenderMonthSelector from '../View/RenderMonthSelector';
 import MonthView from '../View/MonthView';
 import RenderSortDom from '../View/RenderSortDom';
-import LocalStorageController from './LocalStorageController';
 
 class CreateMonthController {
   CreateMonth(e) {

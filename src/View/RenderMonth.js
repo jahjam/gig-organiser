@@ -1,3 +1,4 @@
+// controller
 import CreateMonthController from '../Controller/CreateMonthController';
 
 class RenderMonth {

@@ -4,9 +4,11 @@ import { intervalToDuration, isAfter } from 'date-fns';
 //model
 import MonthStorageModel from '../Model/MonthStorageModel';
 
+// controller
+import SortData from './SortData';
+
 // view
 import ResultsView from '../View/ResultsView';
-import SortData from './SortData';
 
 class RenderGigsController {
   RenderGigsDueToday() {

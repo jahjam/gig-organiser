@@ -6,9 +6,6 @@ import MonthStorageModel from '../Model/MonthStorageModel';
 import CreateGigController from '../Controller/CreateGigController';
 import HelperController from '../Controller/HelperController';
 
-// view
-import RenderAddGigForm from './RenderAddGigForm';
-
 class EditView {
   constructor() {
     this.inputs = document.querySelectorAll('.edit-window__input-edit');

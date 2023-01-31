@@ -1,5 +1,6 @@
 // controller
 import RenderGigsController from './RenderGigsController';
+import LocalStorageController from './LocalStorageController';
 
 // view
 import RenderMonthSelector from '../View/RenderMonthSelector';
@@ -10,7 +11,7 @@ import RenderWeeksGigs from '../View/RenderWeeksGigs';
 import RenderMonthsGigs from '../View/RenderMonthsGigs';
 import RenderFlaggedGigs from '../View/RenderFlaggedGigs';
 import RenderDeleteAside from '../View/RenderDeleteAside';
-import LocalStorageController from './LocalStorageController';
+import RenderMobileNav from '../View/RenderMobileNav';
 
 export default class Init {
   static loadUI() {
@@ -30,5 +31,6 @@ export default class Init {
     RenderMonthsGigs.RenderMonthsGigsHandler();
     RenderFlaggedGigs.RenderFlaggedGigsHandler();
     RenderDeleteAside.RenderAsideDeleteHandler();
+    RenderMobileNav.RenderMobileNavHandler();
   }
 }

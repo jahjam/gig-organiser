@@ -1,3 +1,4 @@
+// controller
 import HelperController from '../Controller/HelperController';
 
 class RenderAddGigForm {

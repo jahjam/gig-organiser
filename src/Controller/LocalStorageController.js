@@ -4,7 +4,6 @@ import GigEntityModel from '../Model/GigEntityModel';
 import Month from '../Model/MonthEntityModel';
 
 // controller
-import CreateMonthController from './CreateMonthController';
 import SortData from './SortData';
 
 // view

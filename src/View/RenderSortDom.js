@@ -1,3 +1,4 @@
+// controller
 import SortData from '../Controller/SortData';
 
 class RenderSortDom {
