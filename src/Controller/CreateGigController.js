@@ -9,6 +9,7 @@ import GigEntityModel from '../Model/GigEntityModel';
 import RenderGigsController from './RenderGigsController';
 import HelperController from './HelperController';
 import SortData from '../Controller/SortData';
+import LocalStorageController from './LocalStorageController';
 
 // view
 import MonthView from '../View/MonthView';
@@ -47,13 +48,11 @@ class CreateGigController {
     SortData.SortGigsInOrderOfDate();
     SortData.SortGigsInOrderOfStageTime();
 
-    // TODO Render gigs due today if the gig added is today
     const DATE_FROM_VALUES_ARR = this.values[1];
     if (MonthStorageModel.todaysDate === this.FormatDate(DATE_FROM_VALUES_ARR))
       RenderGigsController.RenderGigsDueToday();
 
-    // TODO impliment local storage
-    // localStorage.updateLocalStorage();
+    LocalStorageController.UpdateLocalStorage();
 
     // reset the month to amend
     MonthStorageModel.monthToAmend = undefined;
@@ -84,7 +83,6 @@ class CreateGigController {
     };
 
     MonthStorageModel.monthToAmend.gigs_arr.forEach(gig => {
-      console.log(GigEntityModel.targetGig);
       if (arrayEquals(Object.values(gig), GigEntityModel.targetGig)) {
         const flagged = gig.flagged;
         MonthView.RemoveGigFromAside(gig.index);

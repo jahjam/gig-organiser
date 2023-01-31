@@ -1,5 +1,6 @@
 // controller
 import HelperController from '../Controller/HelperController';
+import LocalStorageController from '../Controller/LocalStorageController';
 
 // view
 import RenderAddGigForm from './RenderAddGigForm';
@@ -107,6 +108,8 @@ class MonthView {
         month.gigs_arr.splice(targetGigIndex, 1);
 
         HelperController.RenderResultsBasedOnSelectedView();
+
+        LocalStorageController.UpdateLocalStorage();
       });
     };
 
@@ -157,7 +160,7 @@ class MonthView {
     return `
     <li class="${
       month.monthName.toLowerCase() + '-gig-list-el'
-    } aside-menu__dates-content-items">
+    } aside-menu__dates-content-items ${gig.fromStorage ? 'u-no-display' : ''}">
       <span class="aside-menu__dates-content-item" data-index='${gig.index}'>${
       gig.venue
     }</span>

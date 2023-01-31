@@ -9,6 +9,7 @@ import SortData from '../Controller/SortData';
 import RenderMonthSelector from '../View/RenderMonthSelector';
 import MonthView from '../View/MonthView';
 import RenderSortDom from '../View/RenderSortDom';
+import LocalStorageController from './LocalStorageController';
 
 class CreateMonthController {
   CreateMonth(e) {
@@ -42,6 +43,9 @@ class CreateMonthController {
 
     // reset
     doubleMonth = false;
+
+    // update local storage
+    LocalStorageController.UpdateLocalStorage();
   }
 
   DeleteMonth(month) {

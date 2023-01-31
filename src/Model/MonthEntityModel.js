@@ -63,6 +63,7 @@ class MonthEntityModel {
       stageTime,
       index,
       flagged: flagged,
+      fromStorage,
     });
 
     MonthStorageModel.months_arr.push(this);

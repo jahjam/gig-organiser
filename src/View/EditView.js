@@ -49,7 +49,7 @@ class EditView {
       }
     });
 
-    for (let i = 0; i < GigEntityModel.targetGig.length - 2; i++) {
+    for (let i = 0; i < GigEntityModel.targetGig.length - 3; i++) {
       if (this.inputs[i].id === 'date') {
         this.inputs[i].value = formattedDate;
       } else {

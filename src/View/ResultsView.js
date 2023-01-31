@@ -1,5 +1,6 @@
 // controller
 import HelperController from '../Controller/HelperController';
+import LocalStorageController from '../Controller/LocalStorageController';
 
 // view
 import MonthView from './MonthView';
@@ -29,6 +30,8 @@ class ResultsView {
       } else {
         e.target.style.color = '#140000';
       }
+
+      LocalStorageController.UpdateLocalStorage();
     };
 
     const editClickHandler = () => {
@@ -52,6 +55,8 @@ class ResultsView {
 
         HelperController.RenderResultsBasedOnSelectedView();
       });
+
+      LocalStorageController.UpdateLocalStorage();
     };
 
     gigFlagIcon.addEventListener('click', flagClickHandler);

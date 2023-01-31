@@ -10,13 +10,15 @@ import RenderWeeksGigs from '../View/RenderWeeksGigs';
 import RenderMonthsGigs from '../View/RenderMonthsGigs';
 import RenderFlaggedGigs from '../View/RenderFlaggedGigs';
 import RenderDeleteAside from '../View/RenderDeleteAside';
+import LocalStorageController from './LocalStorageController';
 
 export default class Init {
   static loadUI() {
     // TODO Load items from local storage
-    // ...
+    LocalStorageController.LocalStorageInitialise();
 
     RenderGigsController.RenderGigsDueToday();
+
     Init.initHandlers();
   }
 
