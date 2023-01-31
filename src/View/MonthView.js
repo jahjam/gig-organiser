@@ -3,6 +3,7 @@ import HelperController from '../Controller/HelperController';
 
 // view
 import RenderAddGigForm from './RenderAddGigForm';
+import RenderDeleteAside from './RenderDeleteAside';
 import ResultsView from './ResultsView';
 
 class MonthView {
@@ -30,7 +31,14 @@ class MonthView {
     };
 
     // handle clicks on chevron within month box
-    const renderGigsInMonthHandler = () => {
+    const renderGigsInMonthHandler = e => {
+      if (e.target.name === 'trash-outline') {
+        // TODO delete month
+        RenderDeleteAside.DeleteAsideItemMonth(month);
+
+        return;
+      }
+
       const gigsListElement_nodeList = document.querySelectorAll(
         `.${month.monthName.toLowerCase()}-gig-list-el`
       );
@@ -38,6 +46,10 @@ class MonthView {
       gigsListElement_nodeList.forEach(el =>
         el.classList.toggle('u-no-display')
       );
+
+      e.target.attributes[1].nodeValue === 'chevron-down-outline'
+        ? (e.target.attributes[1].nodeValue = 'chevron-up-outline')
+        : (e.target.attributes[1].nodeValue = 'chevron-down-outline');
     };
 
     showHideMonthBtn.addEventListener('click', renderGigsInMonthHandler);

@@ -14,11 +14,7 @@ class HelperController {
     this.asideMenuViewBtns = document.querySelectorAll('.aside-menu__btn');
   }
 
-  readViewBtns() {
-    const viewBtnEl_string = [...this.asideMenuViewBtns]
-      .filter(btn => btn.classList.toString().includes('u-active-btn'))[0]
-      .classList.toString();
-
+  ReadViewBtns() {
     // If editting a specifically viewed gig
     if (
       [...this.asideMenuViewBtns].every(btn => {
@@ -34,6 +30,10 @@ class HelperController {
       return 'renderTodaysGigs';
     }
 
+    const viewBtnEl_string = [...this.asideMenuViewBtns]
+      .filter(btn => btn.classList.toString().includes('u-active-btn'))[0]
+      .classList.toString();
+
     // If editting a gig in normal view
     if (viewBtnEl_string.includes('today-btn')) return 'renderTodaysGigs';
 
@@ -46,13 +46,13 @@ class HelperController {
 
   RenderResultsBasedOnSelectedView() {
     // Rerender gigs based on current tab open in view
-    if (this.readViewBtns() === 'renderTodaysGigs') {
+    if (this.ReadViewBtns() === 'renderTodaysGigs') {
       RenderGigsController.RenderGigsDueToday();
-    } else if (this.readViewBtns() === 'renderWeeksGigs') {
+    } else if (this.ReadViewBtns() === 'renderWeeksGigs') {
       RenderGigsController.RenderGigsDueThisWeek();
-    } else if (this.readViewBtns() === 'renderMonthsGigs') {
+    } else if (this.ReadViewBtns() === 'renderMonthsGigs') {
       RenderGigsController.RenderGigsDueThisMonth();
-    } else if (this.readViewBtns() === 'renderFlaggedGigs') {
+    } else if (this.ReadViewBtns() === 'renderFlaggedGigs') {
       RenderGigsController.RenderGigsFlagged();
     }
   }

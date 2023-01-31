@@ -110,18 +110,18 @@ class RenderGigsController {
     this.todayDay = +MonthStorageModel.todaysDate.split('/')[0];
 
     const numDays = intervalToDuration({
-      start: new Date(this.todayYear, this.todayMonth, this.todayDay),
-      end: new Date(this.gigYear, this.gigMonth, this.gigDay),
+      start: new Date(this.todayYear, this.todayMonth - 1, this.todayDay),
+      end: new Date(this.gigYear, this.gigMonth - 1, this.gigDay),
     }).days;
 
     const numMonths = intervalToDuration({
-      start: new Date(this.todayYear, this.todayMonth, this.todayDay),
-      end: new Date(this.gigYear, this.gigMonth, this.gigDay),
+      start: new Date(this.todayYear, this.todayMonth - 1, this.todayDay),
+      end: new Date(this.gigYear, this.gigMonth - 1, this.gigDay),
     }).months;
 
     const isDateAfter = isAfter(
-      new Date(this.gigYear, this.gigMonth, this.gigDay),
-      new Date(this.todayYear, this.todayMonth, this.todayDay)
+      new Date(this.gigYear, this.gigMonth - 1, this.gigDay),
+      new Date(this.todayYear, this.todayMonth - 1, this.todayDay)
     );
 
     if (type === 'week') {

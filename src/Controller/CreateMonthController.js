@@ -43,6 +43,12 @@ class CreateMonthController {
     // reset
     doubleMonth = false;
   }
+
+  DeleteMonth(month) {
+    // Finds index of correct month and removes it
+    const index = MonthStorageModel.months_arr.indexOf(month);
+    MonthStorageModel.months_arr.splice(index, 1);
+  }
 }
 
 export default new CreateMonthController();

@@ -9,6 +9,7 @@ import RenderTodaysGigs from '../View/RenderTodaysGigs';
 import RenderWeeksGigs from '../View/RenderWeeksGigs';
 import RenderMonthsGigs from '../View/RenderMonthsGigs';
 import RenderFlaggedGigs from '../View/RenderFlaggedGigs';
+import RenderDeleteAside from '../View/RenderDeleteAside';
 
 export default class Init {
   static loadUI() {
@@ -28,5 +29,6 @@ export default class Init {
     RenderWeeksGigs.RenderWeeksGigsHandler();
     RenderMonthsGigs.RenderMonthsGigsHandler();
     RenderFlaggedGigs.RenderFlaggedGigsHandler();
+    RenderDeleteAside.RenderAsideDeleteHandler();
   }
 }

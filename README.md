@@ -9,27 +9,27 @@ TODO
 Month view:
 
 [x] - Styles\
-[ ] - Fundamental logic\
-[ ] - Add month logic\
-[ ] - Render month selector\
-[ ] - Render month\
-[ ] - Add show and hide gig functionality\
-[ ] - Add gig logic\
-[ ] - Render add gig form\
-[ ] - View logic to render gigs in main view\
-[ ] - Required feilds to prevent bugs in form\
-[ ] - Prevent double months generation\
-[ ] - Create edit functionality\
-[ ] - Create delete functionality\
-[ ] - Add ability to delete months\
-[ ] - Generate delete options for each gig\
-[ ] - Generate view options for each gig\
-[ ] - Sort every view rendering to ensure gigs display from most recent to least\
-[ ] - Restrict dates on edit view like on add gig view\
-[ ] - Cancel add gig view if user aborts adding a gig after rendering form\
-[ ] - Format the info input to allow better formatting in the result view
+[x] - Fundamental logic\
+[x] - Add month logic\
+[x] - Render month selector\
+[x] - Render month\
+[x] - Add show and hide gig functionality\
+[x] - Add gig logic\
+[x] - Render add gig form\
+[x] - View logic to render gigs in main view\
+[x] - Required feilds to prevent bugs in form\
+[x] - Prevent double months generation\
+[x] - Create edit functionality\
+[x] - Create delete functionality\
+[x] - Add ability to delete months\
+[x] - Generate delete options for each gig\
+[x] - Generate view options for each gig\
+[x] - Sort every view rendering to ensure gigs display from most recent to least\
+[x] - Restrict dates on edit view like on add gig view\
+[x] - Cancel add gig view if user aborts adding a gig after rendering form\
+[x] - Format the info input to allow better formatting in the result view
 
-[ ] - FEATURE COMPLETE!
+[x] - FEATURE COMPLETE!
 
 [ ] - Code refactored
 
