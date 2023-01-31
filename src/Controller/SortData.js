@@ -27,7 +27,6 @@ class SortData {
     );
 
     MonthStorageModel.months_arr = months_arr;
-    console.log(MonthStorageModel.months_arr);
   }
 
   SortGigsInOrderOfDate() {
@@ -36,7 +35,6 @@ class SortData {
     months_arr.forEach(month =>
       month.gigs_arr.sort((a, b) => {
         // Sort the gigs by date
-        console.log(a, b);
         return (
           new Date(a.date.split('/').reverse().join('/')) -
           new Date(b.date.split('/').reverse().join('/'))

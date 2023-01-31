@@ -81,7 +81,6 @@ class MonthView {
 
     const showGigOptionsEventHandler = () => {
       gigOptionsView.classList.toggle('u-no-display');
-      console.log(gig);
     };
 
     const gigElipsisViewHandler = () => {
@@ -125,7 +124,6 @@ class MonthView {
 
     // Loop through gigs and find the one that has the same index as the gig, and apply changes to that one.
     this.gigsAside.forEach(gigAside => {
-      console.log(gigAside);
       if (+gigAside.firstElementChild.dataset.index === gigIndex) {
         gigAside.remove();
       }

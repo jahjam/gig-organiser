@@ -14,7 +14,6 @@ import LocalStorageController from './LocalStorageController';
 
 export default class Init {
   static loadUI() {
-    // TODO Load items from local storage
     LocalStorageController.LocalStorageInitialise();
 
     RenderGigsController.RenderGigsDueToday();
@@ -23,7 +22,6 @@ export default class Init {
   }
 
   static initHandlers() {
-    // TODO Add all handlers to initialise
     RenderMonthSelector.RenderMonthsSelectorHandler();
     RenderMonth.RenderMonthHandler();
     RenderGig.RenderGigHandler();

@@ -6,11 +6,8 @@ class RenderSortDom {
     const asideMenu = document.querySelector('.aside-menu__content-months');
     const elements = [...asideMonths];
 
-    console.log(elements);
-
     elements
       .sort((a, b) => {
-        console.log(a, b);
         return (
           SortData.months[
             a.innerText.toLowerCase().split('')[0].toUpperCase() +
