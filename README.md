@@ -31,7 +31,7 @@ Month view:
 
 [x] - FEATURE COMPLETE!
 
-[ ] - Code refactored
+[x] - Code refactored
 
 Additional fun addons for future
 
@@ -39,9 +39,9 @@ Additional fun addons for future
 
 Local storage:
 
-[ ] - Impliment local storage
+[x] - Impliment local storage
 
-[ ] - FEATURE COMPLETE!
+[x] - FEATURE COMPLETE!
 
 Tour View (ABILITY TO ADD CUSTOM TOURS - POSSIBLE FUTURE UPDATE):
 

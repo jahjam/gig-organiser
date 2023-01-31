@@ -34,7 +34,6 @@ class MonthView {
     // handle clicks on chevron within month box
     const renderGigsInMonthHandler = e => {
       if (e.target.name === 'trash-outline') {
-        // TODO delete month
         RenderDeleteAside.DeleteAsideItemMonth(month);
 
         return;

@@ -2,6 +2,7 @@
 import CreateMonthController from '../Controller/CreateMonthController';
 import HelperController from '../Controller/HelperController';
 import MonthStorageModel from '../Model/MonthStorageModel';
+import LocalStorageController from '../Controller/LocalStorageController';
 
 class RenderAsideDelete {
   RenderAsideDeleteHandler() {
@@ -79,7 +80,7 @@ class RenderAsideDelete {
     HelperController.RenderResultsBasedOnSelectedView();
 
     // Update the local storage to log the deletion of month
-    // TODO
+    LocalStorageController.UpdateLocalStorage();
   }
 }
 
